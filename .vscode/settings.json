@@ -1,0 +1,21 @@
+{
+  "files.exclude": {
+    "**/*.asm": true,
+    "**/*.bin": true,
+    "**/*.cmf": true,
+    "**/*.cof": true,
+    "**/*.d": true,
+    "**/*.hex": true,
+    "**/*.hxl": true,
+    "**/*.ini": true,
+    "**/*.lpp": true,
+    "**/*.map": true,
+    "**/*.obj": true,
+    "**/*.p1": true,
+    "**/*.pre": true,
+    "**/*.prj": true,
+    "**/*.rlf": true,
+    "**/*.sdb": true,
+    "**/*.sym": true
+  }
+}
