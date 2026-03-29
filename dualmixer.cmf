@@ -11,37 +11,66 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\owner\AppData\Local\Temp\ss38.obj
-reset_vec CODE 0 0 0 2 2
-end_init CODE 0 1F 1F 2 2
 $dualmixer.obj
-cinit CODE 0 21 21 6 2
-text2 CODE 0 27 27 1 2
-intentry CODE 0 4 4 1B 2
+cinit CODE 0 58 58 1C 2
+text1 CODE 0 538 538 10 2
+text2 CODE 0 4F8 4F8 16 2
+text3 CODE 0 467 467 24 2
+text4 CODE 0 273 273 69 2
+text5 CODE 0 524 524 14 2
+text6 CODE 0 4AE 4AE 1B 2
+text7 CODE 0 1D7 1D7 9C 2
+text8 CODE 0 48B 48B 23 2
+text9 CODE 0 74 74 163 2
+text10 CODE 0 43E 43E 29 2
+text11 CODE 0 3D3 3D3 3F 2
+text12 CODE 0 38B 38B 48 2
+text13 CODE 0 33B 33B 50 2
+text14 CODE 0 50E 50E 16 2
+text15 CODE 0 412 412 2C 2
+text16 CODE 0 560 560 B 2
+text17 CODE 0 548 548 C 2
+text18 CODE 0 4E1 4E1 17 2
+text19 CODE 0 554 554 C 2
+text21 CODE 0 57A 57A 1 2
+maintext CODE 0 2DC 2DC 5F 2
+cstackCOMMON COMMON 1 72 72 C 1
+cstackBANK0 BANK0 1 20 20 38 1
+stringtext1 STRCODE 0 4C9 4C9 18 2
+stringtext2 STRCODE 0 56B 56B 6 2
+stringtext3 STRCODE 0 577 577 3 2
+intentry CODE 0 4 4 52 2
+bssBANK0 BANK0 1 58 58 A 1
+bssBANK1 BANK1 1 A0 A0 20 1
+bssBANK2 BANK2 1 120 120 40 1
+clrtext CODE 0 571 571 6 2
+$C:\Users\owner\AppData\Local\Temp\sshs.obj
+reset_vec CODE 0 0 0 2 2
+end_init CODE 0 56 56 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 20-6F 1
-RAM A0-EF 1
-RAM 120-16F 1
+RAM 62-6F 1
+RAM C0-EF 1
+RAM 160-16F 1
 RAM 1A0-1EF 1
 RAM 220-26F 1
 RAM 2A0-2EF 1
 RAM 320-32F 1
-BANK0 20-6F 1
-BANK1 A0-EF 1
-BANK2 120-16F 1
+BANK0 62-6F 1
+BANK1 C0-EF 1
+BANK2 160-16F 1
 BANK3 1A0-1EF 1
 BANK4 220-26F 1
 BANK5 2A0-2EF 1
 BANK6 320-32F 1
 CONST 2-3 2
-CONST 28-FFF 2
+CONST 57B-FFF 2
 ENTRY 2-3 2
-ENTRY 28-FFF 2
+ENTRY 57B-FFF 2
 IDLOC 8000-8003 2
 SFR10 500-56F 1
 SFR11 580-5EF 1
@@ -65,9 +94,9 @@ SFR28 E00-E6F 1
 SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
-STACK 2000-21EF 1
+STACK 20E0-21EF 1
 CODE 2-3 2
-CODE 28-FFF 2
+CODE 57B-FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -79,13 +108,12 @@ SFR7 380-3EF 1
 SFR8 400-46F 1
 SFR9 480-4EF 1
 BIGRAM 2000-21EF 1
-COMMON 72-7D 1
 CONFIG 8007-8008 2
 EEDATA F000-F07F 2
 STRCODE 2-3 2
-STRCODE 28-FFF 2
+STRCODE 57B-FFF 2
 STRING 2-3 2
-STRING 28-FFF 2
+STRING 57B-FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -100,40 +128,334 @@ STRING 28-FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dualmixer.obj
-21 cinit CODE >50:C:\Users\owner\AppData\Local\Temp\ss38.
-21 cinit CODE >53:C:\Users\owner\AppData\Local\Temp\ss38.
-21 cinit CODE >59:C:\Users\owner\AppData\Local\Temp\ss38.
-21 cinit CODE >61:C:\Users\owner\AppData\Local\Temp\ss38.
-22 cinit CODE >62:C:\Users\owner\AppData\Local\Temp\ss38.
-23 cinit CODE >63:C:\Users\owner\AppData\Local\Temp\ss38.
-25 cinit CODE >58:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-25 cinit CODE >60:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-4 intentry CODE >23:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-6 intentry CODE >26:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-7 intentry CODE >27:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-8 intentry CODE >28:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-9 intentry CODE >29:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-A intentry CODE >30:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-B intentry CODE >31:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-C intentry CODE >32:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-D intentry CODE >33:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-E intentry CODE >34:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-F intentry CODE >35:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-10 intentry CODE >36:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-11 intentry CODE >37:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-12 intentry CODE >38:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-13 intentry CODE >39:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-14 intentry CODE >40:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-15 intentry CODE >41:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-16 intentry CODE >42:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-17 intentry CODE >43:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-18 intentry CODE >44:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-19 intentry CODE >45:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-1A intentry CODE >46:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-1B intentry CODE >48:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-1D intentry CODE >49:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-27 text2 CODE >50:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
-27 text2 CODE >52:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+58 cinit CODE >220:C:\Users\owner\AppData\Local\Temp\sshs.
+58 cinit CODE >223:C:\Users\owner\AppData\Local\Temp\sshs.
+58 cinit CODE >286:C:\Users\owner\AppData\Local\Temp\sshs.
+59 cinit CODE >287:C:\Users\owner\AppData\Local\Temp\sshs.
+5A cinit CODE >288:C:\Users\owner\AppData\Local\Temp\sshs.
+5B cinit CODE >289:C:\Users\owner\AppData\Local\Temp\sshs.
+5C cinit CODE >290:C:\Users\owner\AppData\Local\Temp\sshs.
+5D cinit CODE >291:C:\Users\owner\AppData\Local\Temp\sshs.
+60 cinit CODE >295:C:\Users\owner\AppData\Local\Temp\sshs.
+61 cinit CODE >296:C:\Users\owner\AppData\Local\Temp\sshs.
+62 cinit CODE >297:C:\Users\owner\AppData\Local\Temp\sshs.
+63 cinit CODE >298:C:\Users\owner\AppData\Local\Temp\sshs.
+64 cinit CODE >299:C:\Users\owner\AppData\Local\Temp\sshs.
+65 cinit CODE >300:C:\Users\owner\AppData\Local\Temp\sshs.
+68 cinit CODE >304:C:\Users\owner\AppData\Local\Temp\sshs.
+69 cinit CODE >305:C:\Users\owner\AppData\Local\Temp\sshs.
+6A cinit CODE >306:C:\Users\owner\AppData\Local\Temp\sshs.
+6B cinit CODE >307:C:\Users\owner\AppData\Local\Temp\sshs.
+6C cinit CODE >308:C:\Users\owner\AppData\Local\Temp\sshs.
+6D cinit CODE >309:C:\Users\owner\AppData\Local\Temp\sshs.
+70 cinit CODE >315:C:\Users\owner\AppData\Local\Temp\sshs.
+70 cinit CODE >317:C:\Users\owner\AppData\Local\Temp\sshs.
+71 cinit CODE >318:C:\Users\owner\AppData\Local\Temp\sshs.
+72 cinit CODE >319:C:\Users\owner\AppData\Local\Temp\sshs.
+4 intentry CODE >50:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+6 intentry CODE >53:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+7 intentry CODE >54:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+8 intentry CODE >55:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+9 intentry CODE >56:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+A intentry CODE >57:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+B intentry CODE >58:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+C intentry CODE >59:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+D intentry CODE >60:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+E intentry CODE >61:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+F intentry CODE >62:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+10 intentry CODE >63:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+11 intentry CODE >64:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+12 intentry CODE >65:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+13 intentry CODE >66:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+14 intentry CODE >67:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+15 intentry CODE >68:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+16 intentry CODE >69:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+17 intentry CODE >70:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+18 intentry CODE >71:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+19 intentry CODE >72:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+1A intentry CODE >73:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+1B intentry CODE >75:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+24 intentry CODE >77:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+25 intentry CODE >79:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2D intentry CODE >80:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+31 intentry CODE >81:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+32 intentry CODE >82:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+33 intentry CODE >86:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+3C intentry CODE >88:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+3D intentry CODE >90:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+43 intentry CODE >92:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4B intentry CODE >93:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F intentry CODE >94:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+50 intentry CODE >96:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+51 intentry CODE >99:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+54 intentry CODE >100:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+57A text21 CODE >101:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+57A text21 CODE >103:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+554 text19 CODE >148:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+555 text19 CODE >151:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+557 text19 CODE >152:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+557 text19 CODE >153:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+558 text19 CODE >151:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+55F text19 CODE >155:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4E1 text18 CODE >162:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4E2 text18 CODE >165:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4E4 text18 CODE >167:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4E5 text18 CODE >169:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4E9 text18 CODE >167:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F0 text18 CODE >165:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F7 text18 CODE >172:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+548 text17 CODE >262:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+549 text17 CODE >264:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+553 text17 CODE >265:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+560 text16 CODE >272:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+561 text16 CODE >274:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+56A text16 CODE >275:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+412 text15 CODE >112:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+412 text15 CODE >114:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+415 text15 CODE >115:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+416 text15 CODE >117:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+418 text15 CODE >118:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+41B text15 CODE >119:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+41D text15 CODE >120:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+420 text15 CODE >121:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+422 text15 CODE >122:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+424 text15 CODE >124:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+427 text15 CODE >125:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+428 text15 CODE >126:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+429 text15 CODE >128:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+42C text15 CODE >129:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+42D text15 CODE >130:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+42E text15 CODE >132:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+431 text15 CODE >133:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+433 text15 CODE >134:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+435 text15 CODE >136:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+438 text15 CODE >137:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+43A text15 CODE >138:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+43C text15 CODE >140:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+43D text15 CODE >141:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+50E text14 CODE >40:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+50E text14 CODE >44:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+50F text14 CODE >45:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+513 text14 CODE >46:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+517 text14 CODE >44:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+523 text14 CODE >48:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+33B text13 CODE >89:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+33D text13 CODE >95:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+351 text13 CODE >98:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+352 text13 CODE >99:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+358 text13 CODE >102:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+35A text13 CODE >104:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+35E text13 CODE >105:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+35F text13 CODE >106:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+360 text13 CODE >107:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+361 text13 CODE >109:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+365 text13 CODE >111:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+36B text13 CODE >112:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+36D text13 CODE >113:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+373 text13 CODE >114:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+375 text13 CODE >115:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+37B text13 CODE >102:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+383 text13 CODE >118:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+384 text13 CODE >119:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+38A text13 CODE >120:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+38B text12 CODE >6:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+38B text12 CODE >14:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+38F text12 CODE >15:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+397 text12 CODE >16:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+399 text12 CODE >17:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+39A text12 CODE >18:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+39E text12 CODE >19:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+39F text12 CODE >17:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3A3 text12 CODE >22:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3A7 text12 CODE >23:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3B9 text12 CODE >24:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3C1 text12 CODE >25:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3C2 text12 CODE >27:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3C6 text12 CODE >28:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3CA text12 CODE >30:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3D2 text12 CODE >31:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+3D3 text11 CODE >6:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3D3 text11 CODE >13:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3DB text11 CODE >14:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3DD text11 CODE >15:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3DE text11 CODE >16:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3E2 text11 CODE >17:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3E3 text11 CODE >15:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3E7 text11 CODE >20:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+3F9 text11 CODE >21:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+401 text11 CODE >22:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+405 text11 CODE >23:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+409 text11 CODE >25:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+411 text11 CODE >26:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+43E text10 CODE >15:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+43E text10 CODE >119:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+442 text10 CODE >120:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+442 text10 CODE >121:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+446 text10 CODE >122:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+44E text10 CODE >123:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+452 text10 CODE >124:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+456 text10 CODE >125:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+45E text10 CODE >128:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+466 text10 CODE >129:C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+74 text9 CODE >245:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+74 text9 CODE >255:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+82 text9 CODE >258:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+90 text9 CODE >259:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+95 text9 CODE >260:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+A4 text9 CODE >261:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+A9 text9 CODE >262:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+B8 text9 CODE >263:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+BD text9 CODE >264:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+CD text9 CODE >265:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+D2 text9 CODE >266:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+D3 text9 CODE >267:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+D8 text9 CODE >271:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+F7 text9 CODE >275:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+10B text9 CODE >278:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+123 text9 CODE >279:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+138 text9 CODE >282:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+139 text9 CODE >283:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+13B text9 CODE >284:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+13E text9 CODE >285:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+141 text9 CODE >286:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+144 text9 CODE >287:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+147 text9 CODE >288:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+14A text9 CODE >282:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+16D text9 CODE >294:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+19B text9 CODE >297:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1AE text9 CODE >300:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1BA text9 CODE >303:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1C2 text9 CODE >304:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1CC text9 CODE >305:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1D6 text9 CODE >306:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+48B text8 CODE >335:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+48B text8 CODE >337:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+498 text8 CODE >338:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4A6 text8 CODE >341:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4AD text8 CODE >342:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1D7 text7 CODE >182:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1D7 text7 CODE >185:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1DF text7 CODE >190:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1E7 text7 CODE >196:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1EF text7 CODE >199:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1F7 text7 CODE >202:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+1FF text7 CODE >203:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+207 text7 CODE >206:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+20F text7 CODE >207:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+217 text7 CODE >210:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+21F text7 CODE >213:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+227 text7 CODE >216:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+22E text7 CODE >219:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+236 text7 CODE >222:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+24A text7 CODE >225:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+250 text7 CODE >228:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+256 text7 CODE >231:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+25D text7 CODE >234:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+264 text7 CODE >235:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+26B text7 CODE >238:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+272 text7 CODE >239:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4AE text6 CODE >75:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4AE text6 CODE >77:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4B0 text6 CODE >78:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4B1 text6 CODE >79:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4B7 text6 CODE >80:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4B9 text6 CODE >81:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4BF text6 CODE >82:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4C1 text6 CODE >83:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+4C8 text6 CODE >84:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+524 text5 CODE >53:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+524 text5 CODE >56:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+526 text5 CODE >57:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+527 text5 CODE >58:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+528 text5 CODE >59:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+529 text5 CODE >60:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+52A text5 CODE >61:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+52B text5 CODE >63:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+531 text5 CODE >66:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+534 text5 CODE >69:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+537 text5 CODE >70:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+273 text4 CODE >125:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+274 text4 CODE >129:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+276 text4 CODE >132:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+27A text4 CODE >135:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+27C text4 CODE >136:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+282 text4 CODE >139:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+283 text4 CODE >140:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+287 text4 CODE >141:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+289 text4 CODE >142:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+28A text4 CODE >143:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+28C text4 CODE >144:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+28C text4 CODE >145:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+28D text4 CODE >147:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+293 text4 CODE >148:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+295 text4 CODE >149:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+29B text4 CODE >150:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+29D text4 CODE >151:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2A3 text4 CODE >139:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2AA text4 CODE >156:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2B0 text4 CODE >159:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2B1 text4 CODE >160:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2B3 text4 CODE >161:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2B9 text4 CODE >163:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2BB text4 CODE >164:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2C0 text4 CODE >165:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2C1 text4 CODE >166:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2C1 text4 CODE >168:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2C2 text4 CODE >169:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2C8 text4 CODE >159:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2CF text4 CODE >172:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2D1 text4 CODE >174:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2D7 text4 CODE >176:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+2DB text4 CODE >177:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+467 text3 CODE >205:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+468 text3 CODE >207:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+473 text3 CODE >209:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+474 text3 CODE >210:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+477 text3 CODE >213:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+47F text3 CODE >217:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+486 text3 CODE >218:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+489 text3 CODE >219:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+48A text3 CODE >220:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F8 text2 CODE >228:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F8 text2 CODE >230:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+4F9 text2 CODE >232:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+501 text2 CODE >233:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+504 text2 CODE >230:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+50D text2 CODE >235:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+538 text1 CODE >181:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+538 text1 CODE >183:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+53A text1 CODE >185:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+53D text1 CODE >186:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+53F text1 CODE >187:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+541 text1 CODE >189:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+543 text1 CODE >190:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+544 text1 CODE >191:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+545 text1 CODE >192:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+547 text1 CODE >197:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2DC maintext CODE >282:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2DC maintext CODE >287:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2DF maintext CODE >288:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2E2 maintext CODE >289:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2E5 maintext CODE >293:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2EE maintext CODE >296:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2F5 maintext CODE >297:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+2FD maintext CODE >298:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+305 maintext CODE >299:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+30D maintext CODE >300:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+315 maintext CODE >301:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+31C maintext CODE >302:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+323 maintext CODE >303:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+32A maintext CODE >306:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+32C maintext CODE >308:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+330 maintext CODE >306:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+571 clrtext CODE >275:C:\Users\owner\AppData\Local\Temp\sshs.
+571 clrtext CODE >276:C:\Users\owner\AppData\Local\Temp\sshs.
+572 clrtext CODE >277:C:\Users\owner\AppData\Local\Temp\sshs.
+572 clrtext CODE >278:C:\Users\owner\AppData\Local\Temp\sshs.
+573 clrtext CODE >279:C:\Users\owner\AppData\Local\Temp\sshs.
+574 clrtext CODE >280:C:\Users\owner\AppData\Local\Temp\sshs.
+575 clrtext CODE >281:C:\Users\owner\AppData\Local\Temp\sshs.
+576 clrtext CODE >282:C:\Users\owner\AppData\Local\Temp\sshs.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -147,32 +469,108 @@ F intentry CODE >35:C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 1 0 ABS 0 - dualmixer.obj
-__Hspace_0 28 0 ABS 0 - -
-__Hspace_1 0 0 ABS 0 - -
+__size_of_DelayMs 0 0 ABS 0 - dualmixer.obj
+__size_of_DelayUs 0 0 ABS 0 - dualmixer.obj
+__Hspace_0 57B 0 ABS 0 - -
+__Hspace_1 160 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
+__end_of_RFFC2071A_Init A70 0 CODE 0 text5 dualmixer.obj
+_POWER_INITIAL 824 0 CODE 0 text15 dualmixer.obj
+RFFC2071A_CalcFrequency@remainder 31 0 BANK0 1 cstackBANK0 dualmixer.obj
+__end_of_UART_INITIAL A90 0 CODE 0 text1 dualmixer.obj
+__end_of_RFFC2071A_ReadReg 5B8 0 CODE 0 text4 dualmixer.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
+RFFC2071A_WriteReg@addr 20 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_WriteReg@data 74 0 COMMON 1 cstackCOMMON dualmixer.obj
+main@i 55 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_ReadReg@addr 77 0 COMMON 1 cstackCOMMON dualmixer.obj
+___rffc_dummy_porta 5B 0 BANK0 1 bssBANK0 dualmixer.obj
+___rffc_dummy_portb 5A 0 BANK0 1 bssBANK0 dualmixer.obj
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\owner\AppData\Local\Temp\ss38.obj
-_main 4A 0 CODE 0 cinit dualmixer.obj
+___rffc_dummy_trisa 59 0 BANK0 1 bssBANK0 dualmixer.obj
+___rffc_dummy_trisb 58 0 BANK0 1 bssBANK0 dualmixer.obj
+_TCEN 2475 0 ABS 0 - dualmixer.obj
+_TXEF 2495 0 ABS 0 - dualmixer.obj
+_WPDA 20C 0 ABS 0 - dualmixer.obj
+_WPDB 20D 0 ABS 0 - dualmixer.obj
+_WPDC 20E 0 ABS 0 - dualmixer.obj
+_WPUA 18C 0 ABS 0 - dualmixer.obj
+_WPUB 18D 0 ABS 0 - dualmixer.obj
+_WPUC 18E 0 ABS 0 - dualmixer.obj
+___sp 0 0 STACK 2 stack C:\Users\owner\AppData\Local\Temp\sshs.obj
+_main 5B8 0 CODE 0 maintext dualmixer.obj
 btemp 7E 0 ABS 0 - dualmixer.obj
-start 3E 0 CODE 0 init C:\Users\owner\AppData\Local\Temp\ss38.obj
+start AC 0 CODE 0 init C:\Users\owner\AppData\Local\Temp\sshs.obj
 __size_of_main 0 0 ABS 0 - dualmixer.obj
+__size_of___lldiv 0 0 ABS 0 - dualmixer.obj
+__size_of___llmod 0 0 ABS 0 - dualmixer.obj
+HiNibbleToHex@val 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+?___lmul 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+DelayUs@Time 72 0 COMMON 1 cstackCOMMON dualmixer.obj
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
-intlevel1 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
-intlevel2 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
-intlevel3 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
-intlevel4 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
-intlevel5 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\ss38.obj
+intlevel0 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\owner\AppData\Local\Temp\sshs.obj
+__end_of_SendStringToUART A1C 0 CODE 0 text2 dualmixer.obj
 wtemp0 7E 0 ABS 0 - dualmixer.obj
+___llmod@divisor 72 0 COMMON 1 cstackCOMMON dualmixer.obj
 __Hfunctab 0 0 ENTRY 0 functab -
+__end_of_hex_chars 9B4 0 STRCODE 0 stringtext1 dualmixer.obj
+_SendByteToUART 8CE 0 CODE 0 text3 dualmixer.obj
+__size_of_SendStringToUART 0 0 ABS 0 - dualmixer.obj
 __Hclrtext 0 0 ABS 0 clrtext -
-__Hpa_nodes0 0 0 ABS 0 pa_nodes0 -
+_HiNibbleToHex A90 0 CODE 0 text17 dualmixer.obj
+__end_of_DelayMs 9F0 0 CODE 0 text18 dualmixer.obj
+__end_of_DelayUs AC0 0 CODE 0 text19 dualmixer.obj
+_ANSELA 197 0 ABS 0 - dualmixer.obj
+_RFFC2071A_ReadReg 4E6 0 CODE 0 text4 dualmixer.obj
+_txIndexIp 5D 0 BANK0 1 bssBANK0 dualmixer.obj
+_txIndexOp 5C 0 BANK0 1 bssBANK0 dualmixer.obj
+_hex_chars 992 0 STRCODE 0 stringtext1 dualmixer.obj
+__end_of___lmul 8CE 0 CODE 0 text10 dualmixer.obj
+__size_of_POWER_INITIAL 0 0 ABS 0 - dualmixer.obj
+_RFFC2071A_DefaultConfig 3AE 0 CODE 0 text7 dualmixer.obj
+RFFC2071A_ReadReg@rx_data 78 0 COMMON 1 cstackCOMMON dualmixer.obj
+RFFC2071A_SetDualFrequency@freq1_mhz 4D 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_SetDualFrequency@freq2_mhz 51 0 BANK0 1 cstackBANK0 dualmixer.obj
 __Lmaintext 0 0 ABS 0 maintext -
-__Lpa_nodes0 0 0 ABS 0 pa_nodes0 -
-start_initialization 42 0 CODE 0 cinit dualmixer.obj
-___int_sp 0 0 STACK 2 stack C:\Users\owner\AppData\Local\Temp\ss38.obj
+__end_of_RFFC2071A_DefaultConfig 4E6 0 CODE 0 text7 dualmixer.obj
+__end_of___lldiv 7A6 0 CODE 0 text12 dualmixer.obj
+__end_of___llmod 824 0 CODE 0 text11 dualmixer.obj
+__size_of_RFFC2071A_SetDualFrequency 0 0 ABS 0 - dualmixer.obj
+_INTCON B 0 ABS 0 - dualmixer.obj
+__end_of_SendByteToUART 916 0 CODE 0 text3 dualmixer.obj
+__end_of_POWER_INITIAL 87C 0 CODE 0 text15 dualmixer.obj
+_rxIndexIp 60 0 BANK0 1 bssBANK0 dualmixer.obj
+_rxIndexOp 5F 0 BANK0 1 bssBANK0 dualmixer.obj
+___lldiv@counter 24 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@n_lo 44 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@path 2A 0 BANK0 1 cstackBANK0 dualmixer.obj
+start_initialization B0 0 CODE 0 cinit dualmixer.obj
+_OSCCON 99 0 ABS 0 - dualmixer.obj
+RFFC2071A_CalcFrequency@freq1 3D 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@freq2 37 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@freq3 3B 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@n_div 43 0 BANK0 1 cstackBANK0 dualmixer.obj
+RFFC2071A_CalcFrequency@n_int 35 0 BANK0 1 cstackBANK0 dualmixer.obj
+_PSINK0 19A 0 ABS 0 - dualmixer.obj
+_PSINK1 19B 0 ABS 0 - dualmixer.obj
+_PSINK2 19C 0 ABS 0 - dualmixer.obj
+___lldiv@dividend 76 0 COMMON 1 cstackCOMMON dualmixer.obj
+SendByteToUART@data 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+clear_ram0 AE2 0 CODE 0 clrtext dualmixer.obj
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dualmixer.obj
+_RFFC2071A_SetDualFrequency 916 0 CODE 0 text8 dualmixer.obj
+_RFFC2071A_CalcFrequency E8 0 CODE 0 text9 dualmixer.obj
+_URRXNE 2470 0 ABS 0 - dualmixer.obj
+__size_of_HiNibbleToHex 0 0 ABS 0 - dualmixer.obj
+RFFC2071A_WriteReg@tx_data 21 0 BANK0 1 cstackBANK0 dualmixer.obj
+__end_of_RFFC2071A_CalcFrequency 3AE 0 CODE 0 text9 dualmixer.obj
+___int_sp 0 0 STACK 2 stack C:\Users\owner\AppData\Local\Temp\sshs.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -183,7 +581,7 @@ __Hbank6 0 0 ABS 0 bank6 -
 __Hbank7 0 0 BANK7 1 bank7 -
 __Hbank8 0 0 BANK8 1 bank8 -
 __Hbank9 0 0 BANK9 1 bank9 -
-__Hcinit 4E 0 CODE 0 cinit -
+__Hcinit E8 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
@@ -232,6 +630,8 @@ __Hbank30 0 0 BANK30 1 bank30 -
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
+_receivedata A0 0 BANK1 1 bssBANK1 dualmixer.obj
+_txCounter 5E 0 BANK0 1 bssBANK0 dualmixer.obj
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 0 0 CONFIG 0 config -
 __Lbank0 0 0 ABS 0 bank0 -
@@ -244,8 +644,9 @@ __Lbank6 0 0 ABS 0 bank6 -
 __Lbank7 0 0 BANK7 1 bank7 -
 __Lbank8 0 0 BANK8 1 bank8 -
 __Lbank9 0 0 BANK9 1 bank9 -
-__Lcinit 42 0 CODE 0 cinit -
+__Lcinit B0 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 0 idloc -
+SendStringToUART@str 73 0 COMMON 1 cstackCOMMON dualmixer.obj
 __Lsfr10 0 0 ABS 0 sfr10 -
 __Lsfr11 0 0 ABS 0 sfr11 -
 __Lsfr12 0 0 ABS 0 sfr12 -
@@ -269,9 +670,11 @@ __Lsfr29 0 0 ABS 0 sfr29 -
 __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
+__size_of_RFFC2071A_Init 0 0 ABS 0 - dualmixer.obj
+__end_of_HiNibbleToHex AA8 0 CODE 0 text17 dualmixer.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 3E 0 CODE 0 init -
+__Hinit AC 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -285,7 +688,7 @@ __Hsfr9 0 0 ABS 0 sfr9 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 3E 0 CODE 0 init -
+__Linit AC 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
@@ -297,17 +700,64 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
+__pstringtext1 992 0 STRCODE 0 stringtext1 dualmixer.obj
+__pstringtext2 AD6 0 STRCODE 0 stringtext2 dualmixer.obj
+__pstringtext3 AEE 0 STRCODE 0 stringtext3 dualmixer.obj
+__pstringtext4 0 0 STRCODE 0 stringtext4 dualmixer.obj
+___lmul 87C 0 CODE 0 text10 dualmixer.obj
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 int$flags 7E 0 ABS 0 - dualmixer.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_URDATAL 48C 0 ABS 0 - dualmixer.obj
 _ISR 8 0 CODE 0 intentry dualmixer.obj
-__S0 28 0 ABS 0 - -
-__S1 0 0 ABS 0 - -
+_PA0 60 0 ABS 0 - dualmixer.obj
+_PA1 61 0 ABS 0 - dualmixer.obj
+_PA4 64 0 ABS 0 - dualmixer.obj
+_PB0 68 0 ABS 0 - dualmixer.obj
+_PB1 69 0 ABS 0 - dualmixer.obj
+_PB2 6A 0 ABS 0 - dualmixer.obj
+_TCF 24E0 0 ABS 0 - dualmixer.obj
+__S0 57B 0 ABS 0 - -
+__S1 160 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-__end_of_ISR 3E 0 CODE 0 intentry dualmixer.obj
+DelayMs@a 75 0 COMMON 1 cstackCOMMON dualmixer.obj
+DelayMs@b 76 0 COMMON 1 cstackCOMMON dualmixer.obj
+DelayUs@a 73 0 COMMON 1 cstackCOMMON dualmixer.obj
+RFFC2071A_CalcFrequency@freq_mhz 26 0 BANK0 1 cstackBANK0 dualmixer.obj
+_rxCounter 61 0 BANK0 1 bssBANK0 dualmixer.obj
+__end_of_ISR AC 0 CODE 0 intentry dualmixer.obj
+__end_of_RFFC2071A_WriteReg 716 0 CODE 0 text13 dualmixer.obj
+delay_us@us 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+_DelayMs 9C2 0 CODE 0 text18 dualmixer.obj
+_DelayUs AA8 0 CODE 0 text19 dualmixer.obj
 __Lintentry 8 0 CODE 0 intentry -
+___lldiv@divisor 72 0 COMMON 1 cstackCOMMON dualmixer.obj
 __size_of_user_isr 0 0 ABS 0 - dualmixer.obj
-reset_vec 0 0 CODE 0 reset_vec C:\Users\owner\AppData\Local\Temp\ss38.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\owner\AppData\Local\Temp\sshs.obj
+?_RFFC2071A_ReadReg 74 0 COMMON 1 cstackCOMMON dualmixer.obj
+_LoNibbleToHex AC0 0 CODE 0 text16 dualmixer.obj
+__size_of___lmul 0 0 ABS 0 - dualmixer.obj
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+__LbssBANK1 0 0 ABS 0 bssBANK1 -
+__LbssBANK2 0 0 ABS 0 bssBANK2 -
+__Lstringtext1 0 0 ABS 0 stringtext1 -
+__Lstringtext2 0 0 ABS 0 stringtext2 -
+__Lstringtext3 0 0 ABS 0 stringtext3 -
+__Lstringtext4 0 0 ABS 0 stringtext4 -
+__ptext10 87C 0 CODE 0 text10 dualmixer.obj
+__ptext11 7A6 0 CODE 0 text11 dualmixer.obj
+__ptext12 716 0 CODE 0 text12 dualmixer.obj
+__ptext13 676 0 CODE 0 text13 dualmixer.obj
+__ptext14 A1C 0 CODE 0 text14 dualmixer.obj
+__ptext15 824 0 CODE 0 text15 dualmixer.obj
+__ptext16 AC0 0 CODE 0 text16 dualmixer.obj
+__ptext17 A90 0 CODE 0 text17 dualmixer.obj
+__ptext18 9C2 0 CODE 0 text18 dualmixer.obj
+__ptext19 AA8 0 CODE 0 text19 dualmixer.obj
+__ptext21 AF4 0 CODE 0 text21 dualmixer.obj
+___lldiv 716 0 CODE 0 text12 dualmixer.obj
+___llmod 7A6 0 CODE 0 text11 dualmixer.obj
 __Lbank10 0 0 BANK10 1 bank10 -
 __Lbank11 0 0 BANK11 1 bank11 -
 __Lbank12 0 0 BANK12 1 bank12 -
@@ -330,42 +780,114 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 4A 0 CODE 0 cinit dualmixer.obj
+__pmaintext 5B8 0 CODE 0 maintext dualmixer.obj
 __Lbigram 0 0 ABS 0 bigram -
+___lmul@multiplier 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+_RFFC2071A_WriteReg 676 0 CODE 0 text13 dualmixer.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 0 config -
-stackhi 21EF 0 ABS 0 - C:\Users\owner\AppData\Local\Temp\ss38.obj
-stacklo 2000 0 ABS 0 - C:\Users\owner\AppData\Local\Temp\ss38.obj
-_user_isr 4E 0 CODE 0 text2 dualmixer.obj
+LoNibbleToHex@val 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+__end_of_RFFC2071A_Reset 992 0 CODE 0 text6 dualmixer.obj
+_toSend 120 0 BANK2 1 bssBANK2 dualmixer.obj
+RFFC2071A_CalcFrequency@reg_base 4C 0 BANK0 1 cstackBANK0 dualmixer.obj
+stackhi 21EF 0 ABS 0 - C:\Users\owner\AppData\Local\Temp\sshs.obj
+stacklo 20E0 0 ABS 0 - C:\Users\owner\AppData\Local\Temp\sshs.obj
+_user_isr AF4 0 CODE 0 text21 dualmixer.obj
+DelayMs@Time 74 0 COMMON 1 cstackCOMMON dualmixer.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
-__end_of_user_isr 50 0 CODE 0 text2 dualmixer.obj
-__Lend_init 3E 0 CODE 0 end_init -
+RFFC2071A_ReadReg@i 7B 0 COMMON 1 cstackCOMMON dualmixer.obj
+__end_of_user_isr AF6 0 CODE 0 text21 dualmixer.obj
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__size_of_SendByteToUART 0 0 ABS 0 - dualmixer.obj
+__Lend_init AC 0 CODE 0 end_init -
+__size_of_RFFC2071A_DefaultConfig 0 0 ABS 0 - dualmixer.obj
+__size_of_delay_us 0 0 ABS 0 - dualmixer.obj
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 42 0 CODE 0 cinit dualmixer.obj
-__Hintentry 3E 0 CODE 0 intentry -
+end_of_initialization E0 0 CODE 0 cinit dualmixer.obj
+__Hintentry AC 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
+RFFC2071A_WriteReg@i 25 0 BANK0 1 cstackBANK0 dualmixer.obj
+?___lldiv 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+?___llmod 72 0 COMMON 1 cstackCOMMON dualmixer.obj
 __Hreset_vec 4 0 CODE 0 reset_vec -
-__ptext0 0 0 CODE 0 text0 dualmixer.obj
-__ptext2 4E 0 CODE 0 text2 dualmixer.obj
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__HbssBANK1 0 0 ABS 0 bssBANK1 -
+__HbssBANK2 0 0 ABS 0 bssBANK2 -
+__size_of_LoNibbleToHex 0 0 ABS 0 - dualmixer.obj
+_RFFC2071A_Reset 95C 0 CODE 0 text6 dualmixer.obj
+__ptext1 A70 0 CODE 0 text1 dualmixer.obj
+__ptext2 9F0 0 CODE 0 text2 dualmixer.obj
+__ptext3 8CE 0 CODE 0 text3 dualmixer.obj
+__ptext4 4E6 0 CODE 0 text4 dualmixer.obj
+__ptext5 A48 0 CODE 0 text5 dualmixer.obj
+__ptext6 95C 0 CODE 0 text6 dualmixer.obj
+__ptext7 3AE 0 CODE 0 text7 dualmixer.obj
+__ptext8 916 0 CODE 0 text8 dualmixer.obj
+__ptext9 E8 0 CODE 0 text9 dualmixer.obj
 _BSR_TMP 71 0 ABS 1 - dualmixer.obj
 __Lpowerup 0 0 CODE 0 powerup -
+__size_of_RFFC2071A_ReadReg 0 0 ABS 0 - dualmixer.obj
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
+main@readback 56 0 BANK0 1 cstackBANK0 dualmixer.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
-__end_of__initialization 42 0 CODE 0 cinit dualmixer.obj
+__Hstringtext1 0 0 ABS 0 stringtext1 -
+__Hstringtext2 0 0 ABS 0 stringtext2 -
+__Hstringtext3 0 0 ABS 0 stringtext3 -
+__Hstringtext4 0 0 ABS 0 stringtext4 -
+RFFC2071A_ReadReg@tx_byte 7A 0 COMMON 1 cstackCOMMON dualmixer.obj
+RFFC2071A_CalcFrequency@vco_freq 3F 0 BANK0 1 cstackBANK0 dualmixer.obj
+__end_of__initialization E0 0 CODE 0 cinit dualmixer.obj
+_delay_us A1C 0 CODE 0 text14 dualmixer.obj
 __Lfunctab 0 0 ENTRY 0 functab -
+__end_of_LoNibbleToHex AD6 0 CODE 0 text16 dualmixer.obj
 __Lclrtext 0 0 ABS 0 clrtext -
-__pcstackCOMMON 0 0 COMMON 1 cstackCOMMON dualmixer.obj
-__Hend_init 42 0 CODE 0 end_init -
-__end_of_main 4E 0 CODE 0 cinit dualmixer.obj
+__size_of_RFFC2071A_CalcFrequency 0 0 ABS 0 - dualmixer.obj
+_UART_INITIAL A70 0 CODE 0 text1 dualmixer.obj
+_RFFC2071A_CalcFrequency$4621 39 0 BANK0 1 cstackBANK0 dualmixer.obj
+___lmul@product 7A 0 COMMON 1 cstackCOMMON dualmixer.obj
+__end_of_delay_us A48 0 CODE 0 text14 dualmixer.obj
+___lmul@multiplicand 76 0 COMMON 1 cstackCOMMON dualmixer.obj
+___lldiv@quotient 20 0 BANK0 1 cstackBANK0 dualmixer.obj
+__pcstackCOMMON 72 0 COMMON 1 cstackCOMMON dualmixer.obj
+__Hend_init B0 0 CODE 0 end_init -
+___llmod@dividend 76 0 COMMON 1 cstackCOMMON dualmixer.obj
+___llmod@counter 7A 0 COMMON 1 cstackCOMMON dualmixer.obj
+_RFFC2071A_Init A48 0 CODE 0 text5 dualmixer.obj
+__end_of_main 676 0 CODE 0 maintext dualmixer.obj
+_PCKEN 9A 0 ABS 0 - dualmixer.obj
+_PORTA C 0 ABS 0 - dualmixer.obj
+_PORTB D 0 ABS 0 - dualmixer.obj
+_PORTC E 0 ABS 0 - dualmixer.obj
+_PSRC0 11A 0 ABS 0 - dualmixer.obj
+_PSRC1 11B 0 ABS 0 - dualmixer.obj
+_PSRC2 11C 0 ABS 0 - dualmixer.obj
+_RXNEF 2490 0 ABS 0 - dualmixer.obj
+_TRISA 8C 0 ABS 0 - dualmixer.obj
+_TRISB 8D 0 ABS 0 - dualmixer.obj
+_TRISC 8E 0 ABS 0 - dualmixer.obj
+_URDLH 495 0 ABS 0 - dualmixer.obj
+_URDLL 494 0 ABS 0 - dualmixer.obj
+_URIER 48E 0 ABS 0 - dualmixer.obj
+_URLCR 48F 0 ABS 0 - dualmixer.obj
+_URMCR 491 0 ABS 0 - dualmixer.obj
 _W_TMP 70 0 ABS 1 - dualmixer.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 __pintentry 8 0 CODE 0 intentry dualmixer.obj
 __size_of_ISR 0 0 ABS 0 - dualmixer.obj
-__initialization 42 0 CODE 0 cinit dualmixer.obj
+__initialization B0 0 CODE 0 cinit dualmixer.obj
+__pbssBANK0 58 0 BANK0 1 bssBANK0 dualmixer.obj
+__pbssBANK1 A0 0 BANK1 1 bssBANK1 dualmixer.obj
+__pbssBANK2 120 0 BANK2 1 bssBANK2 dualmixer.obj
+__size_of_RFFC2071A_Reset 0 0 ABS 0 - dualmixer.obj
+__size_of_UART_INITIAL 0 0 ABS 0 - dualmixer.obj
+_SendStringToUART 9F0 0 CODE 0 text2 dualmixer.obj
+__size_of_RFFC2071A_WriteReg 0 0 ABS 0 - dualmixer.obj
+RFFC2071A_CalcFrequency@n_frac 48 0 BANK0 1 cstackBANK0 dualmixer.obj
+__end_of_RFFC2071A_SetDualFrequency 95C 0 CODE 0 text8 dualmixer.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -393,5 +915,15 @@ _W_TMP 1 70 1
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-intentry 0 4 8 24 2
+text18 0 4E1 9C2 8A 2
+text21 0 57A AF4 1 2
+cstackCOMMON 1 72 72 C 1
+cstackBANK0 1 20 20 42 1
+stringtext1 0 4C9 992 18 2
+stringtext2 0 56B AD6 6 2
+stringtext3 0 577 AEE 3 2
+intentry 0 4 8 4C5 2
 reset_vec 0 0 0 2 2
+bssBANK1 1 A0 A0 20 1
+bssBANK2 1 120 120 40 1
+clrtext 0 571 AE2 6 2

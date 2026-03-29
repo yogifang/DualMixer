@@ -2603,16 +2603,194 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 13 "DualMixer.C"
+# 11 "DualMixer.h"
+typedef unsigned char u8;
+typedef unsigned int u16;
+typedef unsigned long u32;
+
+void POWER_INITIAL(void);
+void DelayUs(unsigned char Time);
+void DelayMs(unsigned char Time);
+unsigned char HiNibbleToHex(unsigned char val);
+unsigned char LoNibbleToHex(unsigned char val);
+
+# 13 "C:\Program Files (x86)\CCompiler\Compiler\data\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 72 "RFFC2071A.h"
+void RFFC2071A_Init(void);
+void RFFC2071A_Reset(void);
+void RFFC2071A_DefaultConfig(void);
+void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
+uint16_t RFFC2071A_ReadReg(uint8_t addr);
+void RFFC2071A_SetFrequency(uint32_t freq_mhz);
+void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz);
+void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz);
+void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz);
+void RFFC2071A_SetFullDuplex(uint8_t enable);
+void RFFC2071A_SetMixerCurrent(uint8_t current);
+void RFFC2071A_Enable(void);
+void RFFC2071A_Disable(void);
+void RFFC2071A_SetMode(uint8_t mixer);
+uint8_t RFFC2071A_IsLocked(void);
+uint8_t RFFC2071A_GetVCO(void);
+uint8_t RFFC2071A_GetCTCal(void);
+
+# 12 "C:\Program Files (x86)\CCompiler\Compiler\data\include\stdbool.h"
+typedef unsigned char bool;
+
+# 4 "C:\Program Files (x86)\CCompiler\Compiler\data\include\__size_t.h"
+typedef unsigned size_t;
+
+# 16 "C:\Program Files (x86)\CCompiler\Compiler\data\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+
+
+extern void * __builtin_memcpy(void *, const void *, size_t);
+#pragma intrinsic(__builtin_memcpy)
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 25 "DualMixer.C"
+volatile unsigned char receivedata[32] = 0;
+volatile unsigned char rxCounter = 0;
+volatile unsigned char rxIndexIp = 0;
+volatile unsigned char rxIndexOp = 0;
+
+volatile unsigned char toSend[64] = 0;
+volatile unsigned char txCounter = 0;
+volatile unsigned char txIndexIp = 0;
+volatile unsigned char txIndexOp = 0;
+
+
+
+const char hex_chars[] = "0123456789ABCDEF";
 volatile char W_TMP @ 0x70 ;
 volatile char BSR_TMP @ 0x71 ;
+
+
 void user_isr();
 
-# 23
+# 50
 void interrupt ISR(void)
 {
 
-# 25
+# 52
 #asm
  NOP;
  NOP;
@@ -2636,14 +2814,193 @@ void interrupt ISR(void)
  NOP;
  NOP;
 #endasm ;
+if (URRXNE && RXNEF)
+{
+RXNEF = 1;
+{
+receivedata[rxIndexIp] = URDATAL;
+rxIndexIp = (rxIndexIp + 1) & (32 - 1);
+rxCounter++;
+__nop();
+}
+}
+
+if (TCEN && TCF)
+{
+TCF = 1;
+
+if (txCounter > 0)
+{
+URDATAL = toSend[txIndexOp];
+txIndexOp = (txIndexOp + 1) & (64 - 1);
+txCounter--;
+}
+__nop();
+}
+
 user_isr();
 }
 void user_isr()
 {
 }
 
-# 58
+# 112
+void POWER_INITIAL(void)
+{
+OSCCON = 0B01110001;
+INTCON = 0;
+
+PORTA = 0B00000000;
+TRISA = 0B10101100;
+PORTB = 0B00000000;
+TRISB = 0B11000000;
+PORTC = 0B00000000;
+TRISC = 0B00000000;
+
+WPUA = 0B00010011;
+WPUB = 0B00000000;
+WPUC = 0B00000000;
+
+WPDA = 0B10000000;
+WPDB = 0B00000000;
+WPDC = 0B00000000;
+
+PSRC0 = 0B11111111;
+PSRC1 = 0B11111111;
+PSRC2 = 0B11111111;
+
+PSINK0 = 0B11111111;
+PSINK1 = 0B11111111;
+PSINK2 = 0B11111111;
+
+ANSELA = 0B00000000;
+}
+
+# 148
+void DelayUs(unsigned char Time)
+{
+unsigned char a;
+for (a = 0; a < Time; a++)
+{
+__nop();
+}
+}
+
+# 162
+void DelayMs(unsigned char Time)
+{
+unsigned char a, b;
+for (a = 0; a < Time; a++)
+{
+for (b = 0; b < 5; b++)
+{
+DelayUs(197);
+}
+}
+}
+
+# 181
+void UART_INITIAL(void)
+{
+PCKEN |= 0B00100000;
+
+URIER = 0B00100001;
+URLCR = 0B00000001;
+URMCR = 0B00011000;
+
+URDLL = 104;
+URDLH = 0;
+TCF = 1;
+INTCON = 0B11000000;
+
+
+
+
+}
+
+# 205
+void SendByteToUART(unsigned char data)
+{
+if (txCounter == 0 && TXEF)
+{
+TCF = 1;
+URDATAL = data;
+return;
+}
+if (txCounter >= 64)
+{
+return;
+}
+toSend[txIndexIp] = data;
+txIndexIp = (txIndexIp + 1) & (64 - 1);
+txCounter++;
+}
+
+# 228
+void SendStringToUART(char *str)
+{
+while (*str)
+{
+SendByteToUART(*str);
+str++;
+}
+}
+
+# 242
+unsigned char ReceiveByteFromUART(void)
+{
+unsigned char retData;
+if (rxCounter > 0)
+{
+rxCounter--;
+retData = receivedata[rxIndexOp];
+rxIndexOp = (rxIndexOp + 1) & (32 - 1);
+return retData;
+}
+return 0;
+}
+
+# 262
+unsigned char HiNibbleToHex(unsigned char val)
+{
+return hex_chars[(val >> 4) & 0x0F];
+}
+
+# 272
+unsigned char LoNibbleToHex(unsigned char val)
+{
+return hex_chars[val & 0x0F];
+}
+
+# 282
 main()
 {
+uint16_t readback;
+unsigned char i;
+
+POWER_INITIAL();
+UART_INITIAL();
+RFFC2071A_Init();
+
+while (1)
+{
+readback = RFFC2071A_ReadReg(0x1F);
+
+
+SendStringToUART("RB:0x");
+SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
+SendByteToUART(LoNibbleToHex((unsigned char)(readback >> 8)));
+SendByteToUART(HiNibbleToHex((unsigned char)(readback & 0xFF)));
+SendByteToUART(LoNibbleToHex((unsigned char)(readback & 0xFF)));
+SendStringToUART(" LOCK:");
+SendByteToUART('0' + (readback & 0x0001));
+SendStringToUART("\r\n");
+
+
+for (i = 0; i < 8; i++)
+{
+DelayMs(250);
+}
+}
 }
 

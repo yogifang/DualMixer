@@ -9,23 +9,32 @@
 //===========================================================
 #include	"SYSCFG.h"
 #include    "DualMixer.h"
+#include    "RFFC2071A.h"
 #include    "stdbool.h"
 #include 	"string.h"
 //===========================================================
 #define unchar unsigned char
-#define RFFC2701_MODE PA4
-#define RFFC2701_CLK PB0
-#define RFFC2701_DATA PB1
-#define RFFC2701_ENBL PB2
-#define RFFC2701_RESET PA1
-#define RFFC2701_ENX PA0
 
 #define U_TX PA6
 #define U_RX PA7
 #define LED_LOCK PB7 // PLL Lock input
 #define LED_0 PC1
 
+// UART Buffer Definitions
+#define RXBUFFERSIZE 32
+volatile unchar receivedata[RXBUFFERSIZE] = 0;
+volatile unchar rxCounter = 0; // how many bytes received
+volatile unchar rxIndexIp = 0; // current byte index being received
+volatile unchar rxIndexOp = 0; // current byte index being processed
+#define TXBUFFERSIZE 64
+volatile unchar toSend[TXBUFFERSIZE] = 0;
+volatile unchar txCounter = 0; // how many bytes to send
+volatile unchar txIndexIp = 0; // current byte index being sent
+volatile unchar txIndexOp = 0; // current byte index being processed
+
+
 //Variable definition
+const char hex_chars[] = "0123456789ABCDEF"; // Shared hex digit lookup table
 volatile char W_TMP  @ 0x70 ;//ϵͳռ�ò�����ɾ�����޸�
 volatile char BSR_TMP  @ 0x71 ;//ϵͳռ�ò�����ɾ�����޸�
 
@@ -63,7 +72,31 @@ void interrupt ISR(void)
 	NOP;//ϵͳ���ò�����ɾ�����޸�
 	NOP;//ϵͳ���ò�����ɾ�����޸�
 #endasm;//ϵͳ���ò�����ɾ�����޸�
-	user_isr(); //�û��жϺ���
+ if (URRXNE && RXNEF) // Received data interrupt
+  {
+    RXNEF = 1; // Clear interrupt flag
+    {
+      receivedata[rxIndexIp] = URDATAL;
+      rxIndexIp = (rxIndexIp + 1) & (RXBUFFERSIZE - 1);
+      rxCounter++;
+      NOP();
+    }
+  }
+  //----------------------------
+  if (TCEN && TCF) // Transmit complete interrupt
+  {
+    TCF = 1; // Clear interrupt flag
+
+    if (txCounter > 0)
+    {
+      URDATAL = toSend[txIndexOp];
+      txIndexOp = (txIndexOp + 1) & (TXBUFFERSIZE - 1);
+      txCounter--;
+    }
+    NOP();
+  }
+
+user_isr(); //�û��жϺ���
 }
 void user_isr() //�û��жϺ���
 {
@@ -140,22 +173,106 @@ void DelayMs(unsigned char Time)
 
 
 /*-------------------------------------------------
-* Proc Name:RFFC2701_INITIAL
-* Function  RFFC2701 Initialization
+* Proc Name: UART_INITIAL
+* Function : UART Initialization
 * Input  None
 * Output  None
  --------------------------------------------------*/
-void RFFC2701_INITIAL(void)
+void UART_INITIAL(void)
 {
-	//RFFC2701ʼ��
-	PA4 = 0; //RFFC2701_MODE
-	PB0 = 0; //RFFC2701_CLK
-	PB1 = 0; //RFFC2701_DATA
-	PB2 = 0; //RFFC2701_ENBL
-	PA1 = 0; //RFFC2701_RESET
-	PA0 = 0; //RFFC2701_ENX
+  PCKEN |= 0B00100000; // ENABLE UART CLOCK
+
+  URIER = 0B00100001; // ENABLE UART INTERRUPTS
+  URLCR = 0B00000001; // 8 BIT DATA, 1 STOP BIT, NO PARITY, NO FLOW CONTROL
+  URMCR = 0B00011000;
+
+  URDLL = 104; // 9600 Baud Rate = Fosc/16*[URDLH:URDLL]
+  URDLH = 0;
+  TCF = 1;
+  INTCON = 0B11000000;
+
+  // TCF: Transmit Complete Flag
+  // TXEF:1 Transmit Buffer Empty Flag
+  // RXNEF:1 Receive Buffer Not Empty Flag
+}
+/*-------------------------------------------------
+* Proc Name: SendByteToUART
+* Function : Sedn a byte to UART
+*             if buffer empty , send 1st byte directly
+* Input : data to send
+* Output  None
+ --------------------------------------------------*/
+void SendByteToUART(unchar data)
+{
+  if (txCounter == 0 && TXEF)
+  {
+    TCF = 1;
+    URDATAL = data;
+    return;
+  }
+  if (txCounter >= TXBUFFERSIZE)
+  {
+    return; // buffer full
+  }
+  toSend[txIndexIp] = data;
+  txIndexIp = (txIndexIp + 1) & (TXBUFFERSIZE - 1);
+  txCounter++;
+}
+/*-------------------------------------------------
+* Proc Name: SendStringToUART
+* Function : Sedn a string to UART
+*
+* Input : string to send
+* Output  None
+ --------------------------------------------------*/
+void SendStringToUART(char *str)
+{
+  while (*str)
+  {
+    SendByteToUART(*str);
+    str++;
+  }
+}
+/*-------------------------------------------------
+* Proc Name: ReceiveByteFromUART
+* Function : Receive a byte from UART
+* Input : None
+* Output : data received
+ --------------------------------------------------*/
+unchar ReceiveByteFromUART(void)
+{
+  unsigned char retData;
+  if (rxCounter > 0)
+  {
+    rxCounter--;
+    retData = receivedata[rxIndexOp];
+    rxIndexOp = (rxIndexOp + 1) & (RXBUFFERSIZE - 1);
+    return retData;
+  }
+  return 0;
 }
 
+
+/*-------------------------------------------------
+* Proc Name: HiNibbleToHex
+* Function : Convert high nibble of a byte to uppercase hex char
+* Input    : val - source byte
+* Output   : uppercase hex character ('0'-'9', 'A'-'F')
+ -------------------------------------------------*/
+unchar HiNibbleToHex(unchar val)
+{
+    return hex_chars[(val >> 4) & 0x0F];
+}
+/*-------------------------------------------------
+* Proc Name: LoNibbleToHex
+* Function : Convert low nibble of a byte to uppercase hex char
+* Input    : val - source byte
+* Output   : uppercase hex character ('0'-'9', 'A'-'F')
+ -------------------------------------------------*/
+unchar LoNibbleToHex(unchar val)
+{
+    return hex_chars[val & 0x0F];
+}
 
 //===========================================================
 //Function name��main
@@ -164,12 +281,32 @@ void RFFC2701_INITIAL(void)
 //===========================================================
 main()
 {
-	  POWER_INITIAL(); // Power Initialization
-  RFFC2701_INITIAL(); // RFFC2701 Initialization
+    uint16_t readback;
+    unchar i;
 
-  while (1)
-  {
-	// Main loop
-  }
+    POWER_INITIAL(); // Power Initialization
+    UART_INITIAL();
+    RFFC2071A_Init();
+
+    while (1)
+    {
+        readback = RFFC2071A_ReadReg(REG_READBACK);
+
+        // Send readback value as 4-digit hex
+        SendStringToUART("RB:0x");
+        SendByteToUART(HiNibbleToHex((unchar)(readback >> 8)));
+        SendByteToUART(LoNibbleToHex((unchar)(readback >> 8)));
+        SendByteToUART(HiNibbleToHex((unchar)(readback & 0xFF)));
+        SendByteToUART(LoNibbleToHex((unchar)(readback & 0xFF)));
+        SendStringToUART(" LOCK:");
+        SendByteToUART('0' + (readback & 0x0001));
+        SendStringToUART("\r\n");
+
+        // 2-second delay (8 x 250 ms, max per call is 255)
+        for (i = 0; i < 8; i++)
+        {
+            DelayMs(250);
+        }
+    }
 }
 //===========================================================

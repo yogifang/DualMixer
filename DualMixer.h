@@ -8,6 +8,15 @@
 #ifndef __DUALMIXER_H
 #define __DUALMIXER_H
 
+typedef unsigned char u8;
+typedef unsigned int u16;
+typedef unsigned long u32;
+
+void POWER_INITIAL(void);
+void DelayUs(unsigned char Time);
+void DelayMs(unsigned char Time);
+unsigned char HiNibbleToHex(unsigned char val);
+unsigned char LoNibbleToHex(unsigned char val);
 
 
 

@@ -1,1 +1,1 @@
-                      DualMixer.d  DualMixer.obj:  DualMixer.C
+                      DualMixer.d  DualMixer.obj:  DualMixer.C RFFC2071A.h DualMixer.h
