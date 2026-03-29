@@ -122,7 +122,7 @@ void POWER_INITIAL(void)
   TRISC = 0B00000000; // PC I/O 0-OUTPUT 1-INPUT
 
   WPUA = 0B00010011; // PA PULL HIGH CONTROL  1- PULL HIGH 0- NO PULL HIGH (PA0,PA1,PA4 PULL HIGH)
-  WPUB = 0B00000000; // PB PULL HIGH CONTROL  1- PULL HIGH 0- NO PULL HIGH
+  WPUB = 0B00000010; // PB PULL HIGH CONTROL  1- PULL HIGH 0- NO PULL HIGH (PB1 PULL HIGH)
   WPUC = 0B00000000; // PC PULL HIGH CONTROL  1- PULL HIGH 0- NO PULL HIGH
 
   WPDA = 0B10000000; // PA PULL DOWN CONTROL 1- PULL DOWN 0- NO PULL DOWN, PA7 PULL Down
@@ -287,11 +287,13 @@ main()
     POWER_INITIAL(); // Power Initialization
     UART_INITIAL();
     RFFC2071A_Init();
+  RFFC2071A_Enable();
+   RFFC2071A_DefaultConfig();
 
     while (1)
     {
         readback = RFFC2071A_ReadReg(REG_READBACK);
-
+      //  readback = RFFC2071A_ReadReg(0x05);
         // Send readback value as 4-digit hex
         SendStringToUART("RB:0x");
         SendByteToUART(HiNibbleToHex((unchar)(readback >> 8)));
@@ -303,7 +305,7 @@ main()
         SendStringToUART("\r\n");
 
         // 2-second delay (8 x 250 ms, max per call is 255)
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < 2; i++)
         {
             DelayMs(250);
         }

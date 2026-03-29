@@ -108,11 +108,11 @@ void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
         }
         tx_data <<= 1;
         
-        delay_us(1);
+        delay_us(1);      // Data setup before rising edge
         SCLK_HIGH();
         delay_us(1);
         SCLK_LOW();
-        delay_us(1);
+        delay_us(1);      // Clock low / hold before next bit
     }
     
     ENX_HIGH();
@@ -144,7 +144,7 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
         }
         tx_byte <<= 1;
         
-        delay_us(1);
+        delay_us(1);      // Data setup before rising edge
         SCLK_HIGH();
         delay_us(1);
         SCLK_LOW();
@@ -152,15 +152,19 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
     }
     
     // Switch SDATA to input
+    SDATA_LOW();
+   delay_us(2);
+   // SDATA_HIGH(); 
     SDATA_INPUT();
-    delay_us(2);
+   delay_us(2);
     
     // Read 16-bit data (MSB first)
     for (i = 0; i < 16; i++) {
-        SCLK_HIGH();
+        SCLK_HIGH();      // Device updates output for sampling
         delay_us(1);
         
         rx_data <<= 1;
+        rx_data = (rx_data & 0xFFFE) ;
         if (SDATA_READ()) {
             rx_data |= 1;
         }

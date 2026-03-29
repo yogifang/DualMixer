@@ -29,8 +29,9 @@
 #define SDATA_LOW()       (RFFC2071_DATA = 0)
 #define SDATA_READ()      (RFFC2071_DATA)
 
-#define SDATA_OUTPUT()    ((void)0)
-#define SDATA_INPUT()     ((void)0)
+// PB1 is SDATA: TRIS bit = 0 output, 1 input
+#define SDATA_OUTPUT()    (TRISB &= (uint8_t)~0x02)
+#define SDATA_INPUT()     (TRISB |= 0x02)
 
 #define ENBL_HIGH()       (RFFC2071_ENBL = 1)
 #define ENBL_LOW()        (RFFC2071_ENBL = 0)
