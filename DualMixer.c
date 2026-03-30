@@ -225,7 +225,7 @@ void SendByteToUART(unchar data)
 * Input : string to send
 * Output  None
  --------------------------------------------------*/
-void SendStringToUART(char *str)
+void SendStringToUART(const char *str)
 {
   while (*str)
   {

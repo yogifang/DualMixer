@@ -97,7 +97,13 @@ void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
     SDATA_OUTPUT();
     ENX_LOW();
     delay_us(1);
-    
+
+        SCLK_HIGH();
+        delay_us(1);
+        SCLK_LOW();
+        delay_us(1);
+ 
+
     // Send 24 bits (MSB first)
     for (i = 0; i < 24; i++) {
         // Drive SDATA
@@ -134,7 +140,13 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
     SDATA_OUTPUT();
     ENX_LOW();
     delay_us(1);
-    
+
+        SCLK_HIGH();
+        delay_us(1);
+        SCLK_LOW();
+        delay_us(1);
+ 
+
     // Send 8-bit address (MSB first)
     for (i = 0; i < 8; i++) {
         if (tx_byte & 0x80) {

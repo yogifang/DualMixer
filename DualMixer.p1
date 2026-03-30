@@ -4721,14 +4721,14 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [e :UE 253 ]
 }
 "228
-[v _SendStringToUART `(v ~T0 @X0 1 ef1`*uc ]
+[v _SendStringToUART `(v ~T0 @X0 1 ef1`*Cuc ]
 "229
 {
-[; ;DualMixer.C: 228: void SendStringToUART(char *str)
+[; ;DualMixer.C: 228: void SendStringToUART(const char *str)
 [; ;DualMixer.C: 229: {
 [e :U _SendStringToUART ]
 "228
-[v _str `*uc ~T0 @X0 1 r1 ]
+[v _str `*Cuc ~T0 @X0 1 r1 ]
 "229
 [f ]
 [; ;DualMixer.C: 230: while (*str)
@@ -4748,7 +4748,7 @@ Version 3.2   GCC8 Compiled Intermediate Code
 }
 [e :U 257 ]
 "230
-[e $ != -> *U _str `i -> -> -> 0 `i `uc `i 258  ]
+[e $ != -> *U _str `i -> -> -> 0 `i `Cuc `i 258  ]
 [e :U 259 ]
 [; ;DualMixer.C: 234: }
 [; ;DualMixer.C: 235: }
@@ -4876,7 +4876,7 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [e = _readback ( _RFFC2071A_ReadReg (1 -> -> 31 `i `uc ]
 [; ;DualMixer.C: 298: SendStringToUART("RB:0x");
 "298
-[e ( _SendStringToUART (1 -> :s 1C `*uc ]
+[e ( _SendStringToUART (1 :s 1C ]
 [; ;DualMixer.C: 299: SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
 "299
 [e ( _SendByteToUART (1 ( _HiNibbleToHex (1 -> >> _readback -> 8 `i `uc ]
@@ -4891,13 +4891,13 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [e ( _SendByteToUART (1 ( _LoNibbleToHex (1 -> & _readback -> -> 255 `i `ui `uc ]
 [; ;DualMixer.C: 303: SendStringToUART(" LOCK:");
 "303
-[e ( _SendStringToUART (1 -> :s 2C `*uc ]
+[e ( _SendStringToUART (1 :s 2C ]
 [; ;DualMixer.C: 304: SendByteToUART('0' + (readback & 0x0001));
 "304
 [e ( _SendByteToUART (1 -> + -> 48 `ui & _readback -> -> 1 `i `ui `uc ]
 [; ;DualMixer.C: 305: SendStringToUART("\r\n");
 "305
-[e ( _SendStringToUART (1 -> :s 3C `*uc ]
+[e ( _SendStringToUART (1 :s 3C ]
 [; ;DualMixer.C: 308: for (i = 0; i < 2; i++)
 "308
 {

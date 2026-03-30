@@ -4,7 +4,7 @@ Linker command line:
 
 --edf=C:\Program Files (x86)\CCompiler\Compiler\data\dat\en_msgs.txt -cs \
   -h+dualmixer.sym --cmf=dualmixer.cmf -z -QFT61F14X \
-  -oC:\Users\st99\AppData\Local\Temp\sop8.2 -Mdualmixer.map -E1 -ver=XC8 \
+  -oC:\Users\owner\AppData\Local\Temp\sank.2 -Mdualmixer.map -E1 -ver=XC8 \
   -ASTACK=020E0h-021efh -pstack=STACK -ACODE=00h-07FFhx2 \
   -ASTRCODE=00h-0FFFh -ASTRING=00h-0FFhx16 -ACONST=00h-0FFhx16 \
   -AENTRY=00h-0FFhx16 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
@@ -28,7 +28,7 @@ Linker command line:
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -AEEDATA=00h-07Fh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\st99\AppData\Local\Temp\sop8.obj dualmixer.obj 
+  C:\Users\owner\AppData\Local\Temp\sank.obj dualmixer.obj 
 
 Object code version is 3.11
 
@@ -37,42 +37,42 @@ Machine type is FT61F14X
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\st99\AppData\Local\Temp\sop8.obj
+C:\Users\owner\AppData\Local\Temp\sank.obj
                 end_init                             56       56        2        8       0
                 reset_vec                             0        0        2        0       0
 dualmixer.obj   cinit                                58       58       1C        8       0
                 intentry                              4        4       52        8       0
-                text22                              59A      59A        1      B34       0
-                text20                              56A      56A        C      9EE       0
-                text19                              4F7      4F7       17      9EE       0
-                text18                              55E      55E        C      9EE       0
-                text17                              576      576        B      9EE       0
-                text16                              427      427       2D        8       0
-                text15                              524      524       16      9EE       0
-                text14                              581      581        A      9EE       0
-                text13                              34F      34F       51        8       0
-                text12                              3A0      3A0       48        8       0
-                text11                              3E8      3E8       3F        8       0
-                text10                              454      454       29        8       0
+                text22                              5B9      5B9        1      B72       0
+                text20                              589      589        C      A2C       0
+                text19                              516      516       17      A2C       0
+                text18                              57D      57D        C      A2C       0
+                text17                              595      595        B      A2C       0
+                text16                              446      446       2D        8       0
+                text15                              543      543       16      A2C       0
+                text14                              5A0      5A0        A      A2C       0
+                text13                              35E      35E       61        8       0
+                text12                              3BF      3BF       48        8       0
+                text11                              407      407       3F        8       0
+                text10                              473      473       29        8       0
                 text9                                74       74      163        8       0
-                text8                               4A1      4A1       23        8       0
+                text8                               4C0      4C0       23        8       0
                 text7                               1D7      1D7       9C        8       0
-                text6                               4C4      4C4       1B        8       0
-                text5                               53A      53A       14      9EE       0
-                text4                               273      273       77        8       0
-                text3                               47D      47D       24        8       0
-                text2                               50E      50E       16      9EE       0
-                text1                               54E      54E       10      9EE       0
-                maintext                            2EA      2EA       65        8       0
+                text6                               4E3      4E3       1B        8       0
+                text5                               559      559       14      A2C       0
+                text4                               273      273       86        8       0
+                text3                               49C      49C       24        8       0
+                text2                               52D      52D       16      A2C       0
+                text1                               56D      56D       10      A2C       0
+                maintext                            2F9      2F9       65        8       0
                 cstackBANK0                          20       20       38       20       1
                 cstackCOMMON                         72       72        C       72       1
-                clrtext                             591      591        6      B22       0
+                clrtext                             5B0      5B0        6      B60       0
                 bssBANK2                            120      120       40      120       1
                 bssBANK1                             A0       A0       20       A0       1
                 bssBANK0                             58       58        A       20       1
-                stringtext3                         597      597        3      B2E       0
-                stringtext2                         58B      58B        6      B16       0
-                stringtext1                         4DF      4DF       18      9BE       0
+                stringtext3                         5B6      5B6        3      B6C       0
+                stringtext2                         5AA      5AA        6      B54       0
+                stringtext1                         4FE      4FE       18      9FC       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -82,34 +82,34 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                58       58       1C         0
                 intentry                              4        4       52         0
                 reset_vec                             0        0        2         0
-                text22                              59A      59A        1         0
-                text20                              56A      56A        C         0
-                text19                              4F7      4F7       17         0
-                text18                              55E      55E        C         0
-                text17                              576      576        B         0
-                text16                              427      427       2D         0
-                text15                              524      524       16         0
-                text14                              581      581        A         0
-                text13                              34F      34F       51         0
-                text12                              3A0      3A0       48         0
-                text11                              3E8      3E8       3F         0
-                text10                              454      454       29         0
+                text22                              5B9      5B9        1         0
+                text20                              589      589        C         0
+                text19                              516      516       17         0
+                text18                              57D      57D        C         0
+                text17                              595      595        B         0
+                text16                              446      446       2D         0
+                text15                              543      543       16         0
+                text14                              5A0      5A0        A         0
+                text13                              35E      35E       61         0
+                text12                              3BF      3BF       48         0
+                text11                              407      407       3F         0
+                text10                              473      473       29         0
                 text9                                74       74      163         0
-                text8                               4A1      4A1       23         0
+                text8                               4C0      4C0       23         0
                 text7                               1D7      1D7       9C         0
-                text6                               4C4      4C4       1B         0
-                text5                               53A      53A       14         0
-                text4                               273      273       77         0
-                text3                               47D      47D       24         0
-                text2                               50E      50E       16         0
-                text1                               54E      54E       10         0
-                maintext                            2EA      2EA       65         0
-                clrtext                             591      591        6         0
+                text6                               4E3      4E3       1B         0
+                text5                               559      559       14         0
+                text4                               273      273       86         0
+                text3                               49C      49C       24         0
+                text2                               52D      52D       16         0
+                text1                               56D      56D       10         0
+                maintext                            2F9      2F9       65         0
+                clrtext                             5B0      5B0        6         0
 
         CLASS   STRCODE        
-                stringtext3                         597      597        3         0
-                stringtext2                         58B      58B        6         0
-                stringtext1                         4DF      4DF       18         0
+                stringtext3                         5B6      5B6        3         0
+                stringtext2                         5AA      5AA        6         0
+                stringtext1                         4FE      4FE       18         0
 
         CLASS   STRING         
 
@@ -271,17 +271,17 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000002  000002         0       0  CODE        2
-                intentry                       000004  0004DB  0004DF         8       0  CODE        2
+                intentry                       000004  0004FA  0004FE         8       0  CODE        2
                 cstackBANK0                    000020  000042  000062        20       1  BANK0       1
                 cstackCOMMON                   000072  00000C  00007E        72       1  COMMON      1
                 bssBANK1                       0000A0  000020  0000C0        A0       1  BANK1       1
                 bssBANK2                       000120  000040  000160       120       1  BANK2       1
-                stringtext1                    0004DF  000018  0004F7       9BE       0  STRCODE     2
-                text19                         0004F7  000094  00058B       9EE       0  CODE        2
-                stringtext2                    00058B  000006  000591       B16       0  STRCODE     2
-                clrtext                        000591  000006  000597       B22       0  CODE        2
-                stringtext3                    000597  000003  00059A       B2E       0  STRCODE     2
-                text22                         00059A  000001  00059B       B34       0  CODE        2
+                stringtext1                    0004FE  000018  000516       9FC       0  STRCODE     2
+                text19                         000516  000094  0005AA       A2C       0  CODE        2
+                stringtext2                    0005AA  000006  0005B0       B54       0  STRCODE     2
+                clrtext                        0005B0  000006  0005B6       B60       0  CODE        2
+                stringtext3                    0005B6  000003  0005B9       B6C       0  STRCODE     2
+                text22                         0005B9  000001  0005BA       B72       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -296,13 +296,13 @@ UNUSED ADDRESS RANGES
         BANK6            0320-032F             10           1
         BIGRAM           2000-21EF            1F0           1
         CODE             0002-0003              2           2
-                         059B-0FFF            265
+                         05BA-0FFF            246
         CONFIG           8007-8008              2           2
         CONST            0002-0003              2           2
-                         059B-0FFF            100
+                         05BA-0FFF            100
         EEDATA           F000-F07F             80           2
         ENTRY            0002-0003              2           2
-                         059B-0FFF            100
+                         05BA-0FFF            100
         IDLOC            8000-8003              4           2
         RAM              0062-006F              E           1
                          00C0-00EF             30
@@ -345,9 +345,9 @@ UNUSED ADDRESS RANGES
         SFR9             0480-04EF             70           1
         STACK            20E0-21EF            110           1
         STRCODE          0002-0003              2           2
-                         059B-0FFF            A65
+                         05BA-0FFF            A46
         STRING           0002-0003              2           2
-                         059B-0FFF            100
+                         05BA-0FFF            100
 
                                   Symbol Table
 
@@ -388,12 +388,12 @@ SendByteToUART@data                  cstackCOMMON 0072
 SendStringToUART@str                 cstackCOMMON 0073
 _ANSELA                              (abs)        0197
 _BSR_TMP                             (abs)        0071
-_DelayMs                             text19       04F7
-_DelayUs                             text20       056A
-_HiNibbleToHex                       text18       055E
+_DelayMs                             text19       0516
+_DelayUs                             text20       0589
+_HiNibbleToHex                       text18       057D
 _INTCON                              (abs)        000B
 _ISR                                 intentry     0004
-_LoNibbleToHex                       text17       0576
+_LoNibbleToHex                       text17       0595
 _OSCCON                              (abs)        0099
 _PA0                                 (abs)        0060
 _PA1                                 (abs)        0061
@@ -405,7 +405,7 @@ _PCKEN                               (abs)        009A
 _PORTA                               (abs)        000C
 _PORTB                               (abs)        000D
 _PORTC                               (abs)        000E
-_POWER_INITIAL                       text16       0427
+_POWER_INITIAL                       text16       0446
 _PSINK0                              (abs)        019A
 _PSINK1                              (abs)        019B
 _PSINK2                              (abs)        019C
@@ -415,22 +415,22 @@ _PSRC2                               (abs)        011C
 _RFFC2071A_CalcFrequency             text9        0074
 _RFFC2071A_CalcFrequency$4626        cstackBANK0  0039
 _RFFC2071A_DefaultConfig             text7        01D7
-_RFFC2071A_Enable                    text14       0581
-_RFFC2071A_Init                      text5        053A
+_RFFC2071A_Enable                    text14       05A0
+_RFFC2071A_Init                      text5        0559
 _RFFC2071A_ReadReg                   text4        0273
-_RFFC2071A_Reset                     text6        04C4
-_RFFC2071A_SetDualFrequency          text8        04A1
-_RFFC2071A_WriteReg                  text13       034F
+_RFFC2071A_Reset                     text6        04E3
+_RFFC2071A_SetDualFrequency          text8        04C0
+_RFFC2071A_WriteReg                  text13       035E
 _RXNEF                               (abs)        2490
-_SendByteToUART                      text3        047D
-_SendStringToUART                    text2        050E
+_SendByteToUART                      text3        049C
+_SendStringToUART                    text2        052D
 _TCEN                                (abs)        2475
 _TCF                                 (abs)        24E0
 _TRISA                               (abs)        008C
 _TRISB                               (abs)        008D
 _TRISC                               (abs)        008E
 _TXEF                                (abs)        2495
-_UART_INITIAL                        text1        054E
+_UART_INITIAL                        text1        056D
 _URDATAL                             (abs)        048C
 _URDLH                               (abs)        0495
 _URDLL                               (abs)        0494
@@ -531,7 +531,7 @@ __Hsfr6                              sfr6         0000
 __Hsfr7                              sfr7         0000
 __Hsfr8                              sfr8         0000
 __Hsfr9                              sfr9         0000
-__Hspace_0                           (abs)        059B
+__Hspace_0                           (abs)        05BA
 __Hspace_1                           (abs)        0160
 __Hspace_2                           (abs)        0000
 __Hspace_3                           (abs)        0000
@@ -639,22 +639,22 @@ __Lstringtext2                       stringtext2  0000
 __Lstringtext3                       stringtext3  0000
 __Lstringtext4                       stringtext4  0000
 __Ltext                              text         0000
-__S0                                 (abs)        059B
+__S0                                 (abs)        05BA
 __S1                                 (abs)        0160
 __S2                                 (abs)        0000
 __S3                                 (abs)        0000
 ___int_sp                            stack        0000
 ___latbits                           (abs)        0001
-___lldiv                             text12       03A0
+___lldiv                             text12       03BF
 ___lldiv@counter                     cstackBANK0  0024
 ___lldiv@dividend                    cstackCOMMON 0076
 ___lldiv@divisor                     cstackCOMMON 0072
 ___lldiv@quotient                    cstackBANK0  0020
-___llmod                             text11       03E8
+___llmod                             text11       0407
 ___llmod@counter                     cstackCOMMON 007A
 ___llmod@dividend                    cstackCOMMON 0076
 ___llmod@divisor                     cstackCOMMON 0072
-___lmul                              text10       0454
+___lmul                              text10       0473
 ___lmul@multiplicand                 cstackCOMMON 0076
 ___lmul@multiplier                   cstackCOMMON 0072
 ___lmul@product                      cstackCOMMON 007A
@@ -663,31 +663,31 @@ ___rffc_dummy_portb                  bssBANK0     005A
 ___rffc_dummy_trisa                  bssBANK0     0059
 ___rffc_dummy_trisb                  bssBANK0     0058
 ___sp                                stack        0000
-__end_of_DelayMs                     text19       050E
-__end_of_DelayUs                     text20       0576
-__end_of_HiNibbleToHex               text18       056A
+__end_of_DelayMs                     text19       052D
+__end_of_DelayUs                     text20       0595
+__end_of_HiNibbleToHex               text18       0589
 __end_of_ISR                         intentry     0056
-__end_of_LoNibbleToHex               text17       0581
-__end_of_POWER_INITIAL               text16       0454
+__end_of_LoNibbleToHex               text17       05A0
+__end_of_POWER_INITIAL               text16       0473
 __end_of_RFFC2071A_CalcFrequency     text9        01D7
 __end_of_RFFC2071A_DefaultConfig     text7        0273
-__end_of_RFFC2071A_Enable            text14       058B
-__end_of_RFFC2071A_Init              text5        054E
-__end_of_RFFC2071A_ReadReg           text4        02EA
-__end_of_RFFC2071A_Reset             text6        04DF
-__end_of_RFFC2071A_SetDualFrequency  text8        04C4
-__end_of_RFFC2071A_WriteReg          text13       03A0
-__end_of_SendByteToUART              text3        04A1
-__end_of_SendStringToUART            text2        0524
-__end_of_UART_INITIAL                text1        055E
-__end_of___lldiv                     text12       03E8
-__end_of___llmod                     text11       0427
-__end_of___lmul                      text10       047D
+__end_of_RFFC2071A_Enable            text14       05AA
+__end_of_RFFC2071A_Init              text5        056D
+__end_of_RFFC2071A_ReadReg           text4        02F9
+__end_of_RFFC2071A_Reset             text6        04FE
+__end_of_RFFC2071A_SetDualFrequency  text8        04E3
+__end_of_RFFC2071A_WriteReg          text13       03BF
+__end_of_SendByteToUART              text3        04C0
+__end_of_SendStringToUART            text2        0543
+__end_of_UART_INITIAL                text1        057D
+__end_of___lldiv                     text12       0407
+__end_of___llmod                     text11       0446
+__end_of___lmul                      text10       049C
 __end_of__initialization             cinit        0070
-__end_of_delay_us                    text15       053A
-__end_of_hex_chars                   stringtext1  04F0
-__end_of_main                        maintext     034F
-__end_of_user_isr                    text22       059B
+__end_of_delay_us                    text15       0559
+__end_of_hex_chars                   stringtext1  050F
+__end_of_main                        maintext     035E
+__end_of_user_isr                    text22       05BA
 __initialization                     cinit        0058
 __pbssBANK0                          bssBANK0     0058
 __pbssBANK1                          bssBANK1     00A0
@@ -695,31 +695,31 @@ __pbssBANK2                          bssBANK2     0120
 __pcstackBANK0                       cstackBANK0  0020
 __pcstackCOMMON                      cstackCOMMON 0072
 __pintentry                          intentry     0004
-__pmaintext                          maintext     02EA
-__pstringtext1                       stringtext1  04DF
-__pstringtext2                       stringtext2  058B
-__pstringtext3                       stringtext3  0597
+__pmaintext                          maintext     02F9
+__pstringtext1                       stringtext1  04FE
+__pstringtext2                       stringtext2  05AA
+__pstringtext3                       stringtext3  05B6
 __pstringtext4                       stringtext4  0000
-__ptext1                             text1        054E
-__ptext10                            text10       0454
-__ptext11                            text11       03E8
-__ptext12                            text12       03A0
-__ptext13                            text13       034F
-__ptext14                            text14       0581
-__ptext15                            text15       0524
-__ptext16                            text16       0427
-__ptext17                            text17       0576
-__ptext18                            text18       055E
-__ptext19                            text19       04F7
-__ptext2                             text2        050E
-__ptext20                            text20       056A
-__ptext22                            text22       059A
-__ptext3                             text3        047D
+__ptext1                             text1        056D
+__ptext10                            text10       0473
+__ptext11                            text11       0407
+__ptext12                            text12       03BF
+__ptext13                            text13       035E
+__ptext14                            text14       05A0
+__ptext15                            text15       0543
+__ptext16                            text16       0446
+__ptext17                            text17       0595
+__ptext18                            text18       057D
+__ptext19                            text19       0516
+__ptext2                             text2        052D
+__ptext20                            text20       0589
+__ptext22                            text22       05B9
+__ptext3                             text3        049C
 __ptext4                             text4        0273
-__ptext5                             text5        053A
-__ptext6                             text6        04C4
+__ptext5                             text5        0559
+__ptext6                             text6        04E3
 __ptext7                             text7        01D7
-__ptext8                             text8        04A1
+__ptext8                             text8        04C0
 __ptext9                             text9        0074
 __size_of_DelayMs                    (abs)        0000
 __size_of_DelayUs                    (abs)        0000
@@ -744,9 +744,9 @@ __size_of___lmul                     (abs)        0000
 __size_of_delay_us                   (abs)        0000
 __size_of_main                       (abs)        0000
 __size_of_user_isr                   (abs)        0000
-_delay_us                            text15       0524
-_hex_chars                           stringtext1  04DF
-_main                                maintext     02EA
+_delay_us                            text15       0543
+_hex_chars                           stringtext1  04FE
+_main                                maintext     02F9
 _receivedata                         bssBANK1     00A0
 _rxCounter                           bssBANK0     0061
 _rxIndexIp                           bssBANK0     0060
@@ -755,9 +755,9 @@ _toSend                              bssBANK2     0120
 _txCounter                           bssBANK0     005E
 _txIndexIp                           bssBANK0     005D
 _txIndexOp                           bssBANK0     005C
-_user_isr                            text22       059A
+_user_isr                            text22       05B9
 btemp                                (abs)        007E
-clear_ram0                           clrtext      0591
+clear_ram0                           clrtext      05B0
 delay_us@us                          cstackCOMMON 0072
 end_of_initialization                cinit        0070
 int$flags                            (abs)        007E
@@ -853,7 +853,7 @@ Total ram usage:        0 bytes
  Defined at:
 		line 228 in file "DualMixer.C"
  Parameters:    Size  Location     Type
-  str             2    1[COMMON] PTR unsigned char 
+  str             2    1[COMMON] PTR const unsigned char 
 		 -> STR_3(3), STR_2(7), STR_1(6), 
  Auto vars:     Size  Location     Type
 		None
@@ -913,7 +913,7 @@ Total ram usage:        1 bytes
 
  *************** function _RFFC2071A_ReadReg *****************
  Defined at:
-		line 125 in file "RFFC2071A.c"
+		line 131 in file "RFFC2071A.c"
  Parameters:    Size  Location     Type
   addr            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1008,7 +1008,7 @@ Total ram usage:        0 bytes
 
  *************** function _RFFC2071A_DefaultConfig *****************
  Defined at:
-		line 186 in file "RFFC2071A.c"
+		line 198 in file "RFFC2071A.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1040,7 +1040,7 @@ Total ram usage:        0 bytes
 
  *************** function _RFFC2071A_SetDualFrequency *****************
  Defined at:
-		line 339 in file "RFFC2071A.c"
+		line 351 in file "RFFC2071A.c"
  Parameters:    Size  Location     Type
   freq1_mhz       4   45[BANK0 ] unsigned long 
   freq2_mhz       4   49[BANK0 ] unsigned long 
@@ -1072,7 +1072,7 @@ Total ram usage:        8 bytes
 
  *************** function _RFFC2071A_CalcFrequency *****************
  Defined at:
-		line 249 in file "RFFC2071A.c"
+		line 261 in file "RFFC2071A.c"
  Parameters:    Size  Location     Type
   freq_mhz        4    6[BANK0 ] unsigned long 
   path            1   10[BANK0 ] unsigned char 
@@ -1244,7 +1244,7 @@ Total ram usage:       12 bytes
 
  *************** function _RFFC2071A_Enable *****************
  Defined at:
-		line 390 in file "RFFC2071A.c"
+		line 402 in file "RFFC2071A.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1523,51 +1523,51 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 RFFC2071A.c
-		_RFFC2071A_Enable		CODE           	0581	0000	11
-		_delay_us      		CODE           	0524	0000	23
-		_RFFC2071A_ReadReg		CODE           	0273	0000	120
-		_RFFC2071A_Init		CODE           	053A	0000	21
-		_RFFC2071A_WriteReg		CODE           	034F	0000	82
-		_RFFC2071A_SetDualFrequency		CODE           	04A1	0000	36
+		_RFFC2071A_Enable		CODE           	05A0	0000	11
+		_delay_us      		CODE           	0543	0000	23
+		_RFFC2071A_ReadReg		CODE           	0273	0000	135
+		_RFFC2071A_Init		CODE           	0559	0000	21
+		_RFFC2071A_WriteReg		CODE           	035E	0000	98
+		_RFFC2071A_SetDualFrequency		CODE           	04C0	0000	36
 		_RFFC2071A_CalcFrequency		CODE           	0074	0000	356
-		_RFFC2071A_Reset		CODE           	04C4	0000	28
+		_RFFC2071A_Reset		CODE           	04E3	0000	28
 		_RFFC2071A_DefaultConfig		CODE           	01D7	0000	157
 
-RFFC2071A.c estimated size: 834
+RFFC2071A.c estimated size: 865
 
 DualMixer.C
-		_DelayUs       		CODE           	056A	0000	13
+		_DelayUs       		CODE           	0589	0000	13
 		_ISR           		CODE           	0004	0000	83
-		_UART_INITIAL  		CODE           	054E	0000	17
-		_main          		CODE           	02EA	0000	102
-		_DelayMs       		CODE           	04F7	0000	24
-		_POWER_INITIAL 		CODE           	0427	0000	46
-		_SendByteToUART		CODE           	047D	0000	37
-		_HiNibbleToHex 		CODE           	055E	0000	13
-		_user_isr      		CODE           	059A	0000	2
-		_LoNibbleToHex 		CODE           	0576	0000	12
-		_SendStringToUART		CODE           	050E	0000	23
+		_UART_INITIAL  		CODE           	056D	0000	17
+		_main          		CODE           	02F9	0000	102
+		_DelayMs       		CODE           	0516	0000	24
+		_POWER_INITIAL 		CODE           	0446	0000	46
+		_SendByteToUART		CODE           	049C	0000	37
+		_HiNibbleToHex 		CODE           	057D	0000	13
+		_user_isr      		CODE           	05B9	0000	2
+		_LoNibbleToHex 		CODE           	0595	0000	12
+		_SendStringToUART		CODE           	052D	0000	23
 
 DualMixer.C estimated size: 372
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
-		___lldiv       		CODE           	03A0	0000	73
+		___lldiv       		CODE           	03BF	0000	73
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c estimated size: 73
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
-		___lmul        		CODE           	0454	0000	42
+		___lmul        		CODE           	0473	0000	42
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c estimated size: 42
 
 shared
-		_hex_chars     		STRCODE        	04DF	0000	18
+		_hex_chars     		STRCODE        	04FE	0000	18
 		__initialization		CODE           	0058	0000	25
 
 shared estimated size: 43
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
-		___llmod       		CODE           	03E8	0000	64
+		___llmod       		CODE           	0407	0000	64
 
 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c estimated size: 64
 

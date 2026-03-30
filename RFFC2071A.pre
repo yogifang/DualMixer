@@ -2792,6 +2792,12 @@ tx_data = ((uint32_t)(addr & 0x7F) << 16) | data;
 (PA0 = 0);
 delay_us(1);
 
+(PB0 = 1);
+delay_us(1);
+(PB0 = 0);
+delay_us(1);
+
+
 
 for (i = 0; i < 24; i++) {
 
@@ -2829,6 +2835,12 @@ tx_byte = 0x80 | (addr & 0x7F);
 (PA0 = 0);
 delay_us(1);
 
+(PB0 = 1);
+delay_us(1);
+(PB0 = 0);
+delay_us(1);
+
+
 
 for (i = 0; i < 8; i++) {
 if (tx_byte & 0x80) {
@@ -2848,7 +2860,7 @@ delay_us(1);
 
 (PB1 = 0);
 delay_us(2);
-(PB1 = 1);
+
 (__rffc_dummy_trisb |= 0x02);
 delay_us(2);
 
@@ -2887,7 +2899,7 @@ RFFC2071A_WriteReg(0x00, 0xBEFA);
 
 RFFC2071A_WriteReg(0x01, 0x4064);
 
-# 200
+# 212
 RFFC2071A_WriteReg(0x02, 0x1E21);
 
 
@@ -2933,7 +2945,7 @@ RFFC2071A_WriteReg(0x1C, 0x0020);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 249
+# 261
 static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
 {
 uint8_t n_div;
@@ -3019,7 +3031,7 @@ RFFC2071A_CalcFrequency(freq_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 339
+# 351
 void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
 {
 RFFC2071A_CalcFrequency(freq1_mhz, 1);
@@ -3029,7 +3041,7 @@ RFFC2071A_CalcFrequency(freq2_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 352
+# 364
 void RFFC2071A_SetFrequency(uint32_t freq_mhz)
 {
 RFFC2071A_SetDualFrequency(freq_mhz, freq_mhz);
@@ -3051,7 +3063,7 @@ reg &= ~0x4000;
 RFFC2071A_WriteReg(0x0B, reg);
 }
 
-# 377
+# 389
 void RFFC2071A_SetMixerCurrent(uint8_t current)
 {
 uint16_t reg = RFFC2071A_ReadReg(0x0B);
@@ -3079,7 +3091,7 @@ void RFFC2071A_Disable(void)
 (PB2 = 0);
 }
 
-# 408
+# 420
 void RFFC2071A_SetMode(uint8_t mixer)
 {
 if (mixer) {

@@ -4344,452 +4344,473 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [; ;RFFC2071A.c: 99: delay_us(1);
 "99
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 102: for (i = 0; i < 24; i++) {
+[; ;RFFC2071A.c: 101: (PB0 = 1);
+"101
+[e = _PB0 -> -> 1 `i `b ]
+[; ;RFFC2071A.c: 102: delay_us(1);
 "102
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 103: (PB0 = 0);
+"103
+[e = _PB0 -> -> 0 `i `b ]
+[; ;RFFC2071A.c: 104: delay_us(1);
+"104
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 108: for (i = 0; i < 24; i++) {
+"108
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 24 `i 240  ]
 [e $U 241  ]
 [e :U 240 ]
 {
-[; ;RFFC2071A.c: 104: if (tx_data & 0x800000) {
-"104
+[; ;RFFC2071A.c: 110: if (tx_data & 0x800000) {
+"110
 [e $ ! != & _tx_data -> -> 8388608 `l `ul -> -> 0 `i `ul 243  ]
 {
-[; ;RFFC2071A.c: 105: (PB1 = 1);
-"105
+[; ;RFFC2071A.c: 111: (PB1 = 1);
+"111
 [e = _PB1 -> -> 1 `i `b ]
-"106
+"112
 }
-[; ;RFFC2071A.c: 106: } else {
+[; ;RFFC2071A.c: 112: } else {
 [e $U 244  ]
 [e :U 243 ]
 {
-[; ;RFFC2071A.c: 107: (PB1 = 0);
-"107
+[; ;RFFC2071A.c: 113: (PB1 = 0);
+"113
 [e = _PB1 -> -> 0 `i `b ]
-"108
+"114
 }
 [e :U 244 ]
-[; ;RFFC2071A.c: 108: }
-[; ;RFFC2071A.c: 109: tx_data <<= 1;
-"109
-[e =<< _tx_data -> 1 `i ]
-[; ;RFFC2071A.c: 111: delay_us(1);
-"111
-[e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 112: (PB0 = 1);
-"112
-[e = _PB0 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 113: delay_us(1);
-"113
-[e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 114: (PB0 = 0);
-"114
-[e = _PB0 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 115: delay_us(1);
+[; ;RFFC2071A.c: 114: }
+[; ;RFFC2071A.c: 115: tx_data <<= 1;
 "115
+[e =<< _tx_data -> 1 `i ]
+[; ;RFFC2071A.c: 117: delay_us(1);
+"117
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-"116
-}
-"102
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 24 `i 240  ]
-[e :U 241 ]
-"116
-}
-[; ;RFFC2071A.c: 116: }
-[; ;RFFC2071A.c: 118: (PA0 = 1);
+[; ;RFFC2071A.c: 118: (PB0 = 1);
 "118
-[e = _PA0 -> -> 1 `i `b ]
+[e = _PB0 -> -> 1 `i `b ]
 [; ;RFFC2071A.c: 119: delay_us(1);
 "119
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 120: }
+[; ;RFFC2071A.c: 120: (PB0 = 0);
 "120
+[e = _PB0 -> -> 0 `i `b ]
+[; ;RFFC2071A.c: 121: delay_us(1);
+"121
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+"122
+}
+"108
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 24 `i 240  ]
+[e :U 241 ]
+"122
+}
+[; ;RFFC2071A.c: 122: }
+[; ;RFFC2071A.c: 124: (PA0 = 1);
+"124
+[e = _PA0 -> -> 1 `i `b ]
+[; ;RFFC2071A.c: 125: delay_us(1);
+"125
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 126: }
+"126
 [e :UE 239 ]
 }
-"125
+"131
 [v _RFFC2071A_ReadReg `(ui ~T0 @X0 1 ef1`uc ]
-"126
-{
-[; ;RFFC2071A.c: 125: uint16_t RFFC2071A_ReadReg(uint8_t addr)
-[; ;RFFC2071A.c: 126: {
-[e :U _RFFC2071A_ReadReg ]
-"125
-[v _addr `uc ~T0 @X0 1 r1 ]
-"126
-[f ]
-"127
-[v _i `uc ~T0 @X0 1 a ]
-"128
-[v _tx_byte `uc ~T0 @X0 1 a ]
-"129
-[v _rx_data `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 127: uint8_t i;
-[; ;RFFC2071A.c: 128: uint8_t tx_byte;
-[; ;RFFC2071A.c: 129: uint16_t rx_data = 0;
-[e = _rx_data -> -> 0 `i `ui ]
-[; ;RFFC2071A.c: 132: tx_byte = 0x80 | (addr & 0x7F);
 "132
-[e = _tx_byte -> | -> 128 `i & -> _addr `i -> 127 `i `uc ]
-[; ;RFFC2071A.c: 134: (__rffc_dummy_trisb &= (uint8_t)~0x02);
+{
+[; ;RFFC2071A.c: 131: uint16_t RFFC2071A_ReadReg(uint8_t addr)
+[; ;RFFC2071A.c: 132: {
+[e :U _RFFC2071A_ReadReg ]
+"131
+[v _addr `uc ~T0 @X0 1 r1 ]
+"132
+[f ]
+"133
+[v _i `uc ~T0 @X0 1 a ]
 "134
-[e =& ___rffc_dummy_trisb -> ~ -> 2 `i `uc ]
-[; ;RFFC2071A.c: 135: (PA0 = 0);
+[v _tx_byte `uc ~T0 @X0 1 a ]
 "135
+[v _rx_data `ui ~T0 @X0 1 a ]
+[; ;RFFC2071A.c: 133: uint8_t i;
+[; ;RFFC2071A.c: 134: uint8_t tx_byte;
+[; ;RFFC2071A.c: 135: uint16_t rx_data = 0;
+[e = _rx_data -> -> 0 `i `ui ]
+[; ;RFFC2071A.c: 138: tx_byte = 0x80 | (addr & 0x7F);
+"138
+[e = _tx_byte -> | -> 128 `i & -> _addr `i -> 127 `i `uc ]
+[; ;RFFC2071A.c: 140: (__rffc_dummy_trisb &= (uint8_t)~0x02);
+"140
+[e =& ___rffc_dummy_trisb -> ~ -> 2 `i `uc ]
+[; ;RFFC2071A.c: 141: (PA0 = 0);
+"141
 [e = _PA0 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 136: delay_us(1);
-"136
+[; ;RFFC2071A.c: 142: delay_us(1);
+"142
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 139: for (i = 0; i < 8; i++) {
-"139
+[; ;RFFC2071A.c: 144: (PB0 = 1);
+"144
+[e = _PB0 -> -> 1 `i `b ]
+[; ;RFFC2071A.c: 145: delay_us(1);
+"145
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 146: (PB0 = 0);
+"146
+[e = _PB0 -> -> 0 `i `b ]
+[; ;RFFC2071A.c: 147: delay_us(1);
+"147
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 151: for (i = 0; i < 8; i++) {
+"151
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 8 `i 246  ]
 [e $U 247  ]
 [e :U 246 ]
 {
-[; ;RFFC2071A.c: 140: if (tx_byte & 0x80) {
-"140
+[; ;RFFC2071A.c: 152: if (tx_byte & 0x80) {
+"152
 [e $ ! != & -> _tx_byte `i -> 128 `i -> 0 `i 249  ]
 {
-[; ;RFFC2071A.c: 141: (PB1 = 1);
-"141
+[; ;RFFC2071A.c: 153: (PB1 = 1);
+"153
 [e = _PB1 -> -> 1 `i `b ]
-"142
+"154
 }
-[; ;RFFC2071A.c: 142: } else {
+[; ;RFFC2071A.c: 154: } else {
 [e $U 250  ]
 [e :U 249 ]
 {
-[; ;RFFC2071A.c: 143: (PB1 = 0);
-"143
-[e = _PB1 -> -> 0 `i `b ]
-"144
-}
-[e :U 250 ]
-[; ;RFFC2071A.c: 144: }
-[; ;RFFC2071A.c: 145: tx_byte <<= 1;
-"145
-[e =<< _tx_byte -> 1 `i ]
-[; ;RFFC2071A.c: 147: delay_us(1);
-"147
-[e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 148: (PB0 = 1);
-"148
-[e = _PB0 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 149: delay_us(1);
-"149
-[e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 150: (PB0 = 0);
-"150
-[e = _PB0 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 151: delay_us(1);
-"151
-[e ( _delay_us (1 -> -> 1 `i `ui ]
-"152
-}
-"139
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 246  ]
-[e :U 247 ]
-"152
-}
-[; ;RFFC2071A.c: 152: }
 [; ;RFFC2071A.c: 155: (PB1 = 0);
 "155
 [e = _PB1 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 156: delay_us(2);
 "156
-[e ( _delay_us (1 -> -> 2 `i `ui ]
-[; ;RFFC2071A.c: 157: (PB1 = 1);
+}
+[e :U 250 ]
+[; ;RFFC2071A.c: 156: }
+[; ;RFFC2071A.c: 157: tx_byte <<= 1;
 "157
-[e = _PB1 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 158: (__rffc_dummy_trisb |= 0x02);
-"158
-[e =| ___rffc_dummy_trisb -> -> 2 `i `uc ]
-[; ;RFFC2071A.c: 159: delay_us(2);
+[e =<< _tx_byte -> 1 `i ]
+[; ;RFFC2071A.c: 159: delay_us(1);
 "159
-[e ( _delay_us (1 -> -> 2 `i `ui ]
-[; ;RFFC2071A.c: 162: for (i = 0; i < 16; i++) {
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 160: (PB0 = 1);
+"160
+[e = _PB0 -> -> 1 `i `b ]
+[; ;RFFC2071A.c: 161: delay_us(1);
+"161
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 162: (PB0 = 0);
 "162
+[e = _PB0 -> -> 0 `i `b ]
+[; ;RFFC2071A.c: 163: delay_us(1);
+"163
+[e ( _delay_us (1 -> -> 1 `i `ui ]
+"164
+}
+"151
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 246  ]
+[e :U 247 ]
+"164
+}
+[; ;RFFC2071A.c: 164: }
+[; ;RFFC2071A.c: 167: (PB1 = 0);
+"167
+[e = _PB1 -> -> 0 `i `b ]
+[; ;RFFC2071A.c: 168: delay_us(2);
+"168
+[e ( _delay_us (1 -> -> 2 `i `ui ]
+[; ;RFFC2071A.c: 170: (__rffc_dummy_trisb |= 0x02);
+"170
+[e =| ___rffc_dummy_trisb -> -> 2 `i `uc ]
+[; ;RFFC2071A.c: 171: delay_us(2);
+"171
+[e ( _delay_us (1 -> -> 2 `i `ui ]
+[; ;RFFC2071A.c: 174: for (i = 0; i < 16; i++) {
+"174
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 16 `i 251  ]
 [e $U 252  ]
 [e :U 251 ]
 {
-[; ;RFFC2071A.c: 163: (PB0 = 1);
-"163
+[; ;RFFC2071A.c: 175: (PB0 = 1);
+"175
 [e = _PB0 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 164: delay_us(1);
-"164
+[; ;RFFC2071A.c: 176: delay_us(1);
+"176
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 166: rx_data <<= 1;
-"166
+[; ;RFFC2071A.c: 178: rx_data <<= 1;
+"178
 [e =<< _rx_data -> 1 `i ]
-[; ;RFFC2071A.c: 167: rx_data = (rx_data & 0xFFFE) ;
-"167
+[; ;RFFC2071A.c: 179: rx_data = (rx_data & 0xFFFE) ;
+"179
 [e = _rx_data & _rx_data -> 65534 `ui ]
-[; ;RFFC2071A.c: 168: if ((PB1)) {
-"168
+[; ;RFFC2071A.c: 180: if ((PB1)) {
+"180
 [e $ ! _PB1 254  ]
 {
-[; ;RFFC2071A.c: 169: rx_data |= 1;
-"169
+[; ;RFFC2071A.c: 181: rx_data |= 1;
+"181
 [e =| _rx_data -> -> 1 `i `ui ]
-"170
+"182
 }
 [e :U 254 ]
-[; ;RFFC2071A.c: 170: }
-[; ;RFFC2071A.c: 172: (PB0 = 0);
-"172
+[; ;RFFC2071A.c: 182: }
+[; ;RFFC2071A.c: 184: (PB0 = 0);
+"184
 [e = _PB0 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 173: delay_us(1);
-"173
+[; ;RFFC2071A.c: 185: delay_us(1);
+"185
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-"174
+"186
 }
-"162
+"174
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 16 `i 251  ]
 [e :U 252 ]
-"174
+"186
 }
-[; ;RFFC2071A.c: 174: }
-[; ;RFFC2071A.c: 176: (PA0 = 1);
-"176
+[; ;RFFC2071A.c: 186: }
+[; ;RFFC2071A.c: 188: (PA0 = 1);
+"188
 [e = _PA0 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 177: (__rffc_dummy_trisb &= (uint8_t)~0x02);
-"177
+[; ;RFFC2071A.c: 189: (__rffc_dummy_trisb &= (uint8_t)~0x02);
+"189
 [e =& ___rffc_dummy_trisb -> ~ -> 2 `i `uc ]
-[; ;RFFC2071A.c: 178: delay_us(1);
-"178
+[; ;RFFC2071A.c: 190: delay_us(1);
+"190
 [e ( _delay_us (1 -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 180: return rx_data;
-"180
+[; ;RFFC2071A.c: 192: return rx_data;
+"192
 [e ) _rx_data ]
 [e $UE 245  ]
-[; ;RFFC2071A.c: 181: }
-"181
+[; ;RFFC2071A.c: 193: }
+"193
 [e :UE 245 ]
 }
-"186
+"198
 [v _RFFC2071A_DefaultConfig `(v ~T0 @X0 1 ef ]
-"187
+"199
 {
-[; ;RFFC2071A.c: 186: void RFFC2071A_DefaultConfig(void)
-[; ;RFFC2071A.c: 187: {
+[; ;RFFC2071A.c: 198: void RFFC2071A_DefaultConfig(void)
+[; ;RFFC2071A.c: 199: {
 [e :U _RFFC2071A_DefaultConfig ]
 [f ]
-[; ;RFFC2071A.c: 189: RFFC2071A_WriteReg(0x00, 0xBEFA);
-"189
+[; ;RFFC2071A.c: 201: RFFC2071A_WriteReg(0x00, 0xBEFA);
+"201
 [e ( _RFFC2071A_WriteReg (2 , -> -> 0 `i `uc -> 48890 `ui ]
-[; ;RFFC2071A.c: 194: RFFC2071A_WriteReg(0x01, 0x4064);
-"194
-[e ( _RFFC2071A_WriteReg (2 , -> -> 1 `i `uc -> -> 16484 `i `ui ]
-[; ;RFFC2071A.c: 200: RFFC2071A_WriteReg(0x02, 0x1E21);
-"200
-[e ( _RFFC2071A_WriteReg (2 , -> -> 2 `i `uc -> -> 7713 `i `ui ]
-[; ;RFFC2071A.c: 203: RFFC2071A_WriteReg(0x03, 0x2808);
-"203
-[e ( _RFFC2071A_WriteReg (2 , -> -> 3 `i `uc -> -> 10248 `i `ui ]
-[; ;RFFC2071A.c: 206: RFFC2071A_WriteReg(0x04, 0x0690);
+[; ;RFFC2071A.c: 206: RFFC2071A_WriteReg(0x01, 0x4064);
 "206
+[e ( _RFFC2071A_WriteReg (2 , -> -> 1 `i `uc -> -> 16484 `i `ui ]
+[; ;RFFC2071A.c: 212: RFFC2071A_WriteReg(0x02, 0x1E21);
+"212
+[e ( _RFFC2071A_WriteReg (2 , -> -> 2 `i `uc -> -> 7713 `i `ui ]
+[; ;RFFC2071A.c: 215: RFFC2071A_WriteReg(0x03, 0x2808);
+"215
+[e ( _RFFC2071A_WriteReg (2 , -> -> 3 `i `uc -> -> 10248 `i `ui ]
+[; ;RFFC2071A.c: 218: RFFC2071A_WriteReg(0x04, 0x0690);
+"218
 [e ( _RFFC2071A_WriteReg (2 , -> -> 4 `i `uc -> -> 1680 `i `ui ]
-[; ;RFFC2071A.c: 207: RFFC2071A_WriteReg(0x05, 0x0690);
-"207
+[; ;RFFC2071A.c: 219: RFFC2071A_WriteReg(0x05, 0x0690);
+"219
 [e ( _RFFC2071A_WriteReg (2 , -> -> 5 `i `uc -> -> 1680 `i `ui ]
-[; ;RFFC2071A.c: 210: RFFC2071A_WriteReg(0x06, 0x0A52);
-"210
+[; ;RFFC2071A.c: 222: RFFC2071A_WriteReg(0x06, 0x0A52);
+"222
 [e ( _RFFC2071A_WriteReg (2 , -> -> 6 `i `uc -> -> 2642 `i `ui ]
-[; ;RFFC2071A.c: 211: RFFC2071A_WriteReg(0x07, 0x0A52);
-"211
-[e ( _RFFC2071A_WriteReg (2 , -> -> 7 `i `uc -> -> 2642 `i `ui ]
-[; ;RFFC2071A.c: 214: RFFC2071A_WriteReg(0x08, 0x1C22);
-"214
-[e ( _RFFC2071A_WriteReg (2 , -> -> 8 `i `uc -> -> 7202 `i `ui ]
-[; ;RFFC2071A.c: 217: RFFC2071A_WriteReg(0x09, 0x408C);
-"217
-[e ( _RFFC2071A_WriteReg (2 , -> -> 9 `i `uc -> -> 16524 `i `ui ]
-[; ;RFFC2071A.c: 220: RFFC2071A_WriteReg(0x0A, 0x0021);
-"220
-[e ( _RFFC2071A_WriteReg (2 , -> -> 10 `i `uc -> -> 33 `i `ui ]
-[; ;RFFC2071A.c: 223: RFFC2071A_WriteReg(0x0B, 0x4F00);
+[; ;RFFC2071A.c: 223: RFFC2071A_WriteReg(0x07, 0x0A52);
 "223
-[e ( _RFFC2071A_WriteReg (2 , -> -> 11 `i `uc -> -> 20224 `i `ui ]
-[; ;RFFC2071A.c: 226: RFFC2071A_SetDualFrequency(500, 450);
+[e ( _RFFC2071A_WriteReg (2 , -> -> 7 `i `uc -> -> 2642 `i `ui ]
+[; ;RFFC2071A.c: 226: RFFC2071A_WriteReg(0x08, 0x1C22);
 "226
-[e ( _RFFC2071A_SetDualFrequency (2 , -> -> -> 500 `i `l `ul -> -> -> 450 `i `l `ul ]
-[; ;RFFC2071A.c: 229: RFFC2071A_WriteReg(0x12, 0x0000);
+[e ( _RFFC2071A_WriteReg (2 , -> -> 8 `i `uc -> -> 7202 `i `ui ]
+[; ;RFFC2071A.c: 229: RFFC2071A_WriteReg(0x09, 0x408C);
 "229
-[e ( _RFFC2071A_WriteReg (2 , -> -> 18 `i `uc -> -> 0 `i `ui ]
-[; ;RFFC2071A.c: 232: RFFC2071A_WriteReg(0x15, 0x0000);
+[e ( _RFFC2071A_WriteReg (2 , -> -> 9 `i `uc -> -> 16524 `i `ui ]
+[; ;RFFC2071A.c: 232: RFFC2071A_WriteReg(0x0A, 0x0021);
 "232
-[e ( _RFFC2071A_WriteReg (2 , -> -> 21 `i `uc -> -> 0 `i `ui ]
-[; ;RFFC2071A.c: 235: RFFC2071A_WriteReg(0x16, 0x0001);
+[e ( _RFFC2071A_WriteReg (2 , -> -> 10 `i `uc -> -> 33 `i `ui ]
+[; ;RFFC2071A.c: 235: RFFC2071A_WriteReg(0x0B, 0x4F00);
 "235
-[e ( _RFFC2071A_WriteReg (2 , -> -> 22 `i `uc -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 238: RFFC2071A_WriteReg(0x17, 0x0048);
+[e ( _RFFC2071A_WriteReg (2 , -> -> 11 `i `uc -> -> 20224 `i `ui ]
+[; ;RFFC2071A.c: 238: RFFC2071A_SetDualFrequency(500, 450);
 "238
+[e ( _RFFC2071A_SetDualFrequency (2 , -> -> -> 500 `i `l `ul -> -> -> 450 `i `l `ul ]
+[; ;RFFC2071A.c: 241: RFFC2071A_WriteReg(0x12, 0x0000);
+"241
+[e ( _RFFC2071A_WriteReg (2 , -> -> 18 `i `uc -> -> 0 `i `ui ]
+[; ;RFFC2071A.c: 244: RFFC2071A_WriteReg(0x15, 0x0000);
+"244
+[e ( _RFFC2071A_WriteReg (2 , -> -> 21 `i `uc -> -> 0 `i `ui ]
+[; ;RFFC2071A.c: 247: RFFC2071A_WriteReg(0x16, 0x0001);
+"247
+[e ( _RFFC2071A_WriteReg (2 , -> -> 22 `i `uc -> -> 1 `i `ui ]
+[; ;RFFC2071A.c: 250: RFFC2071A_WriteReg(0x17, 0x0048);
+"250
 [e ( _RFFC2071A_WriteReg (2 , -> -> 23 `i `uc -> -> 72 `i `ui ]
-[; ;RFFC2071A.c: 239: RFFC2071A_WriteReg(0x1C, 0x0020);
-"239
+[; ;RFFC2071A.c: 251: RFFC2071A_WriteReg(0x1C, 0x0020);
+"251
 [e ( _RFFC2071A_WriteReg (2 , -> -> 28 `i `uc -> -> 32 `i `ui ]
-[; ;RFFC2071A.c: 242: RFFC2071A_WriteReg(0x1D, 0x0001);
-"242
+[; ;RFFC2071A.c: 254: RFFC2071A_WriteReg(0x1D, 0x0001);
+"254
 [e ( _RFFC2071A_WriteReg (2 , -> -> 29 `i `uc -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 243: }
-"243
+[; ;RFFC2071A.c: 255: }
+"255
 [e :UE 255 ]
 }
-"249
+"261
 [v _RFFC2071A_CalcFrequency `(v ~T0 @X0 1 sf2`ul`uc ]
-"250
+"262
 {
-[; ;RFFC2071A.c: 249: static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
-[; ;RFFC2071A.c: 250: {
+[; ;RFFC2071A.c: 261: static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
+[; ;RFFC2071A.c: 262: {
 [e :U _RFFC2071A_CalcFrequency ]
-"249
+"261
 [v _freq_mhz `ul ~T0 @X0 1 r1 ]
 [v _path `uc ~T0 @X0 1 r2 ]
-"250
+"262
 [f ]
-"251
+"263
 [v _n_div `uc ~T0 @X0 1 a ]
-"252
+"264
 [v _n_lo `ul ~T0 @X0 1 a ]
-"253
+"265
 [v _n_int `ui ~T0 @X0 1 a ]
-"254
+"266
 [v _n_frac `ul ~T0 @X0 1 a ]
-"255
+"267
 [v _freq1 `ui ~T0 @X0 1 a ]
 [v _freq2 `ui ~T0 @X0 1 a ]
 [v _freq3 `ui ~T0 @X0 1 a ]
-"256
+"268
 [v _reg_base `uc ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 251: uint8_t n_div;
-[; ;RFFC2071A.c: 252: uint32_t n_lo;
-[; ;RFFC2071A.c: 253: uint16_t n_int;
-[; ;RFFC2071A.c: 254: uint32_t n_frac;
-[; ;RFFC2071A.c: 255: uint16_t freq1, freq2, freq3;
-[; ;RFFC2071A.c: 256: uint8_t reg_base;
-[; ;RFFC2071A.c: 259: reg_base = (path == 1) ? 0x0C : 0x0F;
-"259
+[; ;RFFC2071A.c: 263: uint8_t n_div;
+[; ;RFFC2071A.c: 264: uint32_t n_lo;
+[; ;RFFC2071A.c: 265: uint16_t n_int;
+[; ;RFFC2071A.c: 266: uint32_t n_frac;
+[; ;RFFC2071A.c: 267: uint16_t freq1, freq2, freq3;
+[; ;RFFC2071A.c: 268: uint8_t reg_base;
+[; ;RFFC2071A.c: 271: reg_base = (path == 1) ? 0x0C : 0x0F;
+"271
 [e = _reg_base -> ? == -> _path `i -> 1 `i : -> 12 `i -> 15 `i `uc ]
-[; ;RFFC2071A.c: 262: if (freq_mhz >= 1500) {
-"262
+[; ;RFFC2071A.c: 274: if (freq_mhz >= 1500) {
+"274
 [e $ ! >= _freq_mhz -> -> -> 1500 `i `l `ul 257  ]
 {
-[; ;RFFC2071A.c: 263: n_lo = 1;
-"263
+[; ;RFFC2071A.c: 275: n_lo = 1;
+"275
 [e = _n_lo -> -> -> 1 `i `l `ul ]
-"264
+"276
 }
-[; ;RFFC2071A.c: 264: } else if (freq_mhz >= 750) {
+[; ;RFFC2071A.c: 276: } else if (freq_mhz >= 750) {
 [e $U 258  ]
 [e :U 257 ]
 [e $ ! >= _freq_mhz -> -> -> 750 `i `l `ul 259  ]
 {
-[; ;RFFC2071A.c: 265: n_lo = 2;
-"265
+[; ;RFFC2071A.c: 277: n_lo = 2;
+"277
 [e = _n_lo -> -> -> 2 `i `l `ul ]
-"266
+"278
 }
-[; ;RFFC2071A.c: 266: } else if (freq_mhz >= 375) {
+[; ;RFFC2071A.c: 278: } else if (freq_mhz >= 375) {
 [e $U 260  ]
 [e :U 259 ]
 [e $ ! >= _freq_mhz -> -> -> 375 `i `l `ul 261  ]
 {
-[; ;RFFC2071A.c: 267: n_lo = 4;
-"267
+[; ;RFFC2071A.c: 279: n_lo = 4;
+"279
 [e = _n_lo -> -> -> 4 `i `l `ul ]
-"268
+"280
 }
-[; ;RFFC2071A.c: 268: } else if (freq_mhz >= 188) {
+[; ;RFFC2071A.c: 280: } else if (freq_mhz >= 188) {
 [e $U 262  ]
 [e :U 261 ]
 [e $ ! >= _freq_mhz -> -> -> 188 `i `l `ul 263  ]
 {
-[; ;RFFC2071A.c: 269: n_lo = 8;
-"269
+[; ;RFFC2071A.c: 281: n_lo = 8;
+"281
 [e = _n_lo -> -> -> 8 `i `l `ul ]
-"270
+"282
 }
-[; ;RFFC2071A.c: 270: } else {
+[; ;RFFC2071A.c: 282: } else {
 [e $U 264  ]
 [e :U 263 ]
 {
-[; ;RFFC2071A.c: 271: n_lo = 16;
-"271
+[; ;RFFC2071A.c: 283: n_lo = 16;
+"283
 [e = _n_lo -> -> -> 16 `i `l `ul ]
-"272
+"284
 }
 [e :U 264 ]
 [e :U 262 ]
 [e :U 260 ]
 [e :U 258 ]
-"275
+"287
 [v _vco_freq `ul ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 272: }
-[; ;RFFC2071A.c: 275: uint32_t vco_freq = freq_mhz * n_lo * 2;
+[; ;RFFC2071A.c: 284: }
+[; ;RFFC2071A.c: 287: uint32_t vco_freq = freq_mhz * n_lo * 2;
 [e = _vco_freq * * _freq_mhz _n_lo -> -> -> 2 `i `l `ul ]
-[; ;RFFC2071A.c: 279: n_int = vco_freq / 26;
-"279
+[; ;RFFC2071A.c: 291: n_int = vco_freq / 26;
+"291
 [e = _n_int -> / _vco_freq -> -> -> 26 `i `l `ul `ui ]
-"282
+"294
 [v _remainder `ul ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 282: uint32_t remainder = vco_freq % 26;
+[; ;RFFC2071A.c: 294: uint32_t remainder = vco_freq % 26;
 [e = _remainder % _vco_freq -> -> -> 26 `i `l `ul ]
-[; ;RFFC2071A.c: 283: n_frac = (remainder << 24) / 26;
-"283
+[; ;RFFC2071A.c: 295: n_frac = (remainder << 24) / 26;
+"295
 [e = _n_frac / << _remainder -> 24 `i -> -> -> 26 `i `l `ul ]
-[; ;RFFC2071A.c: 286: switch (n_lo) {
-"286
+[; ;RFFC2071A.c: 298: switch (n_lo) {
+"298
 [e $U 266  ]
 {
-[; ;RFFC2071A.c: 287: case 1: n_div = 0; break;
-"287
+[; ;RFFC2071A.c: 299: case 1: n_div = 0; break;
+"299
 [e :U 267 ]
 [e = _n_div -> -> 0 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 288: case 2: n_div = 1; break;
-"288
+[; ;RFFC2071A.c: 300: case 2: n_div = 1; break;
+"300
 [e :U 268 ]
 [e = _n_div -> -> 1 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 289: case 4: n_div = 2; break;
-"289
+[; ;RFFC2071A.c: 301: case 4: n_div = 2; break;
+"301
 [e :U 269 ]
 [e = _n_div -> -> 2 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 290: case 8: n_div = 3; break;
-"290
+[; ;RFFC2071A.c: 302: case 8: n_div = 3; break;
+"302
 [e :U 270 ]
 [e = _n_div -> -> 3 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 291: case 16: n_div = 4; break;
-"291
+[; ;RFFC2071A.c: 303: case 16: n_div = 4; break;
+"303
 [e :U 271 ]
 [e = _n_div -> -> 4 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 292: case 32: n_div = 5; break;
-"292
+[; ;RFFC2071A.c: 304: case 32: n_div = 5; break;
+"304
 [e :U 272 ]
 [e = _n_div -> -> 5 `i `uc ]
 [e $U 265  ]
-[; ;RFFC2071A.c: 293: default: n_div = 2; break;
-"293
+[; ;RFFC2071A.c: 305: default: n_div = 2; break;
+"305
 [e :U 273 ]
 [e = _n_div -> -> 2 `i `uc ]
 [e $U 265  ]
-"294
+"306
 }
-[; ;RFFC2071A.c: 294: }
+[; ;RFFC2071A.c: 306: }
 [e $U 265  ]
-"286
+"298
 [e :U 266 ]
 [e [\ _n_lo , $ -> -> -> 1 `i `l `ul 267
  , $ -> -> -> 2 `i `l `ul 268
@@ -4798,310 +4819,310 @@ Version 3.2   GCC8 Compiled Intermediate Code
  , $ -> -> -> 16 `i `l `ul 271
  , $ -> -> -> 32 `i `l `ul 272
  273 ]
-"294
+"306
 [e :U 265 ]
-[; ;RFFC2071A.c: 298: freq1 = ((n_div & 0x07) << 13) | ((n_int & 0x0FFF) << 1) | ((n_frac >> 23) & 0x01);
-"298
-[e = _freq1 -> | -> | -> << & -> _n_div `i -> 7 `i -> 13 `i `ui << & _n_int -> -> 4095 `i `ui -> 1 `i `ul & >> _n_frac -> 23 `i -> -> -> 1 `i `l `ul `ui ]
-[; ;RFFC2071A.c: 301: freq2 = (n_frac >> 7) & 0xFFFF;
-"301
-[e = _freq2 -> & >> _n_frac -> 7 `i -> -> 65535 `ui `ul `ui ]
-[; ;RFFC2071A.c: 304: freq3 = ((n_frac & 0x7F) << 9) | (0x02 << 7);
-"304
-[e = _freq3 -> | << & _n_frac -> -> -> 127 `i `l `ul -> 9 `i -> -> << -> 2 `i -> 7 `i `l `ul `ui ]
-[; ;RFFC2071A.c: 307: RFFC2071A_WriteReg(reg_base + 0, freq1);
-"307
-[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 0 `i `uc _freq1 ]
-[; ;RFFC2071A.c: 308: RFFC2071A_WriteReg(reg_base + 1, freq2);
-"308
-[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 1 `i `uc _freq2 ]
-[; ;RFFC2071A.c: 309: RFFC2071A_WriteReg(reg_base + 2, freq3);
-"309
-[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 2 `i `uc _freq3 ]
-[; ;RFFC2071A.c: 310: }
+[; ;RFFC2071A.c: 310: freq1 = ((n_div & 0x07) << 13) | ((n_int & 0x0FFF) << 1) | ((n_frac >> 23) & 0x01);
 "310
+[e = _freq1 -> | -> | -> << & -> _n_div `i -> 7 `i -> 13 `i `ui << & _n_int -> -> 4095 `i `ui -> 1 `i `ul & >> _n_frac -> 23 `i -> -> -> 1 `i `l `ul `ui ]
+[; ;RFFC2071A.c: 313: freq2 = (n_frac >> 7) & 0xFFFF;
+"313
+[e = _freq2 -> & >> _n_frac -> 7 `i -> -> 65535 `ui `ul `ui ]
+[; ;RFFC2071A.c: 316: freq3 = ((n_frac & 0x7F) << 9) | (0x02 << 7);
+"316
+[e = _freq3 -> | << & _n_frac -> -> -> 127 `i `l `ul -> 9 `i -> -> << -> 2 `i -> 7 `i `l `ul `ui ]
+[; ;RFFC2071A.c: 319: RFFC2071A_WriteReg(reg_base + 0, freq1);
+"319
+[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 0 `i `uc _freq1 ]
+[; ;RFFC2071A.c: 320: RFFC2071A_WriteReg(reg_base + 1, freq2);
+"320
+[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 1 `i `uc _freq2 ]
+[; ;RFFC2071A.c: 321: RFFC2071A_WriteReg(reg_base + 2, freq3);
+"321
+[e ( _RFFC2071A_WriteReg (2 , -> + -> _reg_base `i -> 2 `i `uc _freq3 ]
+[; ;RFFC2071A.c: 322: }
+"322
 [e :UE 256 ]
 }
-"315
+"327
 [v _RFFC2071A_SetFrequencyPath1 `(v ~T0 @X0 1 ef1`ul ]
-"316
+"328
 {
-[; ;RFFC2071A.c: 315: void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz)
-[; ;RFFC2071A.c: 316: {
+[; ;RFFC2071A.c: 327: void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz)
+[; ;RFFC2071A.c: 328: {
 [e :U _RFFC2071A_SetFrequencyPath1 ]
-"315
+"327
 [v _freq_mhz `ul ~T0 @X0 1 r1 ]
-"316
+"328
 [f ]
-[; ;RFFC2071A.c: 317: RFFC2071A_CalcFrequency(freq_mhz, 1);
-"317
+[; ;RFFC2071A.c: 329: RFFC2071A_CalcFrequency(freq_mhz, 1);
+"329
 [e ( _RFFC2071A_CalcFrequency (2 , _freq_mhz -> -> 1 `i `uc ]
-[; ;RFFC2071A.c: 320: RFFC2071A_WriteReg(0x1D, 0x0001);
-"320
+[; ;RFFC2071A.c: 332: RFFC2071A_WriteReg(0x1D, 0x0001);
+"332
 [e ( _RFFC2071A_WriteReg (2 , -> -> 29 `i `uc -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 321: }
-"321
+[; ;RFFC2071A.c: 333: }
+"333
 [e :UE 274 ]
 }
-"326
+"338
 [v _RFFC2071A_SetFrequencyPath2 `(v ~T0 @X0 1 ef1`ul ]
-"327
+"339
 {
-[; ;RFFC2071A.c: 326: void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz)
-[; ;RFFC2071A.c: 327: {
+[; ;RFFC2071A.c: 338: void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz)
+[; ;RFFC2071A.c: 339: {
 [e :U _RFFC2071A_SetFrequencyPath2 ]
-"326
+"338
 [v _freq_mhz `ul ~T0 @X0 1 r1 ]
-"327
+"339
 [f ]
-[; ;RFFC2071A.c: 328: RFFC2071A_CalcFrequency(freq_mhz, 2);
-"328
+[; ;RFFC2071A.c: 340: RFFC2071A_CalcFrequency(freq_mhz, 2);
+"340
 [e ( _RFFC2071A_CalcFrequency (2 , _freq_mhz -> -> 2 `i `uc ]
-[; ;RFFC2071A.c: 331: RFFC2071A_WriteReg(0x1D, 0x0001);
-"331
+[; ;RFFC2071A.c: 343: RFFC2071A_WriteReg(0x1D, 0x0001);
+"343
 [e ( _RFFC2071A_WriteReg (2 , -> -> 29 `i `uc -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 332: }
-"332
+[; ;RFFC2071A.c: 344: }
+"344
 [e :UE 275 ]
 }
-"339
+"351
 [v _RFFC2071A_SetDualFrequency `(v ~T0 @X0 1 ef2`ul`ul ]
-"340
+"352
 {
-[; ;RFFC2071A.c: 339: void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
-[; ;RFFC2071A.c: 340: {
+[; ;RFFC2071A.c: 351: void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
+[; ;RFFC2071A.c: 352: {
 [e :U _RFFC2071A_SetDualFrequency ]
-"339
+"351
 [v _freq1_mhz `ul ~T0 @X0 1 r1 ]
 [v _freq2_mhz `ul ~T0 @X0 1 r2 ]
-"340
+"352
 [f ]
-[; ;RFFC2071A.c: 341: RFFC2071A_CalcFrequency(freq1_mhz, 1);
-"341
+[; ;RFFC2071A.c: 353: RFFC2071A_CalcFrequency(freq1_mhz, 1);
+"353
 [e ( _RFFC2071A_CalcFrequency (2 , _freq1_mhz -> -> 1 `i `uc ]
-[; ;RFFC2071A.c: 342: RFFC2071A_CalcFrequency(freq2_mhz, 2);
-"342
+[; ;RFFC2071A.c: 354: RFFC2071A_CalcFrequency(freq2_mhz, 2);
+"354
 [e ( _RFFC2071A_CalcFrequency (2 , _freq2_mhz -> -> 2 `i `uc ]
-[; ;RFFC2071A.c: 345: RFFC2071A_WriteReg(0x1D, 0x0001);
-"345
+[; ;RFFC2071A.c: 357: RFFC2071A_WriteReg(0x1D, 0x0001);
+"357
 [e ( _RFFC2071A_WriteReg (2 , -> -> 29 `i `uc -> -> 1 `i `ui ]
-[; ;RFFC2071A.c: 346: }
-"346
+[; ;RFFC2071A.c: 358: }
+"358
 [e :UE 276 ]
 }
-"352
+"364
 [v _RFFC2071A_SetFrequency `(v ~T0 @X0 1 ef1`ul ]
-"353
+"365
 {
-[; ;RFFC2071A.c: 352: void RFFC2071A_SetFrequency(uint32_t freq_mhz)
-[; ;RFFC2071A.c: 353: {
+[; ;RFFC2071A.c: 364: void RFFC2071A_SetFrequency(uint32_t freq_mhz)
+[; ;RFFC2071A.c: 365: {
 [e :U _RFFC2071A_SetFrequency ]
-"352
+"364
 [v _freq_mhz `ul ~T0 @X0 1 r1 ]
-"353
+"365
 [f ]
-[; ;RFFC2071A.c: 354: RFFC2071A_SetDualFrequency(freq_mhz, freq_mhz);
-"354
+[; ;RFFC2071A.c: 366: RFFC2071A_SetDualFrequency(freq_mhz, freq_mhz);
+"366
 [e ( _RFFC2071A_SetDualFrequency (2 , _freq_mhz _freq_mhz ]
-[; ;RFFC2071A.c: 355: }
-"355
+[; ;RFFC2071A.c: 367: }
+"367
 [e :UE 277 ]
 }
-"360
+"372
 [v _RFFC2071A_SetFullDuplex `(v ~T0 @X0 1 ef1`uc ]
-"361
+"373
 {
-[; ;RFFC2071A.c: 360: void RFFC2071A_SetFullDuplex(uint8_t enable)
-[; ;RFFC2071A.c: 361: {
+[; ;RFFC2071A.c: 372: void RFFC2071A_SetFullDuplex(uint8_t enable)
+[; ;RFFC2071A.c: 373: {
 [e :U _RFFC2071A_SetFullDuplex ]
-"360
+"372
 [v _enable `uc ~T0 @X0 1 r1 ]
-"361
+"373
 [f ]
-"362
+"374
 [v _reg `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 362: uint16_t reg = RFFC2071A_ReadReg(0x0B);
+[; ;RFFC2071A.c: 374: uint16_t reg = RFFC2071A_ReadReg(0x0B);
 [e = _reg ( _RFFC2071A_ReadReg (1 -> -> 11 `i `uc ]
-[; ;RFFC2071A.c: 364: if (enable) {
-"364
+[; ;RFFC2071A.c: 376: if (enable) {
+"376
 [e $ ! != -> _enable `i -> -> -> 0 `i `uc `i 279  ]
 {
-[; ;RFFC2071A.c: 365: reg |= 0x4000;
-"365
+[; ;RFFC2071A.c: 377: reg |= 0x4000;
+"377
 [e =| _reg -> -> 16384 `i `ui ]
-"366
+"378
 }
-[; ;RFFC2071A.c: 366: } else {
+[; ;RFFC2071A.c: 378: } else {
 [e $U 280  ]
 [e :U 279 ]
 {
-[; ;RFFC2071A.c: 367: reg &= ~0x4000;
-"367
+[; ;RFFC2071A.c: 379: reg &= ~0x4000;
+"379
 [e =& _reg -> ~ -> 16384 `i `ui ]
-"368
+"380
 }
 [e :U 280 ]
-[; ;RFFC2071A.c: 368: }
-[; ;RFFC2071A.c: 370: RFFC2071A_WriteReg(0x0B, reg);
-"370
+[; ;RFFC2071A.c: 380: }
+[; ;RFFC2071A.c: 382: RFFC2071A_WriteReg(0x0B, reg);
+"382
 [e ( _RFFC2071A_WriteReg (2 , -> -> 11 `i `uc _reg ]
-[; ;RFFC2071A.c: 371: }
-"371
+[; ;RFFC2071A.c: 383: }
+"383
 [e :UE 278 ]
 }
-"377
+"389
 [v _RFFC2071A_SetMixerCurrent `(v ~T0 @X0 1 ef1`uc ]
-"378
+"390
 {
-[; ;RFFC2071A.c: 377: void RFFC2071A_SetMixerCurrent(uint8_t current)
-[; ;RFFC2071A.c: 378: {
+[; ;RFFC2071A.c: 389: void RFFC2071A_SetMixerCurrent(uint8_t current)
+[; ;RFFC2071A.c: 390: {
 [e :U _RFFC2071A_SetMixerCurrent ]
-"377
+"389
 [v _current `uc ~T0 @X0 1 r1 ]
-"378
+"390
 [f ]
-"379
+"391
 [v _reg `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 379: uint16_t reg = RFFC2071A_ReadReg(0x0B);
+[; ;RFFC2071A.c: 391: uint16_t reg = RFFC2071A_ReadReg(0x0B);
 [e = _reg ( _RFFC2071A_ReadReg (1 -> -> 11 `i `uc ]
-[; ;RFFC2071A.c: 381: reg &= ~0x0700;
-"381
+[; ;RFFC2071A.c: 393: reg &= ~0x0700;
+"393
 [e =& _reg -> ~ -> 1792 `i `ui ]
-[; ;RFFC2071A.c: 382: reg |= ((current & 0x07) << 8);
-"382
+[; ;RFFC2071A.c: 394: reg |= ((current & 0x07) << 8);
+"394
 [e =| _reg -> << & -> _current `i -> 7 `i -> 8 `i `ui ]
-[; ;RFFC2071A.c: 384: RFFC2071A_WriteReg(0x0B, reg);
-"384
+[; ;RFFC2071A.c: 396: RFFC2071A_WriteReg(0x0B, reg);
+"396
 [e ( _RFFC2071A_WriteReg (2 , -> -> 11 `i `uc _reg ]
-[; ;RFFC2071A.c: 385: }
-"385
+[; ;RFFC2071A.c: 397: }
+"397
 [e :UE 281 ]
 }
-"390
+"402
 [v _RFFC2071A_Enable `(v ~T0 @X0 1 ef ]
-"391
+"403
 {
-[; ;RFFC2071A.c: 390: void RFFC2071A_Enable(void)
-[; ;RFFC2071A.c: 391: {
+[; ;RFFC2071A.c: 402: void RFFC2071A_Enable(void)
+[; ;RFFC2071A.c: 403: {
 [e :U _RFFC2071A_Enable ]
 [f ]
-[; ;RFFC2071A.c: 392: (PB2 = 1);
-"392
+[; ;RFFC2071A.c: 404: (PB2 = 1);
+"404
 [e = _PB2 -> -> 1 `i `b ]
-[; ;RFFC2071A.c: 393: delay_us(1000);
-"393
+[; ;RFFC2071A.c: 405: delay_us(1000);
+"405
 [e ( _delay_us (1 -> -> 1000 `i `ui ]
-[; ;RFFC2071A.c: 394: }
-"394
+[; ;RFFC2071A.c: 406: }
+"406
 [e :UE 282 ]
 }
-"399
+"411
 [v _RFFC2071A_Disable `(v ~T0 @X0 1 ef ]
-"400
+"412
 {
-[; ;RFFC2071A.c: 399: void RFFC2071A_Disable(void)
-[; ;RFFC2071A.c: 400: {
+[; ;RFFC2071A.c: 411: void RFFC2071A_Disable(void)
+[; ;RFFC2071A.c: 412: {
 [e :U _RFFC2071A_Disable ]
 [f ]
-[; ;RFFC2071A.c: 401: (PB2 = 0);
-"401
+[; ;RFFC2071A.c: 413: (PB2 = 0);
+"413
 [e = _PB2 -> -> 0 `i `b ]
-[; ;RFFC2071A.c: 402: }
-"402
+[; ;RFFC2071A.c: 414: }
+"414
 [e :UE 283 ]
 }
-"408
+"420
 [v _RFFC2071A_SetMode `(v ~T0 @X0 1 ef1`uc ]
-"409
+"421
 {
-[; ;RFFC2071A.c: 408: void RFFC2071A_SetMode(uint8_t mixer)
-[; ;RFFC2071A.c: 409: {
+[; ;RFFC2071A.c: 420: void RFFC2071A_SetMode(uint8_t mixer)
+[; ;RFFC2071A.c: 421: {
 [e :U _RFFC2071A_SetMode ]
-"408
+"420
 [v _mixer `uc ~T0 @X0 1 r1 ]
-"409
+"421
 [f ]
-[; ;RFFC2071A.c: 410: if (mixer) {
-"410
+[; ;RFFC2071A.c: 422: if (mixer) {
+"422
 [e $ ! != -> _mixer `i -> -> -> 0 `i `uc `i 285  ]
 {
-[; ;RFFC2071A.c: 411: (PA4 = 1);
-"411
+[; ;RFFC2071A.c: 423: (PA4 = 1);
+"423
 [e = _PA4 -> -> 1 `i `b ]
-"412
+"424
 }
-[; ;RFFC2071A.c: 412: } else {
+[; ;RFFC2071A.c: 424: } else {
 [e $U 286  ]
 [e :U 285 ]
 {
-[; ;RFFC2071A.c: 413: (PA4 = 0);
-"413
+[; ;RFFC2071A.c: 425: (PA4 = 0);
+"425
 [e = _PA4 -> -> 0 `i `b ]
-"414
+"426
 }
 [e :U 286 ]
-[; ;RFFC2071A.c: 414: }
-[; ;RFFC2071A.c: 415: }
-"415
+[; ;RFFC2071A.c: 426: }
+[; ;RFFC2071A.c: 427: }
+"427
 [e :UE 284 ]
 }
-"420
+"432
 [v _RFFC2071A_IsLocked `(uc ~T0 @X0 1 ef ]
-"421
+"433
 {
-[; ;RFFC2071A.c: 420: uint8_t RFFC2071A_IsLocked(void)
-[; ;RFFC2071A.c: 421: {
+[; ;RFFC2071A.c: 432: uint8_t RFFC2071A_IsLocked(void)
+[; ;RFFC2071A.c: 433: {
 [e :U _RFFC2071A_IsLocked ]
 [f ]
-"422
+"434
 [v _reg `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 422: uint16_t reg = RFFC2071A_ReadReg(0x1F);
+[; ;RFFC2071A.c: 434: uint16_t reg = RFFC2071A_ReadReg(0x1F);
 [e = _reg ( _RFFC2071A_ReadReg (1 -> -> 31 `i `uc ]
-[; ;RFFC2071A.c: 423: return (reg & 0x0001) ? 1 : 0;
-"423
+[; ;RFFC2071A.c: 435: return (reg & 0x0001) ? 1 : 0;
+"435
 [e ) -> ? != & _reg -> -> 1 `i `ui -> -> 0 `i `ui : -> 1 `i -> 0 `i `uc ]
 [e $UE 287  ]
-[; ;RFFC2071A.c: 424: }
-"424
+[; ;RFFC2071A.c: 436: }
+"436
 [e :UE 287 ]
 }
-"429
+"441
 [v _RFFC2071A_GetVCO `(uc ~T0 @X0 1 ef ]
-"430
+"442
 {
-[; ;RFFC2071A.c: 429: uint8_t RFFC2071A_GetVCO(void)
-[; ;RFFC2071A.c: 430: {
+[; ;RFFC2071A.c: 441: uint8_t RFFC2071A_GetVCO(void)
+[; ;RFFC2071A.c: 442: {
 [e :U _RFFC2071A_GetVCO ]
 [f ]
-"431
+"443
 [v _reg `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 431: uint16_t reg = RFFC2071A_ReadReg(0x1F);
+[; ;RFFC2071A.c: 443: uint16_t reg = RFFC2071A_ReadReg(0x1F);
 [e = _reg ( _RFFC2071A_ReadReg (1 -> -> 31 `i `uc ]
-[; ;RFFC2071A.c: 432: return (reg >> 5) & 0x03;
-"432
+[; ;RFFC2071A.c: 444: return (reg >> 5) & 0x03;
+"444
 [e ) -> & >> _reg -> 5 `i -> -> 3 `i `ui `uc ]
 [e $UE 288  ]
-[; ;RFFC2071A.c: 433: }
-"433
+[; ;RFFC2071A.c: 445: }
+"445
 [e :UE 288 ]
 }
-"438
+"450
 [v _RFFC2071A_GetCTCal `(uc ~T0 @X0 1 ef ]
-"439
+"451
 {
-[; ;RFFC2071A.c: 438: uint8_t RFFC2071A_GetCTCal(void)
-[; ;RFFC2071A.c: 439: {
+[; ;RFFC2071A.c: 450: uint8_t RFFC2071A_GetCTCal(void)
+[; ;RFFC2071A.c: 451: {
 [e :U _RFFC2071A_GetCTCal ]
 [f ]
-"440
+"452
 [v _reg `ui ~T0 @X0 1 a ]
-[; ;RFFC2071A.c: 440: uint16_t reg = RFFC2071A_ReadReg(0x1F);
+[; ;RFFC2071A.c: 452: uint16_t reg = RFFC2071A_ReadReg(0x1F);
 [e = _reg ( _RFFC2071A_ReadReg (1 -> -> 31 `i `uc ]
-[; ;RFFC2071A.c: 441: return (reg >> 7) & 0x7F;
-"441
+[; ;RFFC2071A.c: 453: return (reg >> 7) & 0x7F;
+"453
 [e ) -> & >> _reg -> 7 `i -> -> 127 `i `ui `uc ]
 [e $UE 289  ]
-[; ;RFFC2071A.c: 442: }
-"442
+[; ;RFFC2071A.c: 454: }
+"454
 [e :UE 289 ]
 }

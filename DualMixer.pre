@@ -2937,7 +2937,7 @@ txCounter++;
 }
 
 # 228
-void SendStringToUART(char *str)
+void SendStringToUART(const char *str)
 {
 while (*str)
 {
