@@ -5,8 +5,8 @@
  * Target: LO 450 MHz, Full Duplex Mode
  */
 
-#ifndef RFFC2071A_H
-#define RFFC2071A_H
+#ifndef __RFFC2071A_H
+#define __RFFC2071A_H
 
 #include <stdint.h>
 
