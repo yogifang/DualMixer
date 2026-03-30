@@ -98,7 +98,7 @@ void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
     ENX_LOW();
     delay_us(1);
 
-        SCLK_HIGH();
+        SCLK_HIGH();  // add an undefined clock
         delay_us(1);
         SCLK_LOW();
         delay_us(1);
