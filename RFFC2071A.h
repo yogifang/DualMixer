@@ -65,8 +65,13 @@
 #define REG_SDI_CTRL      0x15
 #define REG_GPO           0x16
 #define REG_T_VCO         0x17
+#define REG_IQMOD1        0x18
+#define REG_IQMOD2        0x19
+#define REG_IQMOD3        0x1A
+#define REG_IQMOD4        0x1B
 #define REG_TEMPC_CTRL    0x1C
 #define REG_DEV_CTRL      0x1D
+#define REG_TEST          0x1E
 #define REG_READBACK      0x1F
 
 // Function Prototypes

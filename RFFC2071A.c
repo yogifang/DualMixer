@@ -181,61 +181,40 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
 //==============================================================================
 void RFFC2071A_DefaultConfig(void)
 {
-    // Loop Filter Configuration
+    // Revision 2 default register map (0x00 ~ 0x1E)
     RFFC2071A_WriteReg(REG_LF, 0xBEFA);
-    
-    // Crystal oscillator configuration based on reference frequency
-    // SCLK = REF_FREQ / (REF_DIV + 1), must be <= 52 MHz
-    #if REF_FREQ_MHZ <= 52
-        RFFC2071A_WriteReg(REG_XO, 0x4064);  // REF_DIV = 0
-    #else
-        RFFC2071A_WriteReg(REG_XO, 0x4164);  // REF_DIV = 1
-    #endif
-    
-    // Calibration Timing
-    RFFC2071A_WriteReg(REG_CAL_TIME, 0x1E21);
-    
-    // VCO Control
-    RFFC2071A_WriteReg(REG_VCO_CTRL, 0x2808);
-    
-    // Coarse Tuning Cal
-    RFFC2071A_WriteReg(REG_CT_CAL1, 0x0690);
-    RFFC2071A_WriteReg(REG_CT_CAL2, 0x0690);
-    
-    // PLL Calibration
-    RFFC2071A_WriteReg(REG_PLL_CAL1, 0x0A52);
-    RFFC2071A_WriteReg(REG_PLL_CAL2, 0x0A52);
-    
-    // VCO Auto Select
-    RFFC2071A_WriteReg(REG_VCO_AUTO, 0x1C22);
-    
-    // PLL Control
-    RFFC2071A_WriteReg(REG_PLL_CTRL, 0x408C);
-    
-    // PLL Bias
-    RFFC2071A_WriteReg(REG_PLL_BIAS, 0x0021);
-    
-    // Mixer Control - Full Duplex, High Linearity
-    RFFC2071A_WriteReg(REG_MIX_CONT, 0x4F00);  // FULLD=1, MIX_IDD=6
-    
-    // Set LO frequencies: Path1=500 MHz, Path2=450 MHz
-    RFFC2071A_SetDualFrequency(500, 450);
-    
-    // Frac-N Control
-    RFFC2071A_WriteReg(REG_FN_CTRL, 0x0000);
-    
-    // SDI Control
+    RFFC2071A_WriteReg(REG_XO, 0x4064);
+    RFFC2071A_WriteReg(REG_CAL_TIME, 0x9055);
+    RFFC2071A_WriteReg(REG_VCO_CTRL, 0x2D02);
+    RFFC2071A_WriteReg(REG_CT_CAL1, 0xACBF);
+    RFFC2071A_WriteReg(REG_CT_CAL2, 0xACBF);
+    RFFC2071A_WriteReg(REG_PLL_CAL1, 0x0028);
+    RFFC2071A_WriteReg(REG_PLL_CAL2, 0x0028);
+    RFFC2071A_WriteReg(REG_VCO_AUTO, 0xFF00);
+    RFFC2071A_WriteReg(REG_PLL_CTRL, 0x8220);
+    RFFC2071A_WriteReg(REG_PLL_BIAS, 0x0202);
+    RFFC2071A_WriteReg(REG_MIX_CONT, 0x4800);
+
+    RFFC2071A_WriteReg(REG_P1_FREQ1, 0x1A94);
+    RFFC2071A_WriteReg(REG_P1_FREQ2, 0xD89D);
+    RFFC2071A_WriteReg(REG_P1_FREQ3, 0x8900);
+    RFFC2071A_WriteReg(REG_P2_FREQ1, 0x1E84);
+    RFFC2071A_WriteReg(REG_P2_FREQ2, 0x89D8);
+    RFFC2071A_WriteReg(REG_P2_FREQ3, 0x9D00);
+
+    RFFC2071A_WriteReg(REG_FN_CTRL, 0x2A80);
+    RFFC2071A_WriteReg(REG_EXT_MOD, 0x0000);
+    RFFC2071A_WriteReg(REG_FMOD, 0x0000);
     RFFC2071A_WriteReg(REG_SDI_CTRL, 0x0000);
-    
-    // GPO - Lock Detect on GPO4
-    RFFC2071A_WriteReg(REG_GPO, 0x0001);
-    
-    // Temperature Compensation (A series)
-    RFFC2071A_WriteReg(REG_T_VCO, 0x0048);
-    RFFC2071A_WriteReg(REG_TEMPC_CTRL, 0x0020);
-    
-    // Device Control - Enable re-lock
-    RFFC2071A_WriteReg(REG_DEV_CTRL, 0x0001);
+    RFFC2071A_WriteReg(REG_GPO, 0x0000);
+    RFFC2071A_WriteReg(REG_T_VCO, 0x4900);
+    RFFC2071A_WriteReg(REG_IQMOD1, 0x0281);
+    RFFC2071A_WriteReg(REG_IQMOD2, 0xF00F);
+    RFFC2071A_WriteReg(REG_IQMOD3, 0x0000);
+    RFFC2071A_WriteReg(REG_IQMOD4, 0x0005);
+    RFFC2071A_WriteReg(REG_TEMPC_CTRL, 0xC840);
+    RFFC2071A_WriteReg(REG_DEV_CTRL, 0x1000);
+    RFFC2071A_WriteReg(REG_TEST, 0x0005);
 }
 
 //==============================================================================

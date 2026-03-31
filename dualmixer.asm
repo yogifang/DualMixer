@@ -1,18 +1,18 @@
 //Deviec:FT61F14X
 //-----------------------Variable---------------------------------
-		_receivedata		EQU		A0H
-		_rxCounter		EQU		5EH
-		_rxIndexIp		EQU		5DH
-		_rxIndexOp		EQU		5CH
-		_toSend		EQU		120H
-		_txCounter		EQU		5BH
-		_txIndexIp		EQU		5AH
-		_txIndexOp		EQU		59H
+		_receivedata		EQU		20H
+		_rxCounter		EQU		43H
+		_rxIndexIp		EQU		7DH
+		_rxIndexOp		EQU		42H
+		_toSend		EQU		A0H
+		_txCounter		EQU		7CH
+		_txIndexIp		EQU		41H
+		_txIndexOp		EQU		40H
 		_W_TMP		EQU		70H
 		_BSR_TMP		EQU		71H
-//		main@readback		EQU		56H
-//		main@addr		EQU		58H
-//		main@i		EQU		55H
+//		main@readback		EQU		4BH
+//		main@addr		EQU		4DH
+//		main@i		EQU		4AH
 //		SendStringToUART@str		EQU		73H
 //		SendByteToUART@data		EQU		72H
 //		SendByteToUART@data		EQU		72H
@@ -23,36 +23,12 @@
 //		RFFC2071A_ReadReg@tx_byte		EQU		78H
 //		RFFC2071A_ReadReg@addr		EQU		77H
 //		RFFC2071A_ReadReg@addr		EQU		77H
-//		RFFC2071A_SetDualFrequency@freq1_mhz		EQU		4DH
-//		RFFC2071A_SetDualFrequency@freq2_mhz		EQU		51H
-//		RFFC2071A_CalcFrequency@n_frac		EQU		48H
-//		RFFC2071A_CalcFrequency@n_lo		EQU		44H
-//		RFFC2071A_CalcFrequency@vco_freq		EQU		3FH
-//		RFFC2071A_CalcFrequency@remainder		EQU		31H
-//		RFFC2071A_CalcFrequency@freq1		EQU		3DH
-//		RFFC2071A_CalcFrequency@freq3		EQU		3BH
-//		RFFC2071A_CalcFrequency@freq2		EQU		37H
-//		RFFC2071A_CalcFrequency@n_int		EQU		35H
-//		RFFC2071A_CalcFrequency@reg_base		EQU		4CH
-//		RFFC2071A_CalcFrequency@n_div		EQU		43H
-//		RFFC2071A_CalcFrequency@freq_mhz		EQU		26H
-//		RFFC2071A_CalcFrequency@path		EQU		2AH
-//		___lmul@product		EQU		7AH
-//		___lmul@multiplier		EQU		72H
-//		___lmul@multiplicand		EQU		76H
-//		___llmod@counter		EQU		7AH
-//		___llmod@divisor		EQU		72H
-//		___llmod@dividend		EQU		76H
-//		___lldiv@quotient		EQU		20H
-//		___lldiv@counter		EQU		24H
-//		___lldiv@divisor		EQU		72H
-//		___lldiv@dividend		EQU		76H
-//		RFFC2071A_WriteReg@addr		EQU		20H
-//		RFFC2071A_WriteReg@tx_data		EQU		21H
-//		RFFC2071A_WriteReg@i		EQU		25H
-//		RFFC2071A_WriteReg@addr		EQU		20H
+//		RFFC2071A_WriteReg@addr		EQU		44H
+//		RFFC2071A_WriteReg@tx_data		EQU		45H
+//		RFFC2071A_WriteReg@i		EQU		49H
+//		RFFC2071A_WriteReg@addr		EQU		44H
 //		RFFC2071A_WriteReg@data		EQU		74H
-//		RFFC2071A_WriteReg@addr		EQU		20H
+//		RFFC2071A_WriteReg@addr		EQU		44H
 //		delay_us@us		EQU		72H
 //		LoNibbleToHex@val		EQU		72H
 //		LoNibbleToHex@val		EQU		72H
@@ -72,7 +48,7 @@
 //-----------------------Variable END---------------------------------
 
 		MOVLP 	0H 			//0000 	0180
-		LJUMP 	56H 			//0001 	3856
+		LJUMP 	53H 			//0001 	3853
 		ORG		0004H
 		STR 	70H 			//0004 	10F0
 		SWAPR 	8H, 0H 		//0005 	1E08
@@ -103,11 +79,11 @@
 		BTSS 	EH, 0H 			//001C 	2C0E
 		LJUMP 	1FH 			//001D 	381F
 		LJUMP 	20H 			//001E 	3820
-		LJUMP 	33H 			//001F 	3833
+		LJUMP 	31H 			//001F 	3831
 		BTSS 	12H, 0H 		//0020 	2C12
 		LJUMP 	23H 			//0021 	3823
 		LJUMP 	24H 			//0022 	3824
-		LJUMP 	33H 			//0023 	3833
+		LJUMP 	31H 			//0023 	3831
 
 		//;DualMixer.C: 76: {
 		//;DualMixer.C: 77: RXNEF = 1;
@@ -115,1865 +91,1333 @@
 
 		//;DualMixer.C: 78: {
 		//;DualMixer.C: 79: receivedata[rxIndexIp] = URDATAL;
-		MOVLB 	0H 			//0025 	1020
-		LDR 	5DH, 0H 			//0026 	185D
-		ADDWI 	A0H 			//0027 	0EA0
-		STR 	6H 			//0028 	1086
-		CLRF 	7H 			//0029 	1187
-		MOVLB 	9H 			//002A 	1029
-		LDR 	CH, 0H 			//002B 	180C
-		STR 	1H 			//002C 	1081
+		LDR 	7DH, 0H 			//0025 	187D
+		ADDWI 	20H 			//0026 	0E20
+		STR 	6H 			//0027 	1086
+		CLRF 	7H 			//0028 	1187
+		LDR 	CH, 0H 			//0029 	180C
+		STR 	1H 			//002A 	1081
 
 		//;DualMixer.C: 80: rxIndexIp = (rxIndexIp + 1) & (32 - 1);
-		MOVLB 	0H 			//002D 	1020
-		INCR 	5DH, 1H 		//002E 	1ADD
-		LDWI 	1FH 			//002F 	001F
-
-		//;RFFC2071A.c: 294: freq1 = ((n_div & 0x07) << 13) | ((n_int & 0x0FFF) << 1) | ((n_frac >
-		ANDWR 	5DH, 1H 		//0030 	15DD
+		INCR 	7DH, 1H 		//002B 	1AFD
+		LDWI 	1FH 			//002C 	001F
+		ANDWR 	7DH, 1H 		//002D 	15FD
 
 		//;DualMixer.C: 81: rxCounter++;
-		INCR 	5EH, 1H 		//0031 	1ADE
+		MOVLB 	0H 			//002E 	1020
+		INCR 	43H, 1H 		//002F 	1AC3
 
 		//;DualMixer.C: 82: __nop();
-		NOP 					//0032 	1000
+		NOP 					//0030 	1000
 
 		//;DualMixer.C: 83: }
 		//;DualMixer.C: 84: }
 		//;DualMixer.C: 86: if (TCEN && TCF)
-		MOVLB 	9H 			//0033 	1029
-		BTSS 	EH, 5H 			//0034 	2E8E
-		LJUMP 	37H 			//0035 	3837
-		LJUMP 	38H 			//0036 	3838
-		LJUMP 	51H 			//0037 	3851
-		BTSS 	1CH, 0H 		//0038 	2C1C
-		LJUMP 	3BH 			//0039 	383B
-		LJUMP 	3CH 			//003A 	383C
-		LJUMP 	51H 			//003B 	3851
+		MOVLB 	9H 			//0031 	1029
+		BTSS 	EH, 5H 			//0032 	2E8E
+		LJUMP 	35H 			//0033 	3835
+		LJUMP 	36H 			//0034 	3836
+		LJUMP 	4EH 			//0035 	384E
+		BTSS 	1CH, 0H 		//0036 	2C1C
+		LJUMP 	39H 			//0037 	3839
+		LJUMP 	3AH 			//0038 	383A
+		LJUMP 	4EH 			//0039 	384E
 
 		//;DualMixer.C: 87: {
 		//;DualMixer.C: 88: TCF = 1;
-		BSR 	1CH, 0H 			//003C 	241C
+		BSR 	1CH, 0H 			//003A 	241C
 
 		//;DualMixer.C: 90: if (txCounter > 0)
-		MOVLB 	0H 			//003D 	1020
-		LDR 	5BH, 0H 			//003E 	185B
-		BTSC 	3H, 2H 			//003F 	2903
-		LJUMP 	42H 			//0040 	3842
-		LJUMP 	43H 			//0041 	3843
-		LJUMP 	50H 			//0042 	3850
+		LDR 	7CH, 0H 			//003B 	187C
+		BTSC 	3H, 2H 			//003C 	2903
+		LJUMP 	3FH 			//003D 	383F
+		LJUMP 	40H 			//003E 	3840
+		LJUMP 	4DH 			//003F 	384D
 
 		//;DualMixer.C: 91: {
 		//;DualMixer.C: 92: URDATAL = toSend[txIndexOp];
-		LDR 	59H, 0H 			//0043 	1859
-		ADDWI 	20H 			//0044 	0E20
-		STR 	6H 			//0045 	1086
-		LDWI 	1H 			//0046 	0001
-		STR 	7H 			//0047 	1087
-		LDR 	1H, 0H 			//0048 	1801
-		MOVLB 	9H 			//0049 	1029
-		STR 	CH 			//004A 	108C
+		MOVLB 	0H 			//0040 	1020
+		LDR 	40H, 0H 			//0041 	1840
+		ADDWI 	A0H 			//0042 	0EA0
+		STR 	6H 			//0043 	1086
+		CLRF 	7H 			//0044 	1187
+		LDR 	1H, 0H 			//0045 	1801
+		MOVLB 	9H 			//0046 	1029
+		STR 	CH 			//0047 	108C
 
 		//;DualMixer.C: 93: txIndexOp = (txIndexOp + 1) & (64 - 1);
-		MOVLB 	0H 			//004B 	1020
-		INCR 	59H, 1H 		//004C 	1AD9
-		LDWI 	3FH 			//004D 	003F
-		ANDWR 	59H, 1H 		//004E 	15D9
+		MOVLB 	0H 			//0048 	1020
+		INCR 	40H, 1H 		//0049 	1AC0
+		LDWI 	3FH 			//004A 	003F
+		ANDWR 	40H, 1H 		//004B 	15C0
 
 		//;DualMixer.C: 94: txCounter--;
-		DECR 	5BH, 1H 		//004F 	13DB
+		DECR 	7CH, 1H 		//004C 	13FC
 
 		//;DualMixer.C: 95: }
 		//;DualMixer.C: 96: __nop();
-		NOP 					//0050 	1000
+		NOP 					//004D 	1000
 
 		//;DualMixer.C: 97: }
 		//;DualMixer.C: 99: user_isr();
-		MOVLP 	5H 			//0051 	0185
-		LCALL 	5B8H 			//0052 	35B8
+		MOVLP 	3H 			//004E 	0183
+		LCALL 	3C7H 			//004F 	33C7
+		MOVLP 	0H 			//0050 	0180
+		BCR 	7EH, 0H 			//0051 	207E
+		RETI 					//0052 	1009
 		MOVLP 	0H 			//0053 	0180
-		BCR 	7EH, 0H 			//0054 	207E
-		RETI 					//0055 	1009
-		MOVLP 	0H 			//0056 	0180
-		LJUMP 	58H 			//0057 	3858
-		MOVLB 	0H 			//0058 	1020
-		CLRF 	59H 			//0059 	11D9
-		CLRF 	5AH 			//005A 	11DA
-		CLRF 	5BH 			//005B 	11DB
-		CLRF 	5CH 			//005C 	11DC
-		CLRF 	5DH 			//005D 	11DD
-		CLRF 	5EH 			//005E 	11DE
+		LJUMP 	55H 			//0054 	3855
+		CLRF 	7CH 			//0055 	11FC
+		CLRF 	7DH 			//0056 	11FD
+		LDWI 	20H 			//0057 	0020
+		STR 	4H 			//0058 	1084
+		LDWI 	0H 			//0059 	0000
+		STR 	5H 			//005A 	1085
+		LDWI 	24H 			//005B 	0024
+		MOVLP 	3H 			//005C 	0183
+		LCALL 	3BBH 			//005D 	33BB
+		MOVLP 	0H 			//005E 	0180
 		LDWI 	A0H 			//005F 	00A0
 		STR 	4H 			//0060 	1084
 		LDWI 	0H 			//0061 	0000
 		STR 	5H 			//0062 	1085
-		LDWI 	20H 			//0063 	0020
-		MOVLP 	5H 			//0064 	0185
-		LCALL 	5ACH 			//0065 	35AC
+		LDWI 	40H 			//0063 	0040
+		MOVLP 	3H 			//0064 	0183
+		LCALL 	3BBH 			//0065 	33BB
 		MOVLP 	0H 			//0066 	0180
-		LDWI 	20H 			//0067 	0020
-		STR 	4H 			//0068 	1084
-		LDWI 	1H 			//0069 	0001
-		STR 	5H 			//006A 	1085
-		LDWI 	40H 			//006B 	0040
-		MOVLP 	5H 			//006C 	0185
-		LCALL 	5ACH 			//006D 	35AC
-		MOVLP 	0H 			//006E 	0180
-		BCR 	7EH, 0H 			//006F 	207E
-		MOVLB 	0H 			//0070 	1020
-		MOVLP 	2H 			//0071 	0182
-		LJUMP 	272H 			//0072 	3A72
-
-		//;RFFC2071A.c: 247: uint8_t n_div;
-		//;RFFC2071A.c: 248: uint32_t n_lo;
-		//;RFFC2071A.c: 249: uint16_t n_int;
-		//;RFFC2071A.c: 250: uint32_t n_frac;
-		//;RFFC2071A.c: 251: uint16_t freq1, freq2, freq3;
-		//;RFFC2071A.c: 252: uint8_t reg_base;
-		//;RFFC2071A.c: 255: reg_base = (path == 1) ? 0x0C : 0x0F;
-		DECR 	2AH, 0H 		//0073 	132A
-		BTSC 	3H, 2H 			//0074 	2903
-		LJUMP 	77H 			//0075 	3877
-		LJUMP 	78H 			//0076 	3878
-		LJUMP 	7CH 			//0077 	387C
-		LDWI 	FH 			//0078 	000F
-		STR 	39H 			//0079 	10B9
-		CLRF 	3AH 			//007A 	11BA
-		LJUMP 	7FH 			//007B 	387F
-		LDWI 	CH 			//007C 	000C
-		STR 	39H 			//007D 	10B9
-		CLRF 	3AH 			//007E 	11BA
-		LDR 	39H, 0H 			//007F 	1839
-		STR 	4CH 			//0080 	10CC
-
-		//;RFFC2071A.c: 258: if (freq_mhz >= 1500) {
-		LDR 	29H, 0H 			//0081 	1829
-		BTSS 	3H, 2H 			//0082 	2D03
-		LJUMP 	8FH 			//0083 	388F
-		LDR 	28H, 0H 			//0084 	1828
-		BTSS 	3H, 2H 			//0085 	2D03
-		LJUMP 	8FH 			//0086 	388F
-		LDWI 	DCH 			//0087 	00DC
-		SUBWR 	26H, 0H 		//0088 	1226
-		LDWI 	5H 			//0089 	0005
-		SUBWFB 	27H, 0H 		//008A 	0B27
-		BTSS 	3H, 0H 			//008B 	2C03
-		LJUMP 	8EH 			//008C 	388E
-		LJUMP 	8FH 			//008D 	388F
-		LJUMP 	95H 			//008E 	3895
-
-		//;RFFC2071A.c: 259: n_lo = 1;
-		CLRF 	44H 			//008F 	11C4
-		INCR 	44H, 1H 		//0090 	1AC4
-		CLRF 	45H 			//0091 	11C5
-		CLRF 	46H 			//0092 	11C6
-		CLRF 	47H 			//0093 	11C7
-
-		//;RFFC2071A.c: 260: } else if (freq_mhz >= 750) {
-		LJUMP 	D7H 			//0094 	38D7
-		LDR 	29H, 0H 			//0095 	1829
-		BTSS 	3H, 2H 			//0096 	2D03
-		LJUMP 	A3H 			//0097 	38A3
-		LDR 	28H, 0H 			//0098 	1828
-		BTSS 	3H, 2H 			//0099 	2D03
-		LJUMP 	A3H 			//009A 	38A3
-		LDWI 	EEH 			//009B 	00EE
-		SUBWR 	26H, 0H 		//009C 	1226
-		LDWI 	2H 			//009D 	0002
-		SUBWFB 	27H, 0H 		//009E 	0B27
-		BTSS 	3H, 0H 			//009F 	2C03
-		LJUMP 	A2H 			//00A0 	38A2
-		LJUMP 	A3H 			//00A1 	38A3
-		LJUMP 	A9H 			//00A2 	38A9
-
-		//;RFFC2071A.c: 261: n_lo = 2;
-		LDWI 	2H 			//00A3 	0002
-		STR 	44H 			//00A4 	10C4
-		CLRF 	45H 			//00A5 	11C5
-		CLRF 	46H 			//00A6 	11C6
-		CLRF 	47H 			//00A7 	11C7
-
-		//;RFFC2071A.c: 262: } else if (freq_mhz >= 375) {
-		LJUMP 	D7H 			//00A8 	38D7
-		LDR 	29H, 0H 			//00A9 	1829
-		BTSS 	3H, 2H 			//00AA 	2D03
-		LJUMP 	B7H 			//00AB 	38B7
-		LDR 	28H, 0H 			//00AC 	1828
-		BTSS 	3H, 2H 			//00AD 	2D03
-		LJUMP 	B7H 			//00AE 	38B7
-		LDWI 	77H 			//00AF 	0077
-		SUBWR 	26H, 0H 		//00B0 	1226
-		LDWI 	1H 			//00B1 	0001
-		SUBWFB 	27H, 0H 		//00B2 	0B27
-		BTSS 	3H, 0H 			//00B3 	2C03
-		LJUMP 	B6H 			//00B4 	38B6
-		LJUMP 	B7H 			//00B5 	38B7
-		LJUMP 	BDH 			//00B6 	38BD
-
-		//;RFFC2071A.c: 263: n_lo = 4;
-		LDWI 	4H 			//00B7 	0004
-		STR 	44H 			//00B8 	10C4
-		CLRF 	45H 			//00B9 	11C5
-		CLRF 	46H 			//00BA 	11C6
-		CLRF 	47H 			//00BB 	11C7
-
-		//;RFFC2071A.c: 264: } else if (freq_mhz >= 188) {
-		LJUMP 	D7H 			//00BC 	38D7
-		LDR 	29H, 0H 			//00BD 	1829
-		BTSS 	3H, 2H 			//00BE 	2D03
-		LJUMP 	CCH 			//00BF 	38CC
-		LDR 	28H, 0H 			//00C0 	1828
-		BTSS 	3H, 2H 			//00C1 	2D03
-		LJUMP 	CCH 			//00C2 	38CC
-		LDR 	27H, 0H 			//00C3 	1827
-		BTSS 	3H, 2H 			//00C4 	2D03
-		LJUMP 	CCH 			//00C5 	38CC
-		LDWI 	BCH 			//00C6 	00BC
-		SUBWR 	26H, 0H 		//00C7 	1226
-		BTSS 	3H, 0H 			//00C8 	2C03
-		LJUMP 	CBH 			//00C9 	38CB
-		LJUMP 	CCH 			//00CA 	38CC
-		LJUMP 	D2H 			//00CB 	38D2
-
-		//;RFFC2071A.c: 265: n_lo = 8;
-		LDWI 	8H 			//00CC 	0008
-		STR 	44H 			//00CD 	10C4
-		CLRF 	45H 			//00CE 	11C5
-		CLRF 	46H 			//00CF 	11C6
-		CLRF 	47H 			//00D0 	11C7
-
-		//;RFFC2071A.c: 266: } else {
-		LJUMP 	D7H 			//00D1 	38D7
-
-		//;RFFC2071A.c: 267: n_lo = 16;
-		LDWI 	10H 			//00D2 	0010
-		STR 	44H 			//00D3 	10C4
-		CLRF 	45H 			//00D4 	11C5
-		CLRF 	46H 			//00D5 	11C6
-		CLRF 	47H 			//00D6 	11C7
-
-		//;RFFC2071A.c: 268: }
-		//;RFFC2071A.c: 271: uint32_t vco_freq = freq_mhz * n_lo * 2;
-		LDR 	29H, 0H 			//00D7 	1829
-		STR 	75H 			//00D8 	10F5
-		LDR 	28H, 0H 			//00D9 	1828
-		STR 	74H 			//00DA 	10F4
-		LDR 	27H, 0H 			//00DB 	1827
-		STR 	73H 			//00DC 	10F3
-		LDR 	26H, 0H 			//00DD 	1826
-		STR 	72H 			//00DE 	10F2
-		LDR 	47H, 0H 			//00DF 	1847
-		STR 	79H 			//00E0 	10F9
-		LDR 	46H, 0H 			//00E1 	1846
-		STR 	78H 			//00E2 	10F8
-		LDR 	45H, 0H 			//00E3 	1845
-		STR 	77H 			//00E4 	10F7
-		LDR 	44H, 0H 			//00E5 	1844
-		STR 	76H 			//00E6 	10F6
-		MOVLP 	4H 			//00E7 	0184
-		LCALL 	466H 			//00E8 	3466
-		MOVLP 	0H 			//00E9 	0180
-		LDR 	75H, 0H 			//00EA 	1875
-		STR 	42H 			//00EB 	10C2
-		LDR 	74H, 0H 			//00EC 	1874
-		STR 	41H 			//00ED 	10C1
-		LDR 	73H, 0H 			//00EE 	1873
-		STR 	40H 			//00EF 	10C0
-		LDR 	72H, 0H 			//00F0 	1872
-		STR 	3FH 			//00F1 	10BF
-		LSLF 	3FH, 1H 		//00F2 	05BF
-		RLR 	40H, 1H 			//00F3 	1DC0
-		RLR 	41H, 1H 			//00F4 	1DC1
-		RLR 	42H, 1H 			//00F5 	1DC2
-
-		//;RFFC2071A.c: 275: n_int = vco_freq / 26;
-		LDWI 	1AH 			//00F6 	001A
-		STR 	72H 			//00F7 	10F2
-		CLRF 	73H 			//00F8 	11F3
-		CLRF 	74H 			//00F9 	11F4
-		CLRF 	75H 			//00FA 	11F5
-		LDR 	42H, 0H 			//00FB 	1842
-		STR 	79H 			//00FC 	10F9
-		LDR 	41H, 0H 			//00FD 	1841
-		STR 	78H 			//00FE 	10F8
-		LDR 	40H, 0H 			//00FF 	1840
-		STR 	77H 			//0100 	10F7
-		LDR 	3FH, 0H 			//0101 	183F
-		STR 	76H 			//0102 	10F6
-		MOVLP 	3H 			//0103 	0183
-		LCALL 	3B3H 			//0104 	33B3
-		MOVLP 	0H 			//0105 	0180
-		LDR 	73H, 0H 			//0106 	1873
-		STR 	36H 			//0107 	10B6
-		LDR 	72H, 0H 			//0108 	1872
-		STR 	35H 			//0109 	10B5
-
-		//;RFFC2071A.c: 278: uint32_t remainder = vco_freq % 26;
-		LDWI 	1AH 			//010A 	001A
-		STR 	72H 			//010B 	10F2
-		CLRF 	73H 			//010C 	11F3
-		CLRF 	74H 			//010D 	11F4
-		CLRF 	75H 			//010E 	11F5
-		LDR 	42H, 0H 			//010F 	1842
-		STR 	79H 			//0110 	10F9
-		LDR 	41H, 0H 			//0111 	1841
-		STR 	78H 			//0112 	10F8
-		LDR 	40H, 0H 			//0113 	1840
-		STR 	77H 			//0114 	10F7
-		LDR 	3FH, 0H 			//0115 	183F
-		STR 	76H 			//0116 	10F6
-		MOVLP 	3H 			//0117 	0183
-		LCALL 	3FBH 			//0118 	33FB
-		MOVLP 	0H 			//0119 	0180
-		LDR 	75H, 0H 			//011A 	1875
-		STR 	34H 			//011B 	10B4
-		LDR 	74H, 0H 			//011C 	1874
-		STR 	33H 			//011D 	10B3
-		LDR 	73H, 0H 			//011E 	1873
-		STR 	32H 			//011F 	10B2
-		LDR 	72H, 0H 			//0120 	1872
-		STR 	31H 			//0121 	10B1
-
-		//;RFFC2071A.c: 279: n_frac = (remainder << 24) / 26;
-		LDWI 	1AH 			//0122 	001A
-		STR 	72H 			//0123 	10F2
-		CLRF 	73H 			//0124 	11F3
-		CLRF 	74H 			//0125 	11F4
-		CLRF 	75H 			//0126 	11F5
-		LDR 	31H, 0H 			//0127 	1831
-		STR 	79H 			//0128 	10F9
-		CLRF 	76H 			//0129 	11F6
-		CLRF 	77H 			//012A 	11F7
-		CLRF 	78H 			//012B 	11F8
-		MOVLP 	3H 			//012C 	0183
-		LCALL 	3B3H 			//012D 	33B3
-		MOVLP 	0H 			//012E 	0180
-		LDR 	75H, 0H 			//012F 	1875
-		STR 	4BH 			//0130 	10CB
-		LDR 	74H, 0H 			//0131 	1874
-		STR 	4AH 			//0132 	10CA
-		LDR 	73H, 0H 			//0133 	1873
-		STR 	49H 			//0134 	10C9
-		LDR 	72H, 0H 			//0135 	1872
-		STR 	48H 			//0136 	10C8
-
-		//;RFFC2071A.c: 282: switch (n_lo) {
-		LJUMP 	149H 			//0137 	3949
-		CLRF 	43H 			//0138 	11C3
-		LJUMP 	16CH 			//0139 	396C
-
-		//;RFFC2071A.c: 284: case 2: n_div = 1; break;
-		CLRF 	43H 			//013A 	11C3
-		INCR 	43H, 1H 		//013B 	1AC3
-		LJUMP 	16CH 			//013C 	396C
-		LDWI 	2H 			//013D 	0002
-		STR 	43H 			//013E 	10C3
-		LJUMP 	16CH 			//013F 	396C
-		LDWI 	3H 			//0140 	0003
-		STR 	43H 			//0141 	10C3
-		LJUMP 	16CH 			//0142 	396C
-		LDWI 	4H 			//0143 	0004
-		STR 	43H 			//0144 	10C3
-		LJUMP 	16CH 			//0145 	396C
-		LDWI 	5H 			//0146 	0005
-		STR 	43H 			//0147 	10C3
-		LJUMP 	16CH 			//0148 	396C
-		LDR 	47H, 0H 			//0149 	1847
-		XORWI 	0H 			//014A 	0A00
-		BTSC 	3H, 2H 			//014B 	2903
-		LJUMP 	167H 			//014C 	3967
-		LJUMP 	13DH 			//014D 	393D
-		LDR 	45H, 0H 			//014E 	1845
-		XORWI 	0H 			//014F 	0A00
-		BTSC 	3H, 2H 			//0150 	2903
-		LJUMP 	153H 			//0151 	3953
-		LJUMP 	13DH 			//0152 	393D
-		LDR 	44H, 0H 			//0153 	1844
-		XORWI 	1H 			//0154 	0A01
-		BTSC 	3H, 2H 			//0155 	2903
-		LJUMP 	138H 			//0156 	3938
-		XORWI 	3H 			//0157 	0A03
-		BTSC 	3H, 2H 			//0158 	2903
-		LJUMP 	13AH 			//0159 	393A
-		XORWI 	6H 			//015A 	0A06
-		BTSC 	3H, 2H 			//015B 	2903
-		LJUMP 	13DH 			//015C 	393D
-		XORWI 	CH 			//015D 	0A0C
-		BTSC 	3H, 2H 			//015E 	2903
-		LJUMP 	140H 			//015F 	3940
-		XORWI 	18H 			//0160 	0A18
-		BTSC 	3H, 2H 			//0161 	2903
-		LJUMP 	143H 			//0162 	3943
-		XORWI 	30H 			//0163 	0A30
-		BTSC 	3H, 2H 			//0164 	2903
-		LJUMP 	146H 			//0165 	3946
-		LJUMP 	13DH 			//0166 	393D
-		LDR 	46H, 0H 			//0167 	1846
-		XORWI 	0H 			//0168 	0A00
-		BTSC 	3H, 2H 			//0169 	2903
-		LJUMP 	14EH 			//016A 	394E
-		LJUMP 	13DH 			//016B 	393D
-		LDR 	43H, 0H 			//016C 	1843
-		ANDWI 	7H 			//016D 	0907
-		STR 	3DH 			//016E 	10BD
-		CLRF 	3EH 			//016F 	11BE
-		LDWI 	DH 			//0170 	000D
-		LSLF 	3DH, 1H 		//0171 	05BD
-		RLR 	3EH, 1H 			//0172 	1DBE
-		DECRSZ 	9H, 1H 		//0173 	1B89
-		LJUMP 	171H 			//0174 	3971
-		LDWI 	FFH 			//0175 	00FF
-		ANDWR 	35H, 0H 		//0176 	1535
-		STR 	2BH 			//0177 	10AB
-		LDWI 	FH 			//0178 	000F
-		ANDWR 	36H, 0H 		//0179 	1536
-		STR 	2CH 			//017A 	10AC
-		LSLF 	2BH, 1H 		//017B 	05AB
-		RLR 	2CH, 1H 			//017C 	1DAC
-		LDR 	2BH, 0H 			//017D 	182B
-		IORWR 	3DH, 1H 		//017E 	14BD
-		LDR 	2CH, 0H 			//017F 	182C
-		IORWR 	3EH, 1H 		//0180 	14BE
-		LDR 	48H, 0H 			//0181 	1848
-		STR 	2BH 			//0182 	10AB
-		LDR 	49H, 0H 			//0183 	1849
-		STR 	2CH 			//0184 	10AC
-		LDR 	4AH, 0H 			//0185 	184A
-		STR 	2DH 			//0186 	10AD
-		LDR 	4BH, 0H 			//0187 	184B
-		STR 	2EH 			//0188 	10AE
-		RLR 	2DH, 0H 			//0189 	1D2D
-		RLR 	2EH, 0H 			//018A 	1D2E
-		STR 	2BH 			//018B 	10AB
-		CLRF 	2CH 			//018C 	11AC
-		CLRF 	2DH 			//018D 	11AD
-		CLRF 	2EH 			//018E 	11AE
-		RLR 	2CH, 1H 			//018F 	1DAC
-		LDWI 	1H 			//0190 	0001
-		ANDWR 	2BH, 0H 		//0191 	152B
-		STR 	2FH 			//0192 	10AF
-		LDWI 	0H 			//0193 	0000
-		ANDWR 	2CH, 0H 		//0194 	152C
-		STR 	30H 			//0195 	10B0
-		LDR 	2FH, 0H 			//0196 	182F
-		IORWR 	3DH, 1H 		//0197 	14BD
-		LDR 	30H, 0H 			//0198 	1830
-		IORWR 	3EH, 1H 		//0199 	14BE
-
-		//;RFFC2071A.c: 297: freq2 = (n_frac >> 7) & 0xFFFF;
-		LDR 	48H, 0H 			//019A 	1848
-		STR 	2BH 			//019B 	10AB
-		LDR 	49H, 0H 			//019C 	1849
-		STR 	2CH 			//019D 	10AC
-		LDR 	4AH, 0H 			//019E 	184A
-		STR 	2DH 			//019F 	10AD
-		LDR 	4BH, 0H 			//01A0 	184B
-		STR 	2EH 			//01A1 	10AE
-		LDWI 	7H 			//01A2 	0007
-		LSRF 	2EH, 1H 		//01A3 	06AE
-		RRR 	2DH, 1H 			//01A4 	1CAD
-		RRR 	2CH, 1H 			//01A5 	1CAC
-		RRR 	2BH, 1H 			//01A6 	1CAB
-		DECRSZ 	9H, 1H 		//01A7 	1B89
-		LJUMP 	1A3H 			//01A8 	39A3
-		LDR 	2CH, 0H 			//01A9 	182C
-		STR 	38H 			//01AA 	10B8
-		LDR 	2BH, 0H 			//01AB 	182B
-		STR 	37H 			//01AC 	10B7
-
-		//;RFFC2071A.c: 300: freq3 = ((n_frac & 0x7F) << 9) | (0x02 << 7);
-		LDWI 	7FH 			//01AD 	007F
-		ANDWR 	48H, 0H 		//01AE 	1548
-		STR 	3BH 			//01AF 	10BB
-		LDWI 	0H 			//01B0 	0000
-		ANDWR 	49H, 0H 		//01B1 	1549
-		STR 	3CH 			//01B2 	10BC
-		LDWI 	9H 			//01B3 	0009
-		LSLF 	3BH, 1H 		//01B4 	05BB
-		RLR 	3CH, 1H 			//01B5 	1DBC
-		DECRSZ 	9H, 1H 		//01B6 	1B89
-		LJUMP 	1B4H 			//01B7 	39B4
-		BSR 	3CH, 0H 			//01B8 	243C
-
-		//;RFFC2071A.c: 303: RFFC2071A_WriteReg(reg_base + 0, freq1);
-		LDR 	3EH, 0H 			//01B9 	183E
-		STR 	75H 			//01BA 	10F5
-		LDR 	3DH, 0H 			//01BB 	183D
-		STR 	74H 			//01BC 	10F4
-		LDR 	4CH, 0H 			//01BD 	184C
-		MOVLP 	3H 			//01BE 	0183
-		LCALL 	364H 			//01BF 	3364
-		MOVLP 	0H 			//01C0 	0180
-
-		//;RFFC2071A.c: 304: RFFC2071A_WriteReg(reg_base + 1, freq2);
-		MOVLB 	0H 			//01C1 	1020
-		LDR 	38H, 0H 			//01C2 	1838
-		STR 	75H 			//01C3 	10F5
-		LDR 	37H, 0H 			//01C4 	1837
-		STR 	74H 			//01C5 	10F4
-		LDR 	4CH, 0H 			//01C6 	184C
-		ADDWI 	1H 			//01C7 	0E01
-		MOVLP 	3H 			//01C8 	0183
-		LCALL 	364H 			//01C9 	3364
-		MOVLP 	0H 			//01CA 	0180
-
-		//;RFFC2071A.c: 305: RFFC2071A_WriteReg(reg_base + 2, freq3);
-		MOVLB 	0H 			//01CB 	1020
-		LDR 	3CH, 0H 			//01CC 	183C
-		STR 	75H 			//01CD 	10F5
-		LDR 	3BH, 0H 			//01CE 	183B
-		STR 	74H 			//01CF 	10F4
-		LDR 	4CH, 0H 			//01D0 	184C
-		ADDWI 	2H 			//01D1 	0E02
-		MOVLP 	3H 			//01D2 	0183
-		LCALL 	364H 			//01D3 	3364
-		MOVLP 	0H 			//01D4 	0180
-		RET 					//01D5 	1008
+		BCR 	7EH, 0H 			//0067 	207E
+		MOVLB 	0H 			//0068 	1020
+		MOVLP 	1H 			//0069 	0181
+		LJUMP 	156H 			//006A 	3956
 
 		//;RFFC2071A.c: 185: RFFC2071A_WriteReg(0x00, 0xBEFA);
-		LDWI 	FAH 			//01D6 	00FA
-		STR 	74H 			//01D7 	10F4
-		LDWI 	BEH 			//01D8 	00BE
-		STR 	75H 			//01D9 	10F5
-		LDWI 	0H 			//01DA 	0000
-		MOVLP 	3H 			//01DB 	0183
-		LCALL 	364H 			//01DC 	3364
-		MOVLP 	1H 			//01DD 	0181
+		LDWI 	FAH 			//006B 	00FA
+		STR 	74H 			//006C 	10F4
+		LDWI 	BEH 			//006D 	00BE
+		STR 	75H 			//006E 	10F5
+		LDWI 	0H 			//006F 	0000
+		MOVLP 	2H 			//0070 	0182
+		LCALL 	248H 			//0071 	3248
+		MOVLP 	0H 			//0072 	0180
 
-		//;RFFC2071A.c: 190: RFFC2071A_WriteReg(0x01, 0x4064);
-		LDWI 	64H 			//01DE 	0064
-		STR 	74H 			//01DF 	10F4
-		LDWI 	40H 			//01E0 	0040
-		STR 	75H 			//01E1 	10F5
-		LDWI 	1H 			//01E2 	0001
-		MOVLP 	3H 			//01E3 	0183
-		LCALL 	364H 			//01E4 	3364
-		MOVLP 	1H 			//01E5 	0181
+		//;RFFC2071A.c: 186: RFFC2071A_WriteReg(0x01, 0x4064);
+		LDWI 	64H 			//0073 	0064
+		STR 	74H 			//0074 	10F4
+		LDWI 	40H 			//0075 	0040
+		STR 	75H 			//0076 	10F5
+		LDWI 	1H 			//0077 	0001
+		MOVLP 	2H 			//0078 	0182
+		LCALL 	248H 			//0079 	3248
+		MOVLP 	0H 			//007A 	0180
 
-		//;RFFC2071A.c: 196: RFFC2071A_WriteReg(0x02, 0x1E21);
-		LDWI 	21H 			//01E6 	0021
-		STR 	74H 			//01E7 	10F4
-		LDWI 	1EH 			//01E8 	001E
-		STR 	75H 			//01E9 	10F5
-		LDWI 	2H 			//01EA 	0002
-		MOVLP 	3H 			//01EB 	0183
-		LCALL 	364H 			//01EC 	3364
-		MOVLP 	1H 			//01ED 	0181
+		//;RFFC2071A.c: 187: RFFC2071A_WriteReg(0x02, 0x9055);
+		LDWI 	55H 			//007B 	0055
+		STR 	74H 			//007C 	10F4
+		LDWI 	90H 			//007D 	0090
+		STR 	75H 			//007E 	10F5
+		LDWI 	2H 			//007F 	0002
+		MOVLP 	2H 			//0080 	0182
+		LCALL 	248H 			//0081 	3248
+		MOVLP 	0H 			//0082 	0180
 
-		//;RFFC2071A.c: 199: RFFC2071A_WriteReg(0x03, 0x2808);
-		LDWI 	8H 			//01EE 	0008
-		STR 	74H 			//01EF 	10F4
-		LDWI 	28H 			//01F0 	0028
-		STR 	75H 			//01F1 	10F5
-		LDWI 	3H 			//01F2 	0003
-		MOVLP 	3H 			//01F3 	0183
-		LCALL 	364H 			//01F4 	3364
-		MOVLP 	1H 			//01F5 	0181
+		//;RFFC2071A.c: 188: RFFC2071A_WriteReg(0x03, 0x2D02);
+		LDWI 	2H 			//0083 	0002
+		STR 	74H 			//0084 	10F4
+		LDWI 	2DH 			//0085 	002D
+		STR 	75H 			//0086 	10F5
+		LDWI 	3H 			//0087 	0003
+		MOVLP 	2H 			//0088 	0182
+		LCALL 	248H 			//0089 	3248
+		MOVLP 	0H 			//008A 	0180
 
-		//;RFFC2071A.c: 202: RFFC2071A_WriteReg(0x04, 0x0690);
-		LDWI 	90H 			//01F6 	0090
-		STR 	74H 			//01F7 	10F4
-		LDWI 	6H 			//01F8 	0006
-		STR 	75H 			//01F9 	10F5
-		LDWI 	4H 			//01FA 	0004
-		MOVLP 	3H 			//01FB 	0183
-		LCALL 	364H 			//01FC 	3364
-		MOVLP 	1H 			//01FD 	0181
+		//;RFFC2071A.c: 189: RFFC2071A_WriteReg(0x04, 0xACBF);
+		LDWI 	BFH 			//008B 	00BF
+		STR 	74H 			//008C 	10F4
+		LDWI 	ACH 			//008D 	00AC
+		STR 	75H 			//008E 	10F5
+		LDWI 	4H 			//008F 	0004
+		MOVLP 	2H 			//0090 	0182
+		LCALL 	248H 			//0091 	3248
+		MOVLP 	0H 			//0092 	0180
 
-		//;RFFC2071A.c: 203: RFFC2071A_WriteReg(0x05, 0x0690);
-		LDWI 	90H 			//01FE 	0090
-		STR 	74H 			//01FF 	10F4
-		LDWI 	6H 			//0200 	0006
-		STR 	75H 			//0201 	10F5
-		LDWI 	5H 			//0202 	0005
-		MOVLP 	3H 			//0203 	0183
-		LCALL 	364H 			//0204 	3364
-		MOVLP 	1H 			//0205 	0181
+		//;RFFC2071A.c: 190: RFFC2071A_WriteReg(0x05, 0xACBF);
+		LDWI 	BFH 			//0093 	00BF
+		STR 	74H 			//0094 	10F4
+		LDWI 	ACH 			//0095 	00AC
+		STR 	75H 			//0096 	10F5
+		LDWI 	5H 			//0097 	0005
+		MOVLP 	2H 			//0098 	0182
+		LCALL 	248H 			//0099 	3248
+		MOVLP 	0H 			//009A 	0180
 
-		//;RFFC2071A.c: 206: RFFC2071A_WriteReg(0x06, 0x0A52);
-		LDWI 	52H 			//0206 	0052
-		STR 	74H 			//0207 	10F4
-		LDWI 	AH 			//0208 	000A
-		STR 	75H 			//0209 	10F5
-		LDWI 	6H 			//020A 	0006
-		MOVLP 	3H 			//020B 	0183
-		LCALL 	364H 			//020C 	3364
-		MOVLP 	1H 			//020D 	0181
+		//;RFFC2071A.c: 191: RFFC2071A_WriteReg(0x06, 0x0028);
+		LDWI 	28H 			//009B 	0028
+		STR 	74H 			//009C 	10F4
+		CLRF 	75H 			//009D 	11F5
+		LDWI 	6H 			//009E 	0006
+		MOVLP 	2H 			//009F 	0182
+		LCALL 	248H 			//00A0 	3248
+		MOVLP 	0H 			//00A1 	0180
 
-		//;RFFC2071A.c: 207: RFFC2071A_WriteReg(0x07, 0x0A52);
-		LDWI 	52H 			//020E 	0052
-		STR 	74H 			//020F 	10F4
-		LDWI 	AH 			//0210 	000A
-		STR 	75H 			//0211 	10F5
-		LDWI 	7H 			//0212 	0007
-		MOVLP 	3H 			//0213 	0183
-		LCALL 	364H 			//0214 	3364
-		MOVLP 	1H 			//0215 	0181
+		//;RFFC2071A.c: 192: RFFC2071A_WriteReg(0x07, 0x0028);
+		LDWI 	28H 			//00A2 	0028
+		STR 	74H 			//00A3 	10F4
+		CLRF 	75H 			//00A4 	11F5
+		LDWI 	7H 			//00A5 	0007
+		MOVLP 	2H 			//00A6 	0182
+		LCALL 	248H 			//00A7 	3248
+		MOVLP 	0H 			//00A8 	0180
 
-		//;RFFC2071A.c: 210: RFFC2071A_WriteReg(0x08, 0x1C22);
-		LDWI 	22H 			//0216 	0022
-		STR 	74H 			//0217 	10F4
-		LDWI 	1CH 			//0218 	001C
-		STR 	75H 			//0219 	10F5
-		LDWI 	8H 			//021A 	0008
-		MOVLP 	3H 			//021B 	0183
-		LCALL 	364H 			//021C 	3364
-		MOVLP 	1H 			//021D 	0181
+		//;RFFC2071A.c: 193: RFFC2071A_WriteReg(0x08, 0xFF00);
+		LDWI 	0H 			//00A9 	0000
+		STR 	74H 			//00AA 	10F4
+		LDWI 	FFH 			//00AB 	00FF
+		STR 	75H 			//00AC 	10F5
+		LDWI 	8H 			//00AD 	0008
+		MOVLP 	2H 			//00AE 	0182
+		LCALL 	248H 			//00AF 	3248
+		MOVLP 	0H 			//00B0 	0180
 
-		//;RFFC2071A.c: 213: RFFC2071A_WriteReg(0x09, 0x408C);
-		LDWI 	8CH 			//021E 	008C
-		STR 	74H 			//021F 	10F4
-		LDWI 	40H 			//0220 	0040
-		STR 	75H 			//0221 	10F5
-		LDWI 	9H 			//0222 	0009
-		MOVLP 	3H 			//0223 	0183
-		LCALL 	364H 			//0224 	3364
-		MOVLP 	1H 			//0225 	0181
+		//;RFFC2071A.c: 194: RFFC2071A_WriteReg(0x09, 0x8220);
+		LDWI 	20H 			//00B1 	0020
+		STR 	74H 			//00B2 	10F4
+		LDWI 	82H 			//00B3 	0082
+		STR 	75H 			//00B4 	10F5
+		LDWI 	9H 			//00B5 	0009
+		MOVLP 	2H 			//00B6 	0182
+		LCALL 	248H 			//00B7 	3248
+		MOVLP 	0H 			//00B8 	0180
 
-		//;RFFC2071A.c: 216: RFFC2071A_WriteReg(0x0A, 0x0021);
-		LDWI 	21H 			//0226 	0021
-		STR 	74H 			//0227 	10F4
-		CLRF 	75H 			//0228 	11F5
-		LDWI 	AH 			//0229 	000A
-		MOVLP 	3H 			//022A 	0183
-		LCALL 	364H 			//022B 	3364
-		MOVLP 	1H 			//022C 	0181
+		//;RFFC2071A.c: 195: RFFC2071A_WriteReg(0x0A, 0x0202);
+		LDWI 	2H 			//00B9 	0002
+		STR 	74H 			//00BA 	10F4
+		LDWI 	2H 			//00BB 	0002
+		STR 	75H 			//00BC 	10F5
+		LDWI 	AH 			//00BD 	000A
+		MOVLP 	2H 			//00BE 	0182
+		LCALL 	248H 			//00BF 	3248
+		MOVLP 	0H 			//00C0 	0180
 
-		//;RFFC2071A.c: 219: RFFC2071A_WriteReg(0x0B, 0x4F00);
-		LDWI 	0H 			//022D 	0000
-		STR 	74H 			//022E 	10F4
-		LDWI 	4FH 			//022F 	004F
-		STR 	75H 			//0230 	10F5
-		LDWI 	BH 			//0231 	000B
-		MOVLP 	3H 			//0232 	0183
-		LCALL 	364H 			//0233 	3364
-		MOVLP 	1H 			//0234 	0181
+		//;RFFC2071A.c: 196: RFFC2071A_WriteReg(0x0B, 0x4800);
+		LDWI 	0H 			//00C1 	0000
+		STR 	74H 			//00C2 	10F4
+		LDWI 	48H 			//00C3 	0048
+		STR 	75H 			//00C4 	10F5
+		LDWI 	BH 			//00C5 	000B
+		MOVLP 	2H 			//00C6 	0182
+		LCALL 	248H 			//00C7 	3248
+		MOVLP 	0H 			//00C8 	0180
 
-		//;RFFC2071A.c: 222: RFFC2071A_SetDualFrequency(500, 450);
-		LDWI 	0H 			//0235 	0000
-		MOVLB 	0H 			//0236 	1020
-		STR 	50H 			//0237 	10D0
-		LDWI 	0H 			//0238 	0000
-		STR 	4FH 			//0239 	10CF
-		LDWI 	1H 			//023A 	0001
-		STR 	4EH 			//023B 	10CE
-		LDWI 	F4H 			//023C 	00F4
-		STR 	4DH 			//023D 	10CD
-		LDWI 	0H 			//023E 	0000
-		STR 	54H 			//023F 	10D4
-		LDWI 	0H 			//0240 	0000
-		STR 	53H 			//0241 	10D3
-		LDWI 	1H 			//0242 	0001
-		STR 	52H 			//0243 	10D2
-		LDWI 	C2H 			//0244 	00C2
-		STR 	51H 			//0245 	10D1
-		MOVLP 	4H 			//0246 	0184
-		LCALL 	4B3H 			//0247 	34B3
-		MOVLP 	1H 			//0248 	0181
+		//;RFFC2071A.c: 198: RFFC2071A_WriteReg(0x0C, 0x1A94);
+		LDWI 	94H 			//00C9 	0094
+		STR 	74H 			//00CA 	10F4
+		LDWI 	1AH 			//00CB 	001A
+		STR 	75H 			//00CC 	10F5
+		LDWI 	CH 			//00CD 	000C
+		MOVLP 	2H 			//00CE 	0182
+		LCALL 	248H 			//00CF 	3248
+		MOVLP 	0H 			//00D0 	0180
 
-		//;RFFC2071A.c: 225: RFFC2071A_WriteReg(0x12, 0x0000);
-		CLRF 	74H 			//0249 	11F4
-		CLRF 	75H 			//024A 	11F5
-		LDWI 	12H 			//024B 	0012
-		MOVLP 	3H 			//024C 	0183
-		LCALL 	364H 			//024D 	3364
-		MOVLP 	1H 			//024E 	0181
+		//;RFFC2071A.c: 199: RFFC2071A_WriteReg(0x0D, 0xD89D);
+		LDWI 	9DH 			//00D1 	009D
+		STR 	74H 			//00D2 	10F4
+		LDWI 	D8H 			//00D3 	00D8
+		STR 	75H 			//00D4 	10F5
+		LDWI 	DH 			//00D5 	000D
+		MOVLP 	2H 			//00D6 	0182
+		LCALL 	248H 			//00D7 	3248
+		MOVLP 	0H 			//00D8 	0180
 
-		//;RFFC2071A.c: 228: RFFC2071A_WriteReg(0x15, 0x0000);
-		CLRF 	74H 			//024F 	11F4
-		CLRF 	75H 			//0250 	11F5
-		LDWI 	15H 			//0251 	0015
-		MOVLP 	3H 			//0252 	0183
-		LCALL 	364H 			//0253 	3364
-		MOVLP 	1H 			//0254 	0181
+		//;RFFC2071A.c: 200: RFFC2071A_WriteReg(0x0E, 0x8900);
+		LDWI 	0H 			//00D9 	0000
+		STR 	74H 			//00DA 	10F4
+		LDWI 	89H 			//00DB 	0089
+		STR 	75H 			//00DC 	10F5
+		LDWI 	EH 			//00DD 	000E
+		MOVLP 	2H 			//00DE 	0182
+		LCALL 	248H 			//00DF 	3248
+		MOVLP 	0H 			//00E0 	0180
 
-		//;RFFC2071A.c: 231: RFFC2071A_WriteReg(0x16, 0x0001);
-		CLRF 	74H 			//0255 	11F4
-		INCR 	74H, 1H 		//0256 	1AF4
-		CLRF 	75H 			//0257 	11F5
-		LDWI 	16H 			//0258 	0016
-		MOVLP 	3H 			//0259 	0183
-		LCALL 	364H 			//025A 	3364
-		MOVLP 	1H 			//025B 	0181
+		//;RFFC2071A.c: 201: RFFC2071A_WriteReg(0x0F, 0x1E84);
+		LDWI 	84H 			//00E1 	0084
+		STR 	74H 			//00E2 	10F4
+		LDWI 	1EH 			//00E3 	001E
+		STR 	75H 			//00E4 	10F5
+		LDWI 	FH 			//00E5 	000F
+		MOVLP 	2H 			//00E6 	0182
+		LCALL 	248H 			//00E7 	3248
+		MOVLP 	0H 			//00E8 	0180
 
-		//;RFFC2071A.c: 234: RFFC2071A_WriteReg(0x17, 0x0048);
-		LDWI 	48H 			//025C 	0048
-		STR 	74H 			//025D 	10F4
-		CLRF 	75H 			//025E 	11F5
-		LDWI 	17H 			//025F 	0017
-		MOVLP 	3H 			//0260 	0183
-		LCALL 	364H 			//0261 	3364
-		MOVLP 	1H 			//0262 	0181
+		//;RFFC2071A.c: 202: RFFC2071A_WriteReg(0x10, 0x89D8);
+		LDWI 	D8H 			//00E9 	00D8
+		STR 	74H 			//00EA 	10F4
+		LDWI 	89H 			//00EB 	0089
+		STR 	75H 			//00EC 	10F5
+		LDWI 	10H 			//00ED 	0010
+		MOVLP 	2H 			//00EE 	0182
+		LCALL 	248H 			//00EF 	3248
+		MOVLP 	0H 			//00F0 	0180
 
-		//;RFFC2071A.c: 235: RFFC2071A_WriteReg(0x1C, 0x0020);
-		LDWI 	20H 			//0263 	0020
-		STR 	74H 			//0264 	10F4
-		CLRF 	75H 			//0265 	11F5
-		LDWI 	1CH 			//0266 	001C
-		MOVLP 	3H 			//0267 	0183
-		LCALL 	364H 			//0268 	3364
-		MOVLP 	1H 			//0269 	0181
+		//;RFFC2071A.c: 203: RFFC2071A_WriteReg(0x11, 0x9D00);
+		LDWI 	0H 			//00F1 	0000
+		STR 	74H 			//00F2 	10F4
+		LDWI 	9DH 			//00F3 	009D
+		STR 	75H 			//00F4 	10F5
+		LDWI 	11H 			//00F5 	0011
+		MOVLP 	2H 			//00F6 	0182
+		LCALL 	248H 			//00F7 	3248
+		MOVLP 	0H 			//00F8 	0180
 
-		//;RFFC2071A.c: 238: RFFC2071A_WriteReg(0x1D, 0x0001);
-		CLRF 	74H 			//026A 	11F4
-		INCR 	74H, 1H 		//026B 	1AF4
-		CLRF 	75H 			//026C 	11F5
-		LDWI 	1DH 			//026D 	001D
-		MOVLP 	3H 			//026E 	0183
-		LCALL 	364H 			//026F 	3364
-		MOVLP 	1H 			//0270 	0181
-		RET 					//0271 	1008
+		//;RFFC2071A.c: 205: RFFC2071A_WriteReg(0x12, 0x2A80);
+		LDWI 	80H 			//00F9 	0080
+		STR 	74H 			//00FA 	10F4
+		LDWI 	2AH 			//00FB 	002A
+		STR 	75H 			//00FC 	10F5
+		LDWI 	12H 			//00FD 	0012
+		MOVLP 	2H 			//00FE 	0182
+		LCALL 	248H 			//00FF 	3248
+		MOVLP 	0H 			//0100 	0180
+
+		//;RFFC2071A.c: 206: RFFC2071A_WriteReg(0x13, 0x0000);
+		CLRF 	74H 			//0101 	11F4
+		CLRF 	75H 			//0102 	11F5
+		LDWI 	13H 			//0103 	0013
+		MOVLP 	2H 			//0104 	0182
+		LCALL 	248H 			//0105 	3248
+		MOVLP 	0H 			//0106 	0180
+
+		//;RFFC2071A.c: 207: RFFC2071A_WriteReg(0x14, 0x0000);
+		CLRF 	74H 			//0107 	11F4
+		CLRF 	75H 			//0108 	11F5
+		LDWI 	14H 			//0109 	0014
+		MOVLP 	2H 			//010A 	0182
+		LCALL 	248H 			//010B 	3248
+		MOVLP 	0H 			//010C 	0180
+
+		//;RFFC2071A.c: 208: RFFC2071A_WriteReg(0x15, 0x0000);
+		CLRF 	74H 			//010D 	11F4
+		CLRF 	75H 			//010E 	11F5
+		LDWI 	15H 			//010F 	0015
+		MOVLP 	2H 			//0110 	0182
+		LCALL 	248H 			//0111 	3248
+		MOVLP 	0H 			//0112 	0180
+
+		//;RFFC2071A.c: 209: RFFC2071A_WriteReg(0x16, 0x0000);
+		CLRF 	74H 			//0113 	11F4
+		CLRF 	75H 			//0114 	11F5
+		LDWI 	16H 			//0115 	0016
+		MOVLP 	2H 			//0116 	0182
+		LCALL 	248H 			//0117 	3248
+		MOVLP 	0H 			//0118 	0180
+
+		//;RFFC2071A.c: 210: RFFC2071A_WriteReg(0x17, 0x4900);
+		LDWI 	0H 			//0119 	0000
+		STR 	74H 			//011A 	10F4
+		LDWI 	49H 			//011B 	0049
+		STR 	75H 			//011C 	10F5
+		LDWI 	17H 			//011D 	0017
+		MOVLP 	2H 			//011E 	0182
+		LCALL 	248H 			//011F 	3248
+		MOVLP 	0H 			//0120 	0180
+
+		//;RFFC2071A.c: 211: RFFC2071A_WriteReg(0x18, 0x0281);
+		LDWI 	81H 			//0121 	0081
+		STR 	74H 			//0122 	10F4
+		LDWI 	2H 			//0123 	0002
+		STR 	75H 			//0124 	10F5
+		LDWI 	18H 			//0125 	0018
+		MOVLP 	2H 			//0126 	0182
+		LCALL 	248H 			//0127 	3248
+		MOVLP 	0H 			//0128 	0180
+
+		//;RFFC2071A.c: 212: RFFC2071A_WriteReg(0x19, 0xF00F);
+		LDWI 	FH 			//0129 	000F
+		STR 	74H 			//012A 	10F4
+		LDWI 	F0H 			//012B 	00F0
+		STR 	75H 			//012C 	10F5
+		LDWI 	19H 			//012D 	0019
+		MOVLP 	2H 			//012E 	0182
+		LCALL 	248H 			//012F 	3248
+		MOVLP 	0H 			//0130 	0180
+
+		//;RFFC2071A.c: 213: RFFC2071A_WriteReg(0x1A, 0x0000);
+		CLRF 	74H 			//0131 	11F4
+		CLRF 	75H 			//0132 	11F5
+		LDWI 	1AH 			//0133 	001A
+		MOVLP 	2H 			//0134 	0182
+		LCALL 	248H 			//0135 	3248
+		MOVLP 	0H 			//0136 	0180
+
+		//;RFFC2071A.c: 214: RFFC2071A_WriteReg(0x1B, 0x0005);
+		LDWI 	5H 			//0137 	0005
+		STR 	74H 			//0138 	10F4
+		CLRF 	75H 			//0139 	11F5
+		LDWI 	1BH 			//013A 	001B
+		MOVLP 	2H 			//013B 	0182
+		LCALL 	248H 			//013C 	3248
+		MOVLP 	0H 			//013D 	0180
+
+		//;RFFC2071A.c: 215: RFFC2071A_WriteReg(0x1C, 0xC840);
+		LDWI 	40H 			//013E 	0040
+		STR 	74H 			//013F 	10F4
+		LDWI 	C8H 			//0140 	00C8
+		STR 	75H 			//0141 	10F5
+		LDWI 	1CH 			//0142 	001C
+		MOVLP 	2H 			//0143 	0182
+		LCALL 	248H 			//0144 	3248
+		MOVLP 	0H 			//0145 	0180
+
+		//;RFFC2071A.c: 216: RFFC2071A_WriteReg(0x1D, 0x1000);
+		LDWI 	0H 			//0146 	0000
+		STR 	74H 			//0147 	10F4
+		LDWI 	10H 			//0148 	0010
+		STR 	75H 			//0149 	10F5
+		LDWI 	1DH 			//014A 	001D
+		MOVLP 	2H 			//014B 	0182
+		LCALL 	248H 			//014C 	3248
+		MOVLP 	0H 			//014D 	0180
+
+		//;RFFC2071A.c: 217: RFFC2071A_WriteReg(0x1E, 0x0005);
+		LDWI 	5H 			//014E 	0005
+		STR 	74H 			//014F 	10F4
+		CLRF 	75H 			//0150 	11F5
+		LDWI 	1EH 			//0151 	001E
+		MOVLP 	2H 			//0152 	0182
+		LCALL 	248H 			//0153 	3248
+		MOVLP 	0H 			//0154 	0180
+		RET 					//0155 	1008
 
 		//;DualMixer.C: 284: uint16_t readback;
 		//;DualMixer.C: 285: unsigned char i;
 		//;DualMixer.C: 286: unsigned char addr;
 		//;DualMixer.C: 288: POWER_INITIAL();
-		MOVLP 	4H 			//0272 	0184
-		LCALL 	43AH 			//0273 	343A
-		MOVLP 	2H 			//0274 	0182
+		MOVLP 	2H 			//0156 	0182
+		LCALL 	297H 			//0157 	3297
+		MOVLP 	1H 			//0158 	0181
 
 		//;DualMixer.C: 289: UART_INITIAL();
-		MOVLP 	5H 			//0275 	0185
-		LCALL 	56FH 			//0276 	356F
-		MOVLP 	2H 			//0277 	0182
+		MOVLP 	3H 			//0159 	0183
+		LCALL 	37EH 			//015A 	337E
+		MOVLP 	1H 			//015B 	0181
 
 		//;DualMixer.C: 290: RFFC2071A_Init();
-		MOVLP 	5H 			//0278 	0185
-		LCALL 	54AH 			//0279 	354A
-		MOVLP 	2H 			//027A 	0182
+		MOVLP 	3H 			//015C 	0183
+		LCALL 	359H 			//015D 	3359
+		MOVLP 	1H 			//015E 	0181
 
 		//;DualMixer.C: 291: RFFC2071A_Enable();
-		MOVLP 	5H 			//027B 	0185
-		LCALL 	5A2H 			//027C 	35A2
-		MOVLP 	2H 			//027D 	0182
+		MOVLP 	3H 			//015F 	0183
+		LCALL 	3B1H 			//0160 	33B1
+		MOVLP 	1H 			//0161 	0181
 
 		//;DualMixer.C: 292: RFFC2071A_DefaultConfig();
-		MOVLP 	1H 			//027E 	0181
-		LCALL 	1D6H 			//027F 	31D6
-		MOVLP 	2H 			//0280 	0182
+		MOVLP 	0H 			//0162 	0180
+		LCALL 	6BH 			//0163 	306B
+		MOVLP 	1H 			//0164 	0181
 
 		//;DualMixer.C: 295: {
 		//;DualMixer.C: 297: for (addr = 0; addr <= 0x1F; addr++)
-		MOVLB 	0H 			//0281 	1020
-		CLRF 	58H 			//0282 	11D8
+		MOVLB 	0H 			//0165 	1020
+		CLRF 	4DH 			//0166 	11CD
 
 		//;DualMixer.C: 298: {
 		//;DualMixer.C: 299: readback = RFFC2071A_ReadReg(addr);
-		LDR 	58H, 0H 			//0283 	1858
-		MOVLP 	2H 			//0284 	0182
-		LCALL 	2EDH 			//0285 	32ED
-		MOVLP 	2H 			//0286 	0182
-		LDR 	75H, 0H 			//0287 	1875
-		MOVLB 	0H 			//0288 	1020
-		STR 	57H 			//0289 	10D7
-		LDR 	74H, 0H 			//028A 	1874
-		STR 	56H 			//028B 	10D6
+		LDR 	4DH, 0H 			//0167 	184D
+		MOVLP 	1H 			//0168 	0181
+		LCALL 	1D1H 			//0169 	31D1
+		MOVLP 	1H 			//016A 	0181
+		LDR 	75H, 0H 			//016B 	1875
+		MOVLB 	0H 			//016C 	1020
+		STR 	4CH 			//016D 	10CC
+		LDR 	74H, 0H 			//016E 	1874
+		STR 	4BH 			//016F 	10CB
 
 		//;DualMixer.C: 301: SendStringToUART("R[");
-		LDWI 	B5H 			//028C 	00B5
-		STR 	73H 			//028D 	10F3
-		LDWI 	85H 			//028E 	0085
-		STR 	74H 			//028F 	10F4
-		MOVLP 	5H 			//0290 	0185
-		LCALL 	51EH 			//0291 	351E
-		MOVLP 	2H 			//0292 	0182
+		LDWI 	C4H 			//0170 	00C4
+		STR 	73H 			//0171 	10F3
+		LDWI 	83H 			//0172 	0083
+		STR 	74H 			//0173 	10F4
+		MOVLP 	3H 			//0174 	0183
+		LCALL 	32DH 			//0175 	332D
+		MOVLP 	1H 			//0176 	0181
 
 		//;DualMixer.C: 302: SendByteToUART(HiNibbleToHex(addr));
-		MOVLB 	0H 			//0293 	1020
-		LDR 	58H, 0H 			//0294 	1858
-		MOVLP 	5H 			//0295 	0185
-		LCALL 	57FH 			//0296 	357F
-		MOVLP 	2H 			//0297 	0182
-		MOVLP 	4H 			//0298 	0184
-		LCALL 	48FH 			//0299 	348F
-		MOVLP 	2H 			//029A 	0182
+		MOVLB 	0H 			//0177 	1020
+		LDR 	4DH, 0H 			//0178 	184D
+		MOVLP 	3H 			//0179 	0183
+		LCALL 	38EH 			//017A 	338E
+		MOVLP 	1H 			//017B 	0181
+		MOVLP 	2H 			//017C 	0182
+		LCALL 	2C3H 			//017D 	32C3
+		MOVLP 	1H 			//017E 	0181
 
 		//;DualMixer.C: 303: SendByteToUART(LoNibbleToHex(addr));
-		MOVLB 	0H 			//029B 	1020
-		LDR 	58H, 0H 			//029C 	1858
-		MOVLP 	5H 			//029D 	0185
-		LCALL 	597H 			//029E 	3597
-		MOVLP 	2H 			//029F 	0182
-		MOVLP 	4H 			//02A0 	0184
-		LCALL 	48FH 			//02A1 	348F
-		MOVLP 	2H 			//02A2 	0182
+		MOVLB 	0H 			//017F 	1020
+		LDR 	4DH, 0H 			//0180 	184D
+		MOVLP 	3H 			//0181 	0183
+		LCALL 	3A6H 			//0182 	33A6
+		MOVLP 	1H 			//0183 	0181
+		MOVLP 	2H 			//0184 	0182
+		LCALL 	2C3H 			//0185 	32C3
+		MOVLP 	1H 			//0186 	0181
 
 		//;DualMixer.C: 304: SendStringToUART("]=0x");
-		LDWI 	19H 			//02A3 	0019
-		STR 	73H 			//02A4 	10F3
-		LDWI 	85H 			//02A5 	0085
-		STR 	74H 			//02A6 	10F4
-		MOVLP 	5H 			//02A7 	0185
-		LCALL 	51EH 			//02A8 	351E
-		MOVLP 	2H 			//02A9 	0182
+		LDWI 	28H 			//0187 	0028
+		STR 	73H 			//0188 	10F3
+		LDWI 	83H 			//0189 	0083
+		STR 	74H 			//018A 	10F4
+		MOVLP 	3H 			//018B 	0183
+		LCALL 	32DH 			//018C 	332D
+		MOVLP 	1H 			//018D 	0181
 
 		//;DualMixer.C: 305: SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
-		MOVLB 	0H 			//02AA 	1020
-		LDR 	57H, 0H 			//02AB 	1857
-		MOVLP 	5H 			//02AC 	0185
-		LCALL 	57FH 			//02AD 	357F
-		MOVLP 	2H 			//02AE 	0182
-		MOVLP 	4H 			//02AF 	0184
-		LCALL 	48FH 			//02B0 	348F
-		MOVLP 	2H 			//02B1 	0182
+		MOVLB 	0H 			//018E 	1020
+		LDR 	4CH, 0H 			//018F 	184C
+		MOVLP 	3H 			//0190 	0183
+		LCALL 	38EH 			//0191 	338E
+		MOVLP 	1H 			//0192 	0181
+		MOVLP 	2H 			//0193 	0182
+		LCALL 	2C3H 			//0194 	32C3
+		MOVLP 	1H 			//0195 	0181
 
 		//;DualMixer.C: 306: SendByteToUART(LoNibbleToHex((unsigned char)(readback >> 8)));
-		MOVLB 	0H 			//02B2 	1020
-		LDR 	57H, 0H 			//02B3 	1857
-		MOVLP 	5H 			//02B4 	0185
-		LCALL 	597H 			//02B5 	3597
-		MOVLP 	2H 			//02B6 	0182
-		MOVLP 	4H 			//02B7 	0184
-		LCALL 	48FH 			//02B8 	348F
-		MOVLP 	2H 			//02B9 	0182
+		MOVLB 	0H 			//0196 	1020
+		LDR 	4CH, 0H 			//0197 	184C
+		MOVLP 	3H 			//0198 	0183
+		LCALL 	3A6H 			//0199 	33A6
+		MOVLP 	1H 			//019A 	0181
+		MOVLP 	2H 			//019B 	0182
+		LCALL 	2C3H 			//019C 	32C3
+		MOVLP 	1H 			//019D 	0181
 
 		//;DualMixer.C: 307: SendByteToUART(HiNibbleToHex((unsigned char)(readback & 0xFF)));
-		MOVLB 	0H 			//02BA 	1020
-		LDR 	56H, 0H 			//02BB 	1856
-		MOVLP 	5H 			//02BC 	0185
-		LCALL 	57FH 			//02BD 	357F
-		MOVLP 	2H 			//02BE 	0182
-		MOVLP 	4H 			//02BF 	0184
-		LCALL 	48FH 			//02C0 	348F
-		MOVLP 	2H 			//02C1 	0182
+		MOVLB 	0H 			//019E 	1020
+		LDR 	4BH, 0H 			//019F 	184B
+		MOVLP 	3H 			//01A0 	0183
+		LCALL 	38EH 			//01A1 	338E
+		MOVLP 	1H 			//01A2 	0181
+		MOVLP 	2H 			//01A3 	0182
+		LCALL 	2C3H 			//01A4 	32C3
+		MOVLP 	1H 			//01A5 	0181
 
 		//;DualMixer.C: 308: SendByteToUART(LoNibbleToHex((unsigned char)(readback & 0xFF)));
-		MOVLB 	0H 			//02C2 	1020
-		LDR 	56H, 0H 			//02C3 	1856
-		MOVLP 	5H 			//02C4 	0185
-		LCALL 	597H 			//02C5 	3597
-		MOVLP 	2H 			//02C6 	0182
-		MOVLP 	4H 			//02C7 	0184
-		LCALL 	48FH 			//02C8 	348F
-		MOVLP 	2H 			//02C9 	0182
+		MOVLB 	0H 			//01A6 	1020
+		LDR 	4BH, 0H 			//01A7 	184B
+		MOVLP 	3H 			//01A8 	0183
+		LCALL 	3A6H 			//01A9 	33A6
+		MOVLP 	1H 			//01AA 	0181
+		MOVLP 	2H 			//01AB 	0182
+		LCALL 	2C3H 			//01AC 	32C3
+		MOVLP 	1H 			//01AD 	0181
 
 		//;DualMixer.C: 309: SendStringToUART("\r\n");
-		LDWI 	B2H 			//02CA 	00B2
-		STR 	73H 			//02CB 	10F3
-		LDWI 	85H 			//02CC 	0085
-		STR 	74H 			//02CD 	10F4
-		MOVLP 	5H 			//02CE 	0185
-		LCALL 	51EH 			//02CF 	351E
-		MOVLP 	2H 			//02D0 	0182
+		LDWI 	C1H 			//01AE 	00C1
+		STR 	73H 			//01AF 	10F3
+		LDWI 	83H 			//01B0 	0083
+		STR 	74H 			//01B1 	10F4
+		MOVLP 	3H 			//01B2 	0183
+		LCALL 	32DH 			//01B3 	332D
+		MOVLP 	1H 			//01B4 	0181
 
 		//;DualMixer.C: 310: DelayMs(10);
-		LDWI 	AH 			//02D1 	000A
-		MOVLP 	4H 			//02D2 	0184
-		LCALL 	4F1H 			//02D3 	34F1
-		MOVLP 	2H 			//02D4 	0182
-		MOVLB 	0H 			//02D5 	1020
-		INCR 	58H, 1H 		//02D6 	1AD8
-		LDWI 	20H 			//02D7 	0020
-		SUBWR 	58H, 0H 		//02D8 	1258
-		BTSS 	3H, 0H 			//02D9 	2C03
-		LJUMP 	2DCH 			//02DA 	3ADC
-		LJUMP 	2DDH 			//02DB 	3ADD
-		LJUMP 	283H 			//02DC 	3A83
+		LDWI 	AH 			//01B5 	000A
+		MOVLP 	3H 			//01B6 	0183
+		LCALL 	300H 			//01B7 	3300
+		MOVLP 	1H 			//01B8 	0181
+		MOVLB 	0H 			//01B9 	1020
+		INCR 	4DH, 1H 		//01BA 	1ACD
+		LDWI 	20H 			//01BB 	0020
+		SUBWR 	4DH, 0H 		//01BC 	124D
+		BTSS 	3H, 0H 			//01BD 	2C03
+		LJUMP 	1C0H 			//01BE 	39C0
+		LJUMP 	1C1H 			//01BF 	39C1
+		LJUMP 	167H 			//01C0 	3967
 
 		//;DualMixer.C: 311: }
 		//;DualMixer.C: 316: for (i = 0; i < 8; i++)
-		CLRF 	55H 			//02DD 	11D5
+		CLRF 	4AH 			//01C1 	11CA
 
 		//;DualMixer.C: 317: {
 		//;DualMixer.C: 318: DelayMs(250);
-		LDWI 	FAH 			//02DE 	00FA
-		MOVLP 	4H 			//02DF 	0184
-		LCALL 	4F1H 			//02E0 	34F1
-		MOVLP 	2H 			//02E1 	0182
-		MOVLB 	0H 			//02E2 	1020
-		INCR 	55H, 1H 		//02E3 	1AD5
-		LDWI 	8H 			//02E4 	0008
-		SUBWR 	55H, 0H 		//02E5 	1255
-		BTSS 	3H, 0H 			//02E6 	2C03
-		LJUMP 	2E9H 			//02E7 	3AE9
-		LJUMP 	2EAH 			//02E8 	3AEA
-		LJUMP 	2DEH 			//02E9 	3ADE
-		LJUMP 	281H 			//02EA 	3A81
-		MOVLP 	0H 			//02EB 	0180
-		LJUMP 	56H 			//02EC 	3856
-		STR 	77H 			//02ED 	10F7
+		LDWI 	FAH 			//01C2 	00FA
+		MOVLP 	3H 			//01C3 	0183
+		LCALL 	300H 			//01C4 	3300
+		MOVLP 	1H 			//01C5 	0181
+		MOVLB 	0H 			//01C6 	1020
+		INCR 	4AH, 1H 		//01C7 	1ACA
+		LDWI 	8H 			//01C8 	0008
+		SUBWR 	4AH, 0H 		//01C9 	124A
+		BTSS 	3H, 0H 			//01CA 	2C03
+		LJUMP 	1CDH 			//01CB 	39CD
+		LJUMP 	1CEH 			//01CC 	39CE
+		LJUMP 	1C2H 			//01CD 	39C2
+		LJUMP 	165H 			//01CE 	3965
+		MOVLP 	0H 			//01CF 	0180
+		LJUMP 	53H 			//01D0 	3853
+		STR 	77H 			//01D1 	10F7
 
 		//;RFFC2071A.c: 121: uint8_t i;
 		//;RFFC2071A.c: 122: uint8_t tx_byte;
 		//;RFFC2071A.c: 123: uint16_t rx_data = 0;
-		CLRF 	79H 			//02EE 	11F9
-		CLRF 	7AH 			//02EF 	11FA
+		CLRF 	79H 			//01D2 	11F9
+		CLRF 	7AH 			//01D3 	11FA
 
 		//;RFFC2071A.c: 126: tx_byte = 0x80 | (addr & 0x7F);
-		LDR 	77H, 0H 			//02F0 	1877
-		ANDWI 	7FH 			//02F1 	097F
-		IORWI 	80H 			//02F2 	0880
-		STR 	78H 			//02F3 	10F8
+		LDR 	77H, 0H 			//01D4 	1877
+		ANDWI 	7FH 			//01D5 	097F
+		IORWI 	80H 			//01D6 	0880
+		STR 	78H 			//01D7 	10F8
 
 		//;RFFC2071A.c: 129: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//02F4 	0185
-		LCALL 	55EH 			//02F5 	355E
-		MOVLP 	2H 			//02F6 	0182
+		MOVLP 	3H 			//01D8 	0183
+		LCALL 	36DH 			//01D9 	336D
+		MOVLP 	1H 			//01DA 	0181
 
 		//;RFFC2071A.c: 130: (TRISB &= (uint8_t)~0x02);
-		MOVLB 	1H 			//02F7 	1021
-		BCR 	DH, 1H 			//02F8 	208D
+		MOVLB 	1H 			//01DB 	1021
+		BCR 	DH, 1H 			//01DC 	208D
 
 		//;RFFC2071A.c: 131: (PA0 = 0);
-		MOVLB 	0H 			//02F9 	1020
-		BCR 	CH, 0H 			//02FA 	200C
+		MOVLB 	0H 			//01DD 	1020
+		BCR 	CH, 0H 			//01DE 	200C
 
 		//;RFFC2071A.c: 132: delay_us(1);
-		CLRF 	72H 			//02FB 	11F2
-		INCR 	72H, 1H 		//02FC 	1AF2
-		CLRF 	73H 			//02FD 	11F3
-		MOVLP 	5H 			//02FE 	0185
-		LCALL 	534H 			//02FF 	3534
-		MOVLP 	2H 			//0300 	0182
+		CLRF 	72H 			//01DF 	11F2
+		INCR 	72H, 1H 		//01E0 	1AF2
+		CLRF 	73H 			//01E1 	11F3
+		MOVLP 	3H 			//01E2 	0183
+		LCALL 	343H 			//01E3 	3343
+		MOVLP 	1H 			//01E4 	0181
 
 		//;RFFC2071A.c: 134: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//0301 	0185
-		LCALL 	55EH 			//0302 	355E
-		MOVLP 	2H 			//0303 	0182
+		MOVLP 	3H 			//01E5 	0183
+		LCALL 	36DH 			//01E6 	336D
+		MOVLP 	1H 			//01E7 	0181
 
 		//;RFFC2071A.c: 137: for (i = 0; i < 8; i++) {
-		CLRF 	7BH 			//0304 	11FB
+		CLRF 	7BH 			//01E8 	11FB
 
 		//;RFFC2071A.c: 138: if (tx_byte & 0x80) {
-		BTSS 	78H, 7H 		//0305 	2FF8
-		LJUMP 	308H 			//0306 	3B08
-		LJUMP 	309H 			//0307 	3B09
-		LJUMP 	30CH 			//0308 	3B0C
+		BTSS 	78H, 7H 		//01E9 	2FF8
+		LJUMP 	1ECH 			//01EA 	39EC
+		LJUMP 	1EDH 			//01EB 	39ED
+		LJUMP 	1F0H 			//01EC 	39F0
 
 		//;RFFC2071A.c: 139: (PB1 = 1);
-		MOVLB 	0H 			//0309 	1020
-		BSR 	DH, 1H 			//030A 	248D
+		MOVLB 	0H 			//01ED 	1020
+		BSR 	DH, 1H 			//01EE 	248D
 
 		//;RFFC2071A.c: 140: } else {
-		LJUMP 	30EH 			//030B 	3B0E
+		LJUMP 	1F2H 			//01EF 	39F2
 
 		//;RFFC2071A.c: 141: (PB1 = 0);
-		MOVLB 	0H 			//030C 	1020
-		BCR 	DH, 1H 			//030D 	208D
+		MOVLB 	0H 			//01F0 	1020
+		BCR 	DH, 1H 			//01F1 	208D
 
 		//;RFFC2071A.c: 142: }
 		//;RFFC2071A.c: 143: tx_byte <<= 1;
-		LSLF 	78H, 1H 		//030E 	05F8
+		LSLF 	78H, 1H 		//01F2 	05F8
 
 		//;RFFC2071A.c: 145: delay_us(1);
-		CLRF 	72H 			//030F 	11F2
-		INCR 	72H, 1H 		//0310 	1AF2
-		CLRF 	73H 			//0311 	11F3
-		MOVLP 	5H 			//0312 	0185
-		LCALL 	534H 			//0313 	3534
-		MOVLP 	2H 			//0314 	0182
+		CLRF 	72H 			//01F3 	11F2
+		INCR 	72H, 1H 		//01F4 	1AF2
+		CLRF 	73H 			//01F5 	11F3
+		MOVLP 	3H 			//01F6 	0183
+		LCALL 	343H 			//01F7 	3343
+		MOVLP 	1H 			//01F8 	0181
 
 		//;RFFC2071A.c: 146: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//0315 	0185
-		LCALL 	55EH 			//0316 	355E
-		MOVLP 	2H 			//0317 	0182
-		INCR 	7BH, 1H 		//0318 	1AFB
-		LDWI 	8H 			//0319 	0008
-		SUBWR 	7BH, 0H 		//031A 	127B
-		BTSS 	3H, 0H 			//031B 	2C03
-		LJUMP 	31EH 			//031C 	3B1E
-		LJUMP 	31FH 			//031D 	3B1F
-		LJUMP 	305H 			//031E 	3B05
+		MOVLP 	3H 			//01F9 	0183
+		LCALL 	36DH 			//01FA 	336D
+		MOVLP 	1H 			//01FB 	0181
+		INCR 	7BH, 1H 		//01FC 	1AFB
+		LDWI 	8H 			//01FD 	0008
+		SUBWR 	7BH, 0H 		//01FE 	127B
+		BTSS 	3H, 0H 			//01FF 	2C03
+		LJUMP 	202H 			//0200 	3A02
+		LJUMP 	203H 			//0201 	3A03
+		LJUMP 	1E9H 			//0202 	39E9
 
 		//;RFFC2071A.c: 147: }
 		//;RFFC2071A.c: 151: delay_us(2);
-		LDWI 	2H 			//031F 	0002
-		STR 	72H 			//0320 	10F2
-		CLRF 	73H 			//0321 	11F3
-		MOVLP 	5H 			//0322 	0185
-		LCALL 	534H 			//0323 	3534
-		MOVLP 	2H 			//0324 	0182
+		LDWI 	2H 			//0203 	0002
+		STR 	72H 			//0204 	10F2
+		CLRF 	73H 			//0205 	11F3
+		MOVLP 	3H 			//0206 	0183
+		LCALL 	343H 			//0207 	3343
+		MOVLP 	1H 			//0208 	0181
 
 		//;RFFC2071A.c: 152: (PB1 = 1);
-		MOVLB 	0H 			//0325 	1020
-		BSR 	DH, 1H 			//0326 	248D
+		MOVLB 	0H 			//0209 	1020
+		BSR 	DH, 1H 			//020A 	248D
 
 		//;RFFC2071A.c: 153: (TRISB |= 0x02);
-		MOVLB 	1H 			//0327 	1021
-		BSR 	DH, 1H 			//0328 	248D
+		MOVLB 	1H 			//020B 	1021
+		BSR 	DH, 1H 			//020C 	248D
 
 		//;RFFC2071A.c: 154: delay_us(2);
-		LDWI 	2H 			//0329 	0002
-		STR 	72H 			//032A 	10F2
-		CLRF 	73H 			//032B 	11F3
-		MOVLP 	5H 			//032C 	0185
-		LCALL 	534H 			//032D 	3534
-		MOVLP 	2H 			//032E 	0182
+		LDWI 	2H 			//020D 	0002
+		STR 	72H 			//020E 	10F2
+		CLRF 	73H 			//020F 	11F3
+		MOVLP 	3H 			//0210 	0183
+		LCALL 	343H 			//0211 	3343
+		MOVLP 	1H 			//0212 	0181
 
 		//;RFFC2071A.c: 155: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//032F 	0185
-		LCALL 	55EH 			//0330 	355E
-		MOVLP 	2H 			//0331 	0182
+		MOVLP 	3H 			//0213 	0183
+		LCALL 	36DH 			//0214 	336D
+		MOVLP 	1H 			//0215 	0181
 
 		//;RFFC2071A.c: 157: for (i = 0; i < 16; i++) {
-		CLRF 	7BH 			//0332 	11FB
+		CLRF 	7BH 			//0216 	11FB
 
 		//;RFFC2071A.c: 158: (PB0 = 1);
-		MOVLB 	0H 			//0333 	1020
-		BSR 	DH, 0H 			//0334 	240D
+		MOVLB 	0H 			//0217 	1020
+		BSR 	DH, 0H 			//0218 	240D
 
 		//;RFFC2071A.c: 159: (PB0 = 0);
-		BCR 	DH, 0H 			//0335 	200D
+		BCR 	DH, 0H 			//0219 	200D
 
 		//;RFFC2071A.c: 160: delay_us(1);
-		CLRF 	72H 			//0336 	11F2
-		INCR 	72H, 1H 		//0337 	1AF2
-		CLRF 	73H 			//0338 	11F3
-		MOVLP 	5H 			//0339 	0185
-		LCALL 	534H 			//033A 	3534
-		MOVLP 	2H 			//033B 	0182
+		CLRF 	72H 			//021A 	11F2
+		INCR 	72H, 1H 		//021B 	1AF2
+		CLRF 	73H 			//021C 	11F3
+		MOVLP 	3H 			//021D 	0183
+		LCALL 	343H 			//021E 	3343
+		MOVLP 	1H 			//021F 	0181
 
 		//;RFFC2071A.c: 162: rx_data <<= 1;
-		LSLF 	79H, 1H 		//033C 	05F9
-		RLR 	7AH, 1H 			//033D 	1DFA
+		LSLF 	79H, 1H 		//0220 	05F9
+		RLR 	7AH, 1H 			//0221 	1DFA
 
 		//;RFFC2071A.c: 163: rx_data = (rx_data & 0xFFFE) ;
-		BCR 	79H, 0H 			//033E 	2079
+		BCR 	79H, 0H 			//0222 	2079
 
 		//;RFFC2071A.c: 164: if ((PB1)) {
-		MOVLB 	0H 			//033F 	1020
-		BTSS 	DH, 1H 			//0340 	2C8D
-		LJUMP 	343H 			//0341 	3B43
-		LJUMP 	344H 			//0342 	3B44
-		LJUMP 	345H 			//0343 	3B45
+		MOVLB 	0H 			//0223 	1020
+		BTSS 	DH, 1H 			//0224 	2C8D
+		LJUMP 	227H 			//0225 	3A27
+		LJUMP 	228H 			//0226 	3A28
+		LJUMP 	229H 			//0227 	3A29
 
 		//;RFFC2071A.c: 165: rx_data |= 1;
-		BSR 	79H, 0H 			//0344 	2479
+		BSR 	79H, 0H 			//0228 	2479
 
 		//;RFFC2071A.c: 166: }
 		//;RFFC2071A.c: 168: delay_us(1);
-		CLRF 	72H 			//0345 	11F2
-		INCR 	72H, 1H 		//0346 	1AF2
-		CLRF 	73H 			//0347 	11F3
-		MOVLP 	5H 			//0348 	0185
-		LCALL 	534H 			//0349 	3534
-		MOVLP 	2H 			//034A 	0182
-		INCR 	7BH, 1H 		//034B 	1AFB
-		LDWI 	10H 			//034C 	0010
-		SUBWR 	7BH, 0H 		//034D 	127B
-		BTSS 	3H, 0H 			//034E 	2C03
-		LJUMP 	351H 			//034F 	3B51
-		LJUMP 	352H 			//0350 	3B52
-		LJUMP 	333H 			//0351 	3B33
+		CLRF 	72H 			//0229 	11F2
+		INCR 	72H, 1H 		//022A 	1AF2
+		CLRF 	73H 			//022B 	11F3
+		MOVLP 	3H 			//022C 	0183
+		LCALL 	343H 			//022D 	3343
+		MOVLP 	1H 			//022E 	0181
+		INCR 	7BH, 1H 		//022F 	1AFB
+		LDWI 	10H 			//0230 	0010
+		SUBWR 	7BH, 0H 		//0231 	127B
+		BTSS 	3H, 0H 			//0232 	2C03
+		LJUMP 	235H 			//0233 	3A35
+		LJUMP 	236H 			//0234 	3A36
+		LJUMP 	217H 			//0235 	3A17
 
 		//;RFFC2071A.c: 169: }
 		//;RFFC2071A.c: 171: (PA0 = 1);
-		MOVLB 	0H 			//0352 	1020
-		BSR 	CH, 0H 			//0353 	240C
+		MOVLB 	0H 			//0236 	1020
+		BSR 	CH, 0H 			//0237 	240C
 
 		//;RFFC2071A.c: 172: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//0354 	0185
-		LCALL 	55EH 			//0355 	355E
-		MOVLP 	2H 			//0356 	0182
+		MOVLP 	3H 			//0238 	0183
+		LCALL 	36DH 			//0239 	336D
+		MOVLP 	1H 			//023A 	0181
 
 		//;RFFC2071A.c: 173: (TRISB &= (uint8_t)~0x02);
-		MOVLB 	1H 			//0357 	1021
-		BCR 	DH, 1H 			//0358 	208D
+		MOVLB 	1H 			//023B 	1021
+		BCR 	DH, 1H 			//023C 	208D
 
 		//;RFFC2071A.c: 174: delay_us(1);
-		CLRF 	72H 			//0359 	11F2
-		INCR 	72H, 1H 		//035A 	1AF2
-		CLRF 	73H 			//035B 	11F3
-		MOVLP 	5H 			//035C 	0185
-		LCALL 	534H 			//035D 	3534
-		MOVLP 	2H 			//035E 	0182
+		CLRF 	72H 			//023D 	11F2
+		INCR 	72H, 1H 		//023E 	1AF2
+		CLRF 	73H 			//023F 	11F3
+		MOVLP 	3H 			//0240 	0183
+		LCALL 	343H 			//0241 	3343
+		MOVLP 	1H 			//0242 	0181
 
 		//;RFFC2071A.c: 176: return rx_data;
-		LDR 	7AH, 0H 			//035F 	187A
-		STR 	75H 			//0360 	10F5
-		LDR 	79H, 0H 			//0361 	1879
-		STR 	74H 			//0362 	10F4
-		RET 					//0363 	1008
-		MOVLB 	0H 			//0364 	1020
-		STR 	20H 			//0365 	10A0
+		LDR 	7AH, 0H 			//0243 	187A
+		STR 	75H 			//0244 	10F5
+		LDR 	79H, 0H 			//0245 	1879
+		STR 	74H 			//0246 	10F4
+		RET 					//0247 	1008
+		MOVLB 	0H 			//0248 	1020
+		STR 	44H 			//0249 	10C4
 
 		//;RFFC2071A.c: 83: uint8_t i;
 		//;RFFC2071A.c: 84: uint32_t tx_data;
 		//;RFFC2071A.c: 87: tx_data = ((uint32_t)(addr & 0x7F) << 16) | data;
-		LDR 	20H, 0H 			//0366 	1820
-		ANDWI 	7FH 			//0367 	097F
-		CLRF 	21H 			//0368 	11A1
-		CLRF 	22H 			//0369 	11A2
-		STR 	23H 			//036A 	10A3
-		CLRF 	24H 			//036B 	11A4
-		LDR 	74H, 0H 			//036C 	1874
-		STR 	76H 			//036D 	10F6
-		LDR 	75H, 0H 			//036E 	1875
-		STR 	77H 			//036F 	10F7
-		CLRF 	78H 			//0370 	11F8
-		CLRF 	79H 			//0371 	11F9
-		LDR 	76H, 0H 			//0372 	1876
-		IORWR 	21H, 1H 		//0373 	14A1
-		LDR 	77H, 0H 			//0374 	1877
-		IORWR 	22H, 1H 		//0375 	14A2
-		LDR 	78H, 0H 			//0376 	1878
-		IORWR 	23H, 1H 		//0377 	14A3
-		LDR 	79H, 0H 			//0378 	1879
-		IORWR 	24H, 1H 		//0379 	14A4
+		LDR 	44H, 0H 			//024A 	1844
+		ANDWI 	7FH 			//024B 	097F
+		CLRF 	45H 			//024C 	11C5
+		CLRF 	46H 			//024D 	11C6
+		STR 	47H 			//024E 	10C7
+		CLRF 	48H 			//024F 	11C8
+		LDR 	74H, 0H 			//0250 	1874
+		STR 	76H 			//0251 	10F6
+		LDR 	75H, 0H 			//0252 	1875
+		STR 	77H 			//0253 	10F7
+		CLRF 	78H 			//0254 	11F8
+		CLRF 	79H 			//0255 	11F9
+		LDR 	76H, 0H 			//0256 	1876
+		IORWR 	45H, 1H 		//0257 	14C5
+		LDR 	77H, 0H 			//0258 	1877
+		IORWR 	46H, 1H 		//0259 	14C6
+		LDR 	78H, 0H 			//025A 	1878
+		IORWR 	47H, 1H 		//025B 	14C7
+		LDR 	79H, 0H 			//025C 	1879
+		IORWR 	48H, 1H 		//025D 	14C8
 
 		//;RFFC2071A.c: 90: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//037A 	0185
-		LCALL 	55EH 			//037B 	355E
-		MOVLP 	3H 			//037C 	0183
+		MOVLP 	3H 			//025E 	0183
+		LCALL 	36DH 			//025F 	336D
+		MOVLP 	2H 			//0260 	0182
 
 		//;RFFC2071A.c: 91: (TRISB &= (uint8_t)~0x02);
-		MOVLB 	1H 			//037D 	1021
-		BCR 	DH, 1H 			//037E 	208D
+		MOVLB 	1H 			//0261 	1021
+		BCR 	DH, 1H 			//0262 	208D
 
 		//;RFFC2071A.c: 92: (PA0 = 0);
-		MOVLB 	0H 			//037F 	1020
-		BCR 	CH, 0H 			//0380 	200C
+		MOVLB 	0H 			//0263 	1020
+		BCR 	CH, 0H 			//0264 	200C
 
 		//;RFFC2071A.c: 93: delay_us(1);
-		CLRF 	72H 			//0381 	11F2
-		INCR 	72H, 1H 		//0382 	1AF2
-		CLRF 	73H 			//0383 	11F3
-		MOVLP 	5H 			//0384 	0185
-		LCALL 	534H 			//0385 	3534
-		MOVLP 	3H 			//0386 	0183
+		CLRF 	72H 			//0265 	11F2
+		INCR 	72H, 1H 		//0266 	1AF2
+		CLRF 	73H 			//0267 	11F3
+		MOVLP 	3H 			//0268 	0183
+		LCALL 	343H 			//0269 	3343
+		MOVLP 	2H 			//026A 	0182
 
 		//;RFFC2071A.c: 95: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//0387 	0185
-		LCALL 	55EH 			//0388 	355E
-		MOVLP 	3H 			//0389 	0183
+		MOVLP 	3H 			//026B 	0183
+		LCALL 	36DH 			//026C 	336D
+		MOVLP 	2H 			//026D 	0182
 
 		//;RFFC2071A.c: 98: for (i = 0; i < 24; i++) {
-		MOVLB 	0H 			//038A 	1020
-		CLRF 	25H 			//038B 	11A5
+		MOVLB 	0H 			//026E 	1020
+		CLRF 	49H 			//026F 	11C9
 
 		//;RFFC2071A.c: 100: if (tx_data & 0x800000) {
-		BTSS 	23H, 7H 		//038C 	2FA3
-		LJUMP 	38FH 			//038D 	3B8F
-		LJUMP 	390H 			//038E 	3B90
-		LJUMP 	392H 			//038F 	3B92
+		BTSS 	47H, 7H 		//0270 	2FC7
+		LJUMP 	273H 			//0271 	3A73
+		LJUMP 	274H 			//0272 	3A74
+		LJUMP 	276H 			//0273 	3A76
 
 		//;RFFC2071A.c: 101: (PB1 = 1);
-		BSR 	DH, 1H 			//0390 	248D
+		BSR 	DH, 1H 			//0274 	248D
 
 		//;RFFC2071A.c: 102: } else {
-		LJUMP 	393H 			//0391 	3B93
+		LJUMP 	277H 			//0275 	3A77
 
 		//;RFFC2071A.c: 103: (PB1 = 0);
-		BCR 	DH, 1H 			//0392 	208D
+		BCR 	DH, 1H 			//0276 	208D
 
 		//;RFFC2071A.c: 104: }
 		//;RFFC2071A.c: 105: tx_data <<= 1;
-		LSLF 	21H, 1H 		//0393 	05A1
-		RLR 	22H, 1H 			//0394 	1DA2
-		RLR 	23H, 1H 			//0395 	1DA3
-		RLR 	24H, 1H 			//0396 	1DA4
+		LSLF 	45H, 1H 		//0277 	05C5
+		RLR 	46H, 1H 			//0278 	1DC6
+		RLR 	47H, 1H 			//0279 	1DC7
+		RLR 	48H, 1H 			//027A 	1DC8
 
 		//;RFFC2071A.c: 107: delay_us(1);
-		CLRF 	72H 			//0397 	11F2
-		INCR 	72H, 1H 		//0398 	1AF2
-		CLRF 	73H 			//0399 	11F3
-		MOVLP 	5H 			//039A 	0185
-		LCALL 	534H 			//039B 	3534
-		MOVLP 	3H 			//039C 	0183
+		CLRF 	72H 			//027B 	11F2
+		INCR 	72H, 1H 		//027C 	1AF2
+		CLRF 	73H 			//027D 	11F3
+		MOVLP 	3H 			//027E 	0183
+		LCALL 	343H 			//027F 	3343
+		MOVLP 	2H 			//0280 	0182
 
 		//;RFFC2071A.c: 108: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//039D 	0185
-		LCALL 	55EH 			//039E 	355E
-		MOVLP 	3H 			//039F 	0183
-		MOVLB 	0H 			//03A0 	1020
-		INCR 	25H, 1H 		//03A1 	1AA5
-		LDWI 	18H 			//03A2 	0018
-		SUBWR 	25H, 0H 		//03A3 	1225
-		BTSS 	3H, 0H 			//03A4 	2C03
-		LJUMP 	3A7H 			//03A5 	3BA7
-		LJUMP 	3A8H 			//03A6 	3BA8
-		LJUMP 	38CH 			//03A7 	3B8C
+		MOVLP 	3H 			//0281 	0183
+		LCALL 	36DH 			//0282 	336D
+		MOVLP 	2H 			//0283 	0182
+		MOVLB 	0H 			//0284 	1020
+		INCR 	49H, 1H 		//0285 	1AC9
+		LDWI 	18H 			//0286 	0018
+		SUBWR 	49H, 0H 		//0287 	1249
+		BTSS 	3H, 0H 			//0288 	2C03
+		LJUMP 	28BH 			//0289 	3A8B
+		LJUMP 	28CH 			//028A 	3A8C
+		LJUMP 	270H 			//028B 	3A70
 
 		//;RFFC2071A.c: 109: }
 		//;RFFC2071A.c: 111: (PA0 = 1);
-		BSR 	CH, 0H 			//03A8 	240C
+		BSR 	CH, 0H 			//028C 	240C
 
 		//;RFFC2071A.c: 112: RFFC2071A_SendOneClock();
-		MOVLP 	5H 			//03A9 	0185
-		LCALL 	55EH 			//03AA 	355E
-		MOVLP 	3H 			//03AB 	0183
+		MOVLP 	3H 			//028D 	0183
+		LCALL 	36DH 			//028E 	336D
+		MOVLP 	2H 			//028F 	0182
 
 		//;RFFC2071A.c: 113: delay_us(1);
-		CLRF 	72H 			//03AC 	11F2
-		INCR 	72H, 1H 		//03AD 	1AF2
-		CLRF 	73H 			//03AE 	11F3
-		MOVLP 	5H 			//03AF 	0185
-		LCALL 	534H 			//03B0 	3534
-		MOVLP 	3H 			//03B1 	0183
-		RET 					//03B2 	1008
-		CLRF 	20H 			//03B3 	11A0
-		CLRF 	21H 			//03B4 	11A1
-		CLRF 	22H 			//03B5 	11A2
-		CLRF 	23H 			//03B6 	11A3
-		LDR 	75H, 0H 			//03B7 	1875
-		IORWR 	74H, 0H 		//03B8 	1474
-		IORWR 	73H, 0H 		//03B9 	1473
-		IORWR 	72H, 0H 		//03BA 	1472
-		BTSC 	3H, 2H 			//03BB 	2903
-		LJUMP 	3BEH 			//03BC 	3BBE
-		LJUMP 	3BFH 			//03BD 	3BBF
-		LJUMP 	3F2H 			//03BE 	3BF2
-		CLRF 	24H 			//03BF 	11A4
-		INCR 	24H, 1H 		//03C0 	1AA4
-		LJUMP 	3C7H 			//03C1 	3BC7
-		LSLF 	72H, 1H 		//03C2 	05F2
-		RLR 	73H, 1H 			//03C3 	1DF3
-		RLR 	74H, 1H 			//03C4 	1DF4
-		RLR 	75H, 1H 			//03C5 	1DF5
-		INCR 	24H, 1H 		//03C6 	1AA4
-		BTSS 	75H, 7H 		//03C7 	2FF5
-		LJUMP 	3CAH 			//03C8 	3BCA
-		LJUMP 	3CBH 			//03C9 	3BCB
-		LJUMP 	3C2H 			//03CA 	3BC2
-		LSLF 	20H, 1H 		//03CB 	05A0
-		RLR 	21H, 1H 			//03CC 	1DA1
-		RLR 	22H, 1H 			//03CD 	1DA2
-		RLR 	23H, 1H 			//03CE 	1DA3
-		LDR 	75H, 0H 			//03CF 	1875
-		SUBWR 	79H, 0H 		//03D0 	1279
-		BTSS 	3H, 2H 			//03D1 	2D03
-		LJUMP 	3DDH 			//03D2 	3BDD
-		LDR 	74H, 0H 			//03D3 	1874
-		SUBWR 	78H, 0H 		//03D4 	1278
-		BTSS 	3H, 2H 			//03D5 	2D03
-		LJUMP 	3DDH 			//03D6 	3BDD
-		LDR 	73H, 0H 			//03D7 	1873
-		SUBWR 	77H, 0H 		//03D8 	1277
-		BTSS 	3H, 2H 			//03D9 	2D03
-		LJUMP 	3DDH 			//03DA 	3BDD
-		LDR 	72H, 0H 			//03DB 	1872
-		SUBWR 	76H, 0H 		//03DC 	1276
-		BTSS 	3H, 0H 			//03DD 	2C03
-		LJUMP 	3E0H 			//03DE 	3BE0
-		LJUMP 	3E1H 			//03DF 	3BE1
-		LJUMP 	3EAH 			//03E0 	3BEA
-		LDR 	72H, 0H 			//03E1 	1872
-		SUBWR 	76H, 1H 		//03E2 	12F6
-		LDR 	73H, 0H 			//03E3 	1873
-		SUBWFB 	77H, 1H 		//03E4 	0BF7
-		LDR 	74H, 0H 			//03E5 	1874
-		SUBWFB 	78H, 1H 		//03E6 	0BF8
-		LDR 	75H, 0H 			//03E7 	1875
-		SUBWFB 	79H, 1H 		//03E8 	0BF9
-		BSR 	20H, 0H 			//03E9 	2420
-		LSRF 	75H, 1H 		//03EA 	06F5
-		RRR 	74H, 1H 			//03EB 	1CF4
-		RRR 	73H, 1H 			//03EC 	1CF3
-		RRR 	72H, 1H 			//03ED 	1CF2
-		DECRSZ 	24H, 1H 		//03EE 	1BA4
-		LJUMP 	3F1H 			//03EF 	3BF1
-		LJUMP 	3F2H 			//03F0 	3BF2
-		LJUMP 	3CBH 			//03F1 	3BCB
-		LDR 	23H, 0H 			//03F2 	1823
-		STR 	75H 			//03F3 	10F5
-		LDR 	22H, 0H 			//03F4 	1822
-		STR 	74H 			//03F5 	10F4
-		LDR 	21H, 0H 			//03F6 	1821
-		STR 	73H 			//03F7 	10F3
-		LDR 	20H, 0H 			//03F8 	1820
-		STR 	72H 			//03F9 	10F2
-		RET 					//03FA 	1008
-		LDR 	75H, 0H 			//03FB 	1875
-		IORWR 	74H, 0H 		//03FC 	1474
-		IORWR 	73H, 0H 		//03FD 	1473
-		IORWR 	72H, 0H 		//03FE 	1472
-		BTSC 	3H, 2H 			//03FF 	2903
-		LJUMP 	402H 			//0400 	3C02
-		LJUMP 	403H 			//0401 	3C03
-		LJUMP 	431H 			//0402 	3C31
-		CLRF 	7AH 			//0403 	11FA
-		INCR 	7AH, 1H 		//0404 	1AFA
-		LJUMP 	40BH 			//0405 	3C0B
-		LSLF 	72H, 1H 		//0406 	05F2
-		RLR 	73H, 1H 			//0407 	1DF3
-		RLR 	74H, 1H 			//0408 	1DF4
-		RLR 	75H, 1H 			//0409 	1DF5
-		INCR 	7AH, 1H 		//040A 	1AFA
-		BTSS 	75H, 7H 		//040B 	2FF5
-		LJUMP 	40EH 			//040C 	3C0E
-		LJUMP 	40FH 			//040D 	3C0F
-		LJUMP 	406H 			//040E 	3C06
-		LDR 	75H, 0H 			//040F 	1875
-		SUBWR 	79H, 0H 		//0410 	1279
-		BTSS 	3H, 2H 			//0411 	2D03
-		LJUMP 	41DH 			//0412 	3C1D
-		LDR 	74H, 0H 			//0413 	1874
-		SUBWR 	78H, 0H 		//0414 	1278
-		BTSS 	3H, 2H 			//0415 	2D03
-		LJUMP 	41DH 			//0416 	3C1D
-		LDR 	73H, 0H 			//0417 	1873
-		SUBWR 	77H, 0H 		//0418 	1277
-		BTSS 	3H, 2H 			//0419 	2D03
-		LJUMP 	41DH 			//041A 	3C1D
-		LDR 	72H, 0H 			//041B 	1872
-		SUBWR 	76H, 0H 		//041C 	1276
-		BTSS 	3H, 0H 			//041D 	2C03
-		LJUMP 	420H 			//041E 	3C20
-		LJUMP 	421H 			//041F 	3C21
-		LJUMP 	429H 			//0420 	3C29
-		LDR 	72H, 0H 			//0421 	1872
-		SUBWR 	76H, 1H 		//0422 	12F6
-		LDR 	73H, 0H 			//0423 	1873
-		SUBWFB 	77H, 1H 		//0424 	0BF7
-		LDR 	74H, 0H 			//0425 	1874
-		SUBWFB 	78H, 1H 		//0426 	0BF8
-		LDR 	75H, 0H 			//0427 	1875
-		SUBWFB 	79H, 1H 		//0428 	0BF9
-		LSRF 	75H, 1H 		//0429 	06F5
-		RRR 	74H, 1H 			//042A 	1CF4
-		RRR 	73H, 1H 			//042B 	1CF3
-		RRR 	72H, 1H 			//042C 	1CF2
-		DECRSZ 	7AH, 1H 		//042D 	1BFA
-		LJUMP 	430H 			//042E 	3C30
-		LJUMP 	431H 			//042F 	3C31
-		LJUMP 	40FH 			//0430 	3C0F
-		LDR 	79H, 0H 			//0431 	1879
-		STR 	75H 			//0432 	10F5
-		LDR 	78H, 0H 			//0433 	1878
-		STR 	74H 			//0434 	10F4
-		LDR 	77H, 0H 			//0435 	1877
-		STR 	73H 			//0436 	10F3
-		LDR 	76H, 0H 			//0437 	1876
-		STR 	72H 			//0438 	10F2
-		RET 					//0439 	1008
+		CLRF 	72H 			//0290 	11F2
+		INCR 	72H, 1H 		//0291 	1AF2
+		CLRF 	73H 			//0292 	11F3
+		MOVLP 	3H 			//0293 	0183
+		LCALL 	343H 			//0294 	3343
+		MOVLP 	2H 			//0295 	0182
+		RET 					//0296 	1008
 
 		//;DualMixer.C: 114: OSCCON = 0B01110001;
-		LDWI 	71H 			//043A 	0071
-		MOVLB 	1H 			//043B 	1021
-		STR 	19H 			//043C 	1099
+		LDWI 	71H 			//0297 	0071
+		MOVLB 	1H 			//0298 	1021
+		STR 	19H 			//0299 	1099
 
 		//;DualMixer.C: 115: INTCON = 0;
-		CLRF 	BH 			//043D 	118B
+		CLRF 	BH 			//029A 	118B
 
 		//;DualMixer.C: 117: PORTA = 0B00000000;
-		MOVLB 	0H 			//043E 	1020
-		CLRF 	CH 			//043F 	118C
+		MOVLB 	0H 			//029B 	1020
+		CLRF 	CH 			//029C 	118C
 
 		//;DualMixer.C: 118: TRISA = 0B10101100;
-		LDWI 	ACH 			//0440 	00AC
-		MOVLB 	1H 			//0441 	1021
-		STR 	CH 			//0442 	108C
+		LDWI 	ACH 			//029D 	00AC
+		MOVLB 	1H 			//029E 	1021
+		STR 	CH 			//029F 	108C
 
 		//;DualMixer.C: 119: PORTB = 0B00000000;
-		MOVLB 	0H 			//0443 	1020
-		CLRF 	DH 			//0444 	118D
+		MOVLB 	0H 			//02A0 	1020
+		CLRF 	DH 			//02A1 	118D
 
 		//;DualMixer.C: 120: TRISB = 0B11000000;
-		LDWI 	C0H 			//0445 	00C0
-		MOVLB 	1H 			//0446 	1021
-		STR 	DH 			//0447 	108D
+		LDWI 	C0H 			//02A2 	00C0
+		MOVLB 	1H 			//02A3 	1021
+		STR 	DH 			//02A4 	108D
 
 		//;DualMixer.C: 121: PORTC = 0B00000000;
-		MOVLB 	0H 			//0448 	1020
-		CLRF 	EH 			//0449 	118E
+		MOVLB 	0H 			//02A5 	1020
+		CLRF 	EH 			//02A6 	118E
 
 		//;DualMixer.C: 122: TRISC = 0B00000000;
-		MOVLB 	1H 			//044A 	1021
-		CLRF 	EH 			//044B 	118E
+		MOVLB 	1H 			//02A7 	1021
+		CLRF 	EH 			//02A8 	118E
 
 		//;DualMixer.C: 124: WPUA = 0B00010011;
-		LDWI 	13H 			//044C 	0013
-		MOVLB 	3H 			//044D 	1023
-		STR 	CH 			//044E 	108C
+		LDWI 	13H 			//02A9 	0013
+		MOVLB 	3H 			//02AA 	1023
+		STR 	CH 			//02AB 	108C
 
 		//;DualMixer.C: 125: WPUB = 0B00000000;
-		CLRF 	DH 			//044F 	118D
+		CLRF 	DH 			//02AC 	118D
 
 		//;DualMixer.C: 126: WPUC = 0B00000000;
-		CLRF 	EH 			//0450 	118E
+		CLRF 	EH 			//02AD 	118E
 
 		//;DualMixer.C: 128: WPDA = 0B10000000;
-		LDWI 	80H 			//0451 	0080
-		MOVLB 	4H 			//0452 	1024
-		STR 	CH 			//0453 	108C
+		LDWI 	80H 			//02AE 	0080
+		MOVLB 	4H 			//02AF 	1024
+		STR 	CH 			//02B0 	108C
 
 		//;DualMixer.C: 129: WPDB = 0B00000000;
-		CLRF 	DH 			//0454 	118D
+		CLRF 	DH 			//02B1 	118D
 
 		//;DualMixer.C: 130: WPDC = 0B00000000;
-		CLRF 	EH 			//0455 	118E
+		CLRF 	EH 			//02B2 	118E
 
 		//;DualMixer.C: 132: PSRC0 = 0B11111111;
-		LDWI 	FFH 			//0456 	00FF
-		MOVLB 	2H 			//0457 	1022
-		STR 	1AH 			//0458 	109A
+		LDWI 	FFH 			//02B3 	00FF
+		MOVLB 	2H 			//02B4 	1022
+		STR 	1AH 			//02B5 	109A
 
 		//;DualMixer.C: 133: PSRC1 = 0B11111111;
-		LDWI 	FFH 			//0459 	00FF
-		STR 	1BH 			//045A 	109B
+		LDWI 	FFH 			//02B6 	00FF
+		STR 	1BH 			//02B7 	109B
 
 		//;DualMixer.C: 134: PSRC2 = 0B11111111;
-		LDWI 	FFH 			//045B 	00FF
-		STR 	1CH 			//045C 	109C
+		LDWI 	FFH 			//02B8 	00FF
+		STR 	1CH 			//02B9 	109C
 
 		//;DualMixer.C: 136: PSINK0 = 0B11111111;
-		LDWI 	FFH 			//045D 	00FF
-		MOVLB 	3H 			//045E 	1023
-		STR 	1AH 			//045F 	109A
+		LDWI 	FFH 			//02BA 	00FF
+		MOVLB 	3H 			//02BB 	1023
+		STR 	1AH 			//02BC 	109A
 
 		//;DualMixer.C: 137: PSINK1 = 0B11111111;
-		LDWI 	FFH 			//0460 	00FF
-		STR 	1BH 			//0461 	109B
+		LDWI 	FFH 			//02BD 	00FF
+		STR 	1BH 			//02BE 	109B
 
 		//;DualMixer.C: 138: PSINK2 = 0B11111111;
-		LDWI 	FFH 			//0462 	00FF
-		STR 	1CH 			//0463 	109C
+		LDWI 	FFH 			//02BF 	00FF
+		STR 	1CH 			//02C0 	109C
 
 		//;DualMixer.C: 140: ANSELA = 0B00000000;
-		CLRF 	17H 			//0464 	1197
-		RET 					//0465 	1008
-		CLRF 	7AH 			//0466 	11FA
-		CLRF 	7BH 			//0467 	11FB
-		CLRF 	7CH 			//0468 	11FC
-		CLRF 	7DH 			//0469 	11FD
-		BTSS 	72H, 0H 		//046A 	2C72
-		LJUMP 	46DH 			//046B 	3C6D
-		LJUMP 	46EH 			//046C 	3C6E
-		LJUMP 	476H 			//046D 	3C76
-		LDR 	76H, 0H 			//046E 	1876
-		ADDWR 	7AH, 1H 		//046F 	17FA
-		LDR 	77H, 0H 			//0470 	1877
-		ADDWFC 	7BH, 1H 		//0471 	0DFB
-		LDR 	78H, 0H 			//0472 	1878
-		ADDWFC 	7CH, 1H 		//0473 	0DFC
-		LDR 	79H, 0H 			//0474 	1879
-		ADDWFC 	7DH, 1H 		//0475 	0DFD
-		LSLF 	76H, 1H 		//0476 	05F6
-		RLR 	77H, 1H 			//0477 	1DF7
-		RLR 	78H, 1H 			//0478 	1DF8
-		RLR 	79H, 1H 			//0479 	1DF9
-		LSRF 	75H, 1H 		//047A 	06F5
-		RRR 	74H, 1H 			//047B 	1CF4
-		RRR 	73H, 1H 			//047C 	1CF3
-		RRR 	72H, 1H 			//047D 	1CF2
-		LDR 	75H, 0H 			//047E 	1875
-		IORWR 	74H, 0H 		//047F 	1474
-		IORWR 	73H, 0H 		//0480 	1473
-		IORWR 	72H, 0H 		//0481 	1472
-		BTSS 	3H, 2H 			//0482 	2D03
-		LJUMP 	485H 			//0483 	3C85
-		LJUMP 	486H 			//0484 	3C86
-		LJUMP 	46AH 			//0485 	3C6A
-		LDR 	7DH, 0H 			//0486 	187D
-		STR 	75H 			//0487 	10F5
-		LDR 	7CH, 0H 			//0488 	187C
-		STR 	74H 			//0489 	10F4
-		LDR 	7BH, 0H 			//048A 	187B
-		STR 	73H 			//048B 	10F3
-		LDR 	7AH, 0H 			//048C 	187A
-		STR 	72H 			//048D 	10F2
-		RET 					//048E 	1008
-		STR 	72H 			//048F 	10F2
+		CLRF 	17H 			//02C1 	1197
+		RET 					//02C2 	1008
+		STR 	72H 			//02C3 	10F2
 
 		//;DualMixer.C: 207: if (txCounter == 0 && TXEF)
-		MOVLB 	0H 			//0490 	1020
-		LDR 	5BH, 0H 			//0491 	185B
-		BTSS 	3H, 2H 			//0492 	2D03
-		LJUMP 	495H 			//0493 	3C95
-		LJUMP 	496H 			//0494 	3C96
-		LJUMP 	49FH 			//0495 	3C9F
-		MOVLB 	9H 			//0496 	1029
-		BTSS 	12H, 5H 		//0497 	2E92
-		LJUMP 	49AH 			//0498 	3C9A
-		LJUMP 	49BH 			//0499 	3C9B
-		LJUMP 	49FH 			//049A 	3C9F
+		LDR 	7CH, 0H 			//02C4 	187C
+		BTSS 	3H, 2H 			//02C5 	2D03
+		LJUMP 	2C8H 			//02C6 	3AC8
+		LJUMP 	2C9H 			//02C7 	3AC9
+		LJUMP 	2D2H 			//02C8 	3AD2
+		MOVLB 	9H 			//02C9 	1029
+		BTSS 	12H, 5H 		//02CA 	2E92
+		LJUMP 	2CDH 			//02CB 	3ACD
+		LJUMP 	2CEH 			//02CC 	3ACE
+		LJUMP 	2D2H 			//02CD 	3AD2
 
 		//;DualMixer.C: 208: {
 		//;DualMixer.C: 209: TCF = 1;
-		BSR 	1CH, 0H 			//049B 	241C
+		BSR 	1CH, 0H 			//02CE 	241C
 
 		//;DualMixer.C: 210: URDATAL = data;
-		LDR 	72H, 0H 			//049C 	1872
-		STR 	CH 			//049D 	108C
-		LJUMP 	4B2H 			//049E 	3CB2
+		LDR 	72H, 0H 			//02CF 	1872
+		STR 	CH 			//02D0 	108C
+		LJUMP 	2E4H 			//02D1 	3AE4
 
 		//;DualMixer.C: 212: }
 		//;DualMixer.C: 213: if (txCounter >= 64)
-		LDWI 	40H 			//049F 	0040
-		MOVLB 	0H 			//04A0 	1020
-		SUBWR 	5BH, 0H 		//04A1 	125B
-		BTSS 	3H, 0H 			//04A2 	2C03
-		LJUMP 	4A5H 			//04A3 	3CA5
-		LJUMP 	4A6H 			//04A4 	3CA6
-		LJUMP 	4A7H 			//04A5 	3CA7
-		LJUMP 	4B2H 			//04A6 	3CB2
+		LDWI 	40H 			//02D2 	0040
+		SUBWR 	7CH, 0H 		//02D3 	127C
+		BTSS 	3H, 0H 			//02D4 	2C03
+		LJUMP 	2D7H 			//02D5 	3AD7
+		LJUMP 	2D8H 			//02D6 	3AD8
+		LJUMP 	2D9H 			//02D7 	3AD9
+		LJUMP 	2E4H 			//02D8 	3AE4
 
 		//;DualMixer.C: 216: }
 		//;DualMixer.C: 217: toSend[txIndexIp] = data;
-		LDR 	5AH, 0H 			//04A7 	185A
-		ADDWI 	20H 			//04A8 	0E20
-		STR 	6H 			//04A9 	1086
-		LDWI 	1H 			//04AA 	0001
-		STR 	7H 			//04AB 	1087
-		LDR 	72H, 0H 			//04AC 	1872
-		STR 	1H 			//04AD 	1081
+		MOVLB 	0H 			//02D9 	1020
+		LDR 	41H, 0H 			//02DA 	1841
+		ADDWI 	A0H 			//02DB 	0EA0
+		STR 	6H 			//02DC 	1086
+		CLRF 	7H 			//02DD 	1187
+		LDR 	72H, 0H 			//02DE 	1872
+		STR 	1H 			//02DF 	1081
 
 		//;DualMixer.C: 218: txIndexIp = (txIndexIp + 1) & (64 - 1);
-		INCR 	5AH, 1H 		//04AE 	1ADA
-		LDWI 	3FH 			//04AF 	003F
-		ANDWR 	5AH, 1H 		//04B0 	15DA
+		INCR 	41H, 1H 		//02E0 	1AC1
+		LDWI 	3FH 			//02E1 	003F
+		ANDWR 	41H, 1H 		//02E2 	15C1
 
 		//;DualMixer.C: 219: txCounter++;
-		INCR 	5BH, 1H 		//04B1 	1ADB
-		RET 					//04B2 	1008
-
-		//;RFFC2071A.c: 337: RFFC2071A_CalcFrequency(freq1_mhz, 1);
-		LDR 	50H, 0H 			//04B3 	1850
-		STR 	29H 			//04B4 	10A9
-		LDR 	4FH, 0H 			//04B5 	184F
-		STR 	28H 			//04B6 	10A8
-		LDR 	4EH, 0H 			//04B7 	184E
-		STR 	27H 			//04B8 	10A7
-		LDR 	4DH, 0H 			//04B9 	184D
-		STR 	26H 			//04BA 	10A6
-		CLRF 	2AH 			//04BB 	11AA
-		INCR 	2AH, 1H 		//04BC 	1AAA
-		MOVLP 	0H 			//04BD 	0180
-		LCALL 	73H 			//04BE 	3073
-		MOVLP 	4H 			//04BF 	0184
-
-		//;RFFC2071A.c: 338: RFFC2071A_CalcFrequency(freq2_mhz, 2);
-		MOVLB 	0H 			//04C0 	1020
-		LDR 	54H, 0H 			//04C1 	1854
-		STR 	29H 			//04C2 	10A9
-		LDR 	53H, 0H 			//04C3 	1853
-		STR 	28H 			//04C4 	10A8
-		LDR 	52H, 0H 			//04C5 	1852
-		STR 	27H 			//04C6 	10A7
-		LDR 	51H, 0H 			//04C7 	1851
-		STR 	26H 			//04C8 	10A6
-		LDWI 	2H 			//04C9 	0002
-		STR 	2AH 			//04CA 	10AA
-		MOVLP 	0H 			//04CB 	0180
-		LCALL 	73H 			//04CC 	3073
-		MOVLP 	4H 			//04CD 	0184
-
-		//;RFFC2071A.c: 341: RFFC2071A_WriteReg(0x1D, 0x0001);
-		CLRF 	74H 			//04CE 	11F4
-		INCR 	74H, 1H 		//04CF 	1AF4
-		CLRF 	75H 			//04D0 	11F5
-		LDWI 	1DH 			//04D1 	001D
-		MOVLP 	3H 			//04D2 	0183
-		LCALL 	364H 			//04D3 	3364
-		MOVLP 	4H 			//04D4 	0184
-		RET 					//04D5 	1008
+		INCR 	7CH, 1H 		//02E3 	1AFC
+		RET 					//02E4 	1008
 
 		//;RFFC2071A.c: 58: (PB2 = 0);
-		MOVLB 	0H 			//04D6 	1020
-		BCR 	DH, 2H 			//04D7 	210D
+		MOVLB 	0H 			//02E5 	1020
+		BCR 	DH, 2H 			//02E6 	210D
 
 		//;RFFC2071A.c: 59: (PA1 = 0);
-		BCR 	CH, 1H 			//04D8 	208C
+		BCR 	CH, 1H 			//02E7 	208C
 
 		//;RFFC2071A.c: 60: delay_us(100);
-		LDWI 	64H 			//04D9 	0064
-		STR 	72H 			//04DA 	10F2
-		CLRF 	73H 			//04DB 	11F3
-		MOVLP 	5H 			//04DC 	0185
-		LCALL 	534H 			//04DD 	3534
-		MOVLP 	4H 			//04DE 	0184
+		LDWI 	64H 			//02E8 	0064
+		STR 	72H 			//02E9 	10F2
+		CLRF 	73H 			//02EA 	11F3
+		MOVLP 	3H 			//02EB 	0183
+		LCALL 	343H 			//02EC 	3343
+		MOVLP 	2H 			//02ED 	0182
 
 		//;RFFC2071A.c: 61: (PA1 = 1);
-		MOVLB 	0H 			//04DF 	1020
-		BSR 	CH, 1H 			//04E0 	248C
+		MOVLB 	0H 			//02EE 	1020
+		BSR 	CH, 1H 			//02EF 	248C
 
 		//;RFFC2071A.c: 62: delay_us(100);
-		LDWI 	64H 			//04E1 	0064
-		STR 	72H 			//04E2 	10F2
-		CLRF 	73H 			//04E3 	11F3
-		MOVLP 	5H 			//04E4 	0185
-		LCALL 	534H 			//04E5 	3534
-		MOVLP 	4H 			//04E6 	0184
+		LDWI 	64H 			//02F0 	0064
+		STR 	72H 			//02F1 	10F2
+		CLRF 	73H 			//02F2 	11F3
+		MOVLP 	3H 			//02F3 	0183
+		LCALL 	343H 			//02F4 	3343
+		MOVLP 	2H 			//02F5 	0182
 
 		//;RFFC2071A.c: 63: (PB2 = 1);
-		MOVLB 	0H 			//04E7 	1020
-		BSR 	DH, 2H 			//04E8 	250D
+		MOVLB 	0H 			//02F6 	1020
+		BSR 	DH, 2H 			//02F7 	250D
 
 		//;RFFC2071A.c: 64: delay_us(1000);
-		LDWI 	E8H 			//04E9 	00E8
-		STR 	72H 			//04EA 	10F2
-		LDWI 	3H 			//04EB 	0003
-		STR 	73H 			//04EC 	10F3
-		MOVLP 	5H 			//04ED 	0185
-		LCALL 	534H 			//04EE 	3534
-		MOVLP 	4H 			//04EF 	0184
-		RET 					//04F0 	1008
-		STR 	74H 			//04F1 	10F4
+		LDWI 	E8H 			//02F8 	00E8
+		STR 	72H 			//02F9 	10F2
+		LDWI 	3H 			//02FA 	0003
+		STR 	73H 			//02FB 	10F3
+		MOVLP 	3H 			//02FC 	0183
+		LCALL 	343H 			//02FD 	3343
+		MOVLP 	2H 			//02FE 	0182
+		RET 					//02FF 	1008
+		STR 	74H 			//0300 	10F4
 
 		//;DualMixer.C: 164: unsigned char a, b;
 		//;DualMixer.C: 165: for (a = 0; a < Time; a++)
-		CLRF 	75H 			//04F2 	11F5
-		LJUMP 	501H 			//04F3 	3D01
+		CLRF 	75H 			//0301 	11F5
+		LJUMP 	310H 			//0302 	3B10
 
 		//;DualMixer.C: 166: {
 		//;DualMixer.C: 167: for (b = 0; b < 5; b++)
-		CLRF 	76H 			//04F4 	11F6
+		CLRF 	76H 			//0303 	11F6
 
 		//;DualMixer.C: 168: {
 		//;DualMixer.C: 169: DelayUs(197);
-		LDWI 	C5H 			//04F5 	00C5
-		MOVLP 	5H 			//04F6 	0185
-		LCALL 	58BH 			//04F7 	358B
-		MOVLP 	4H 			//04F8 	0184
-		INCR 	76H, 1H 		//04F9 	1AF6
-		LDWI 	5H 			//04FA 	0005
-		SUBWR 	76H, 0H 		//04FB 	1276
-		BTSS 	3H, 0H 			//04FC 	2C03
-		LJUMP 	4FFH 			//04FD 	3CFF
-		LJUMP 	500H 			//04FE 	3D00
-		LJUMP 	4F5H 			//04FF 	3CF5
-		INCR 	75H, 1H 		//0500 	1AF5
-		LDR 	74H, 0H 			//0501 	1874
-		SUBWR 	75H, 0H 		//0502 	1275
-		BTSS 	3H, 0H 			//0503 	2C03
-		LJUMP 	506H 			//0504 	3D06
-		LJUMP 	507H 			//0505 	3D07
-		LJUMP 	4F4H 			//0506 	3CF4
-		RET 					//0507 	1008
-		RETW 	30H 			//0508 	0430
-		RETW 	31H 			//0509 	0431
-		RETW 	32H 			//050A 	0432
-		RETW 	33H 			//050B 	0433
-		RETW 	34H 			//050C 	0434
-		RETW 	35H 			//050D 	0435
-		RETW 	36H 			//050E 	0436
-		RETW 	37H 			//050F 	0437
-		RETW 	38H 			//0510 	0438
-		RETW 	39H 			//0511 	0439
-		RETW 	41H 			//0512 	0441
-		RETW 	42H 			//0513 	0442
-		RETW 	43H 			//0514 	0443
-		RETW 	44H 			//0515 	0444
-		RETW 	45H 			//0516 	0445
-		RETW 	46H 			//0517 	0446
-		RETW 	0H 			//0518 	0400
-		RETW 	5DH 			//0519 	045D
-		RETW 	3DH 			//051A 	043D
-		RETW 	30H 			//051B 	0430
-		RETW 	78H 			//051C 	0478
-		RETW 	0H 			//051D 	0400
+		LDWI 	C5H 			//0304 	00C5
+		MOVLP 	3H 			//0305 	0183
+		LCALL 	39AH 			//0306 	339A
+		MOVLP 	3H 			//0307 	0183
+		INCR 	76H, 1H 		//0308 	1AF6
+		LDWI 	5H 			//0309 	0005
+		SUBWR 	76H, 0H 		//030A 	1276
+		BTSS 	3H, 0H 			//030B 	2C03
+		LJUMP 	30EH 			//030C 	3B0E
+		LJUMP 	30FH 			//030D 	3B0F
+		LJUMP 	304H 			//030E 	3B04
+		INCR 	75H, 1H 		//030F 	1AF5
+		LDR 	74H, 0H 			//0310 	1874
+		SUBWR 	75H, 0H 		//0311 	1275
+		BTSS 	3H, 0H 			//0312 	2C03
+		LJUMP 	315H 			//0313 	3B15
+		LJUMP 	316H 			//0314 	3B16
+		LJUMP 	303H 			//0315 	3B03
+		RET 					//0316 	1008
+		RETW 	30H 			//0317 	0430
+		RETW 	31H 			//0318 	0431
+		RETW 	32H 			//0319 	0432
+		RETW 	33H 			//031A 	0433
+		RETW 	34H 			//031B 	0434
+		RETW 	35H 			//031C 	0435
+		RETW 	36H 			//031D 	0436
+		RETW 	37H 			//031E 	0437
+		RETW 	38H 			//031F 	0438
+		RETW 	39H 			//0320 	0439
+		RETW 	41H 			//0321 	0441
+		RETW 	42H 			//0322 	0442
+		RETW 	43H 			//0323 	0443
+		RETW 	44H 			//0324 	0444
+		RETW 	45H 			//0325 	0445
+		RETW 	46H 			//0326 	0446
+		RETW 	0H 			//0327 	0400
+		RETW 	5DH 			//0328 	045D
+		RETW 	3DH 			//0329 	043D
+		RETW 	30H 			//032A 	0430
+		RETW 	78H 			//032B 	0478
+		RETW 	0H 			//032C 	0400
 
 		//;DualMixer.C: 230: while (*str)
-		LJUMP 	52AH 			//051E 	3D2A
+		LJUMP 	339H 			//032D 	3B39
 
 		//;DualMixer.C: 231: {
 		//;DualMixer.C: 232: SendByteToUART(*str);
-		LDR 	73H, 0H 			//051F 	1873
-		STR 	4H 			//0520 	1084
-		LDR 	74H, 0H 			//0521 	1874
-		STR 	5H 			//0522 	1085
-		LDR 	0H, 0H 			//0523 	1800
-		MOVLP 	4H 			//0524 	0184
-		LCALL 	48FH 			//0525 	348F
-		MOVLP 	5H 			//0526 	0185
+		LDR 	73H, 0H 			//032E 	1873
+		STR 	4H 			//032F 	1084
+		LDR 	74H, 0H 			//0330 	1874
+		STR 	5H 			//0331 	1085
+		LDR 	0H, 0H 			//0332 	1800
+		MOVLP 	2H 			//0333 	0182
+		LCALL 	2C3H 			//0334 	32C3
+		MOVLP 	3H 			//0335 	0183
 
 		//;DualMixer.C: 233: str++;
-		INCR 	73H, 1H 		//0527 	1AF3
-		BTSC 	3H, 2H 			//0528 	2903
-		INCR 	74H, 1H 		//0529 	1AF4
-		LDR 	73H, 0H 			//052A 	1873
-		STR 	4H 			//052B 	1084
-		LDR 	74H, 0H 			//052C 	1874
-		STR 	5H 			//052D 	1085
-		MOVIW 	FSR0++ 		//052E 	1012
-		BTSS 	3H, 2H 			//052F 	2D03
-		LJUMP 	532H 			//0530 	3D32
-		LJUMP 	533H 			//0531 	3D33
-		LJUMP 	51FH 			//0532 	3D1F
-		RET 					//0533 	1008
+		INCR 	73H, 1H 		//0336 	1AF3
+		BTSC 	3H, 2H 			//0337 	2903
+		INCR 	74H, 1H 		//0338 	1AF4
+		LDR 	73H, 0H 			//0339 	1873
+		STR 	4H 			//033A 	1084
+		LDR 	74H, 0H 			//033B 	1874
+		STR 	5H 			//033C 	1085
+		MOVIW 	FSR0++ 		//033D 	1012
+		BTSS 	3H, 2H 			//033E 	2D03
+		LJUMP 	341H 			//033F 	3B41
+		LJUMP 	342H 			//0340 	3B42
+		LJUMP 	32EH 			//0341 	3B2E
+		RET 					//0342 	1008
 
 		//;RFFC2071A.c: 25: while (us--) {
-		LJUMP 	53DH 			//0534 	3D3D
+		LJUMP 	34CH 			//0343 	3B4C
 
 		//;RFFC2071A.c: 26: __nop(); __nop(); __nop(); __nop();
-		NOP 					//0535 	1000
-		NOP 					//0536 	1000
-		NOP 					//0537 	1000
-		NOP 					//0538 	1000
+		NOP 					//0344 	1000
+		NOP 					//0345 	1000
+		NOP 					//0346 	1000
+		NOP 					//0347 	1000
 
 		//;RFFC2071A.c: 27: __nop(); __nop(); __nop(); __nop();
-		NOP 					//0539 	1000
-		NOP 					//053A 	1000
-		NOP 					//053B 	1000
-		NOP 					//053C 	1000
-		LDWI 	1H 			//053D 	0001
-		SUBWR 	72H, 1H 		//053E 	12F2
-		LDWI 	0H 			//053F 	0000
-		SUBWFB 	73H, 1H 		//0540 	0BF3
-		INCR 	72H, 0H 		//0541 	1A72
-		BTSS 	3H, 2H 			//0542 	2D03
-		LJUMP 	548H 			//0543 	3D48
-		INCR 	73H, 0H 		//0544 	1A73
-		BTSS 	3H, 2H 			//0545 	2D03
-		LJUMP 	548H 			//0546 	3D48
-		LJUMP 	549H 			//0547 	3D49
-		LJUMP 	535H 			//0548 	3D35
-		RET 					//0549 	1008
+		NOP 					//0348 	1000
+		NOP 					//0349 	1000
+		NOP 					//034A 	1000
+		NOP 					//034B 	1000
+		LDWI 	1H 			//034C 	0001
+		SUBWR 	72H, 1H 		//034D 	12F2
+		LDWI 	0H 			//034E 	0000
+		SUBWFB 	73H, 1H 		//034F 	0BF3
+		INCR 	72H, 0H 		//0350 	1A72
+		BTSS 	3H, 2H 			//0351 	2D03
+		LJUMP 	357H 			//0352 	3B57
+		INCR 	73H, 0H 		//0353 	1A73
+		BTSS 	3H, 2H 			//0354 	2D03
+		LJUMP 	357H 			//0355 	3B57
+		LJUMP 	358H 			//0356 	3B58
+		LJUMP 	344H 			//0357 	3B44
+		RET 					//0358 	1008
 
 		//;RFFC2071A.c: 37: (PA0 = 1);
-		MOVLB 	0H 			//054A 	1020
-		BSR 	CH, 0H 			//054B 	240C
+		MOVLB 	0H 			//0359 	1020
+		BSR 	CH, 0H 			//035A 	240C
 
 		//;RFFC2071A.c: 38: (PB0 = 0);
-		BCR 	DH, 0H 			//054C 	200D
+		BCR 	DH, 0H 			//035B 	200D
 
 		//;RFFC2071A.c: 39: (PB1 = 0);
-		BCR 	DH, 1H 			//054D 	208D
+		BCR 	DH, 1H 			//035C 	208D
 
 		//;RFFC2071A.c: 40: (PB2 = 0);
-		BCR 	DH, 2H 			//054E 	210D
+		BCR 	DH, 2H 			//035D 	210D
 
 		//;RFFC2071A.c: 41: (PA1 = 1);
-		BSR 	CH, 1H 			//054F 	248C
+		BSR 	CH, 1H 			//035E 	248C
 
 		//;RFFC2071A.c: 42: (PA4 = 0);
-		BCR 	CH, 4H 			//0550 	220C
+		BCR 	CH, 4H 			//035F 	220C
 
 		//;RFFC2071A.c: 44: delay_us(100);
-		LDWI 	64H 			//0551 	0064
-		STR 	72H 			//0552 	10F2
-		CLRF 	73H 			//0553 	11F3
-		MOVLP 	5H 			//0554 	0185
-		LCALL 	534H 			//0555 	3534
-		MOVLP 	5H 			//0556 	0185
+		LDWI 	64H 			//0360 	0064
+		STR 	72H 			//0361 	10F2
+		CLRF 	73H 			//0362 	11F3
+		MOVLP 	3H 			//0363 	0183
+		LCALL 	343H 			//0364 	3343
+		MOVLP 	3H 			//0365 	0183
 
 		//;RFFC2071A.c: 47: RFFC2071A_Reset();
-		MOVLP 	4H 			//0557 	0184
-		LCALL 	4D6H 			//0558 	34D6
-		MOVLP 	5H 			//0559 	0185
+		MOVLP 	2H 			//0366 	0182
+		LCALL 	2E5H 			//0367 	32E5
+		MOVLP 	3H 			//0368 	0183
 
 		//;RFFC2071A.c: 50: RFFC2071A_DefaultConfig();
-		MOVLP 	1H 			//055A 	0181
-		LCALL 	1D6H 			//055B 	31D6
-		MOVLP 	5H 			//055C 	0185
-		RET 					//055D 	1008
+		MOVLP 	0H 			//0369 	0180
+		LCALL 	6BH 			//036A 	306B
+		MOVLP 	3H 			//036B 	0183
+		RET 					//036C 	1008
 
 		//;RFFC2071A.c: 72: (PB0 = 1);
-		MOVLB 	0H 			//055E 	1020
-		BSR 	DH, 0H 			//055F 	240D
+		MOVLB 	0H 			//036D 	1020
+		BSR 	DH, 0H 			//036E 	240D
 
 		//;RFFC2071A.c: 73: delay_us(1);
-		CLRF 	72H 			//0560 	11F2
-		INCR 	72H, 1H 		//0561 	1AF2
-		CLRF 	73H 			//0562 	11F3
-		MOVLP 	5H 			//0563 	0185
-		LCALL 	534H 			//0564 	3534
-		MOVLP 	5H 			//0565 	0185
+		CLRF 	72H 			//036F 	11F2
+		INCR 	72H, 1H 		//0370 	1AF2
+		CLRF 	73H 			//0371 	11F3
+		MOVLP 	3H 			//0372 	0183
+		LCALL 	343H 			//0373 	3343
+		MOVLP 	3H 			//0374 	0183
 
 		//;RFFC2071A.c: 74: (PB0 = 0);
-		MOVLB 	0H 			//0566 	1020
-		BCR 	DH, 0H 			//0567 	200D
+		MOVLB 	0H 			//0375 	1020
+		BCR 	DH, 0H 			//0376 	200D
 
 		//;RFFC2071A.c: 75: delay_us(1);
-		CLRF 	72H 			//0568 	11F2
-		INCR 	72H, 1H 		//0569 	1AF2
-		CLRF 	73H 			//056A 	11F3
-		MOVLP 	5H 			//056B 	0185
-		LCALL 	534H 			//056C 	3534
-		MOVLP 	5H 			//056D 	0185
-		RET 					//056E 	1008
+		CLRF 	72H 			//0377 	11F2
+		INCR 	72H, 1H 		//0378 	1AF2
+		CLRF 	73H 			//0379 	11F3
+		MOVLP 	3H 			//037A 	0183
+		LCALL 	343H 			//037B 	3343
+		MOVLP 	3H 			//037C 	0183
+		RET 					//037D 	1008
 
 		//;DualMixer.C: 183: PCKEN |= 0B00100000;
-		MOVLB 	1H 			//056F 	1021
-		BSR 	1AH, 5H 			//0570 	269A
+		MOVLB 	1H 			//037E 	1021
+		BSR 	1AH, 5H 			//037F 	269A
 
 		//;DualMixer.C: 185: URIER = 0B00100001;
-		LDWI 	21H 			//0571 	0021
-		MOVLB 	9H 			//0572 	1029
-		STR 	EH 			//0573 	108E
+		LDWI 	21H 			//0380 	0021
+		MOVLB 	9H 			//0381 	1029
+		STR 	EH 			//0382 	108E
 
 		//;DualMixer.C: 186: URLCR = 0B00000001;
-		LDWI 	1H 			//0574 	0001
-		STR 	FH 			//0575 	108F
+		LDWI 	1H 			//0383 	0001
+		STR 	FH 			//0384 	108F
 
 		//;DualMixer.C: 187: URMCR = 0B00011000;
-		LDWI 	18H 			//0576 	0018
-		STR 	11H 			//0577 	1091
+		LDWI 	18H 			//0385 	0018
+		STR 	11H 			//0386 	1091
 
 		//;DualMixer.C: 189: URDLL = 104;
-		LDWI 	68H 			//0578 	0068
-		STR 	14H 			//0579 	1094
+		LDWI 	68H 			//0387 	0068
+		STR 	14H 			//0388 	1094
 
 		//;DualMixer.C: 190: URDLH = 0;
-		CLRF 	15H 			//057A 	1195
+		CLRF 	15H 			//0389 	1195
 
 		//;DualMixer.C: 191: TCF = 1;
-		BSR 	1CH, 0H 			//057B 	241C
+		BSR 	1CH, 0H 			//038A 	241C
 
 		//;DualMixer.C: 192: INTCON = 0B11000000;
-		LDWI 	C0H 			//057C 	00C0
-		STR 	BH 			//057D 	108B
-		RET 					//057E 	1008
-		STR 	72H 			//057F 	10F2
+		LDWI 	C0H 			//038B 	00C0
+		STR 	BH 			//038C 	108B
+		RET 					//038D 	1008
+		STR 	72H 			//038E 	10F2
 
 		//;DualMixer.C: 264: return hex_chars[(val >> 4) & 0x0F];
-		SWAPR 	72H, 0H 		//0580 	1E72
-		ANDWI 	FH 			//0581 	090F
-		ANDWI 	FH 			//0582 	090F
-		ADDWI 	8H 			//0583 	0E08
-		STR 	4H 			//0584 	1084
-		LDWI 	85H 			//0585 	0085
-		BTSC 	3H, 0H 			//0586 	2803
-		ADDWI 	1H 			//0587 	0E01
-		STR 	5H 			//0588 	1085
-		LDR 	0H, 0H 			//0589 	1800
-		RET 					//058A 	1008
-		STR 	72H 			//058B 	10F2
+		SWAPR 	72H, 0H 		//038F 	1E72
+		ANDWI 	FH 			//0390 	090F
+		ANDWI 	FH 			//0391 	090F
+		ADDWI 	17H 			//0392 	0E17
+		STR 	4H 			//0393 	1084
+		LDWI 	83H 			//0394 	0083
+		BTSC 	3H, 0H 			//0395 	2803
+		ADDWI 	1H 			//0396 	0E01
+		STR 	5H 			//0397 	1085
+		LDR 	0H, 0H 			//0398 	1800
+		RET 					//0399 	1008
+		STR 	72H 			//039A 	10F2
 
 		//;DualMixer.C: 150: unsigned char a;
 		//;DualMixer.C: 151: for (a = 0; a < Time; a++)
-		CLRF 	73H 			//058C 	11F3
-		LJUMP 	590H 			//058D 	3D90
+		CLRF 	73H 			//039B 	11F3
+		LJUMP 	39FH 			//039C 	3B9F
 
 		//;DualMixer.C: 152: {
 		//;DualMixer.C: 153: __nop();
-		NOP 					//058E 	1000
-		INCR 	73H, 1H 		//058F 	1AF3
-		LDR 	72H, 0H 			//0590 	1872
-		SUBWR 	73H, 0H 		//0591 	1273
-		BTSS 	3H, 0H 			//0592 	2C03
-		LJUMP 	595H 			//0593 	3D95
-		LJUMP 	596H 			//0594 	3D96
-		LJUMP 	58EH 			//0595 	3D8E
-		RET 					//0596 	1008
-		STR 	72H 			//0597 	10F2
+		NOP 					//039D 	1000
+		INCR 	73H, 1H 		//039E 	1AF3
+		LDR 	72H, 0H 			//039F 	1872
+		SUBWR 	73H, 0H 		//03A0 	1273
+		BTSS 	3H, 0H 			//03A1 	2C03
+		LJUMP 	3A4H 			//03A2 	3BA4
+		LJUMP 	3A5H 			//03A3 	3BA5
+		LJUMP 	39DH 			//03A4 	3B9D
+		RET 					//03A5 	1008
+		STR 	72H 			//03A6 	10F2
 
 		//;DualMixer.C: 274: return hex_chars[val & 0x0F];
-		LDR 	72H, 0H 			//0598 	1872
-		ANDWI 	FH 			//0599 	090F
-		ADDWI 	8H 			//059A 	0E08
-		STR 	4H 			//059B 	1084
-		LDWI 	85H 			//059C 	0085
-		BTSC 	3H, 0H 			//059D 	2803
-		ADDWI 	1H 			//059E 	0E01
-		STR 	5H 			//059F 	1085
-		LDR 	0H, 0H 			//05A0 	1800
-		RET 					//05A1 	1008
+		LDR 	72H, 0H 			//03A7 	1872
+		ANDWI 	FH 			//03A8 	090F
+		ADDWI 	17H 			//03A9 	0E17
+		STR 	4H 			//03AA 	1084
+		LDWI 	83H 			//03AB 	0083
+		BTSC 	3H, 0H 			//03AC 	2803
+		ADDWI 	1H 			//03AD 	0E01
+		STR 	5H 			//03AE 	1085
+		LDR 	0H, 0H 			//03AF 	1800
+		RET 					//03B0 	1008
 
-		//;RFFC2071A.c: 388: (PB2 = 1);
-		MOVLB 	0H 			//05A2 	1020
-		BSR 	DH, 2H 			//05A3 	250D
+		//;RFFC2071A.c: 367: (PB2 = 1);
+		MOVLB 	0H 			//03B1 	1020
+		BSR 	DH, 2H 			//03B2 	250D
 
-		//;RFFC2071A.c: 389: delay_us(1000);
-		LDWI 	E8H 			//05A4 	00E8
-		STR 	72H 			//05A5 	10F2
-		LDWI 	3H 			//05A6 	0003
-		STR 	73H 			//05A7 	10F3
-		MOVLP 	5H 			//05A8 	0185
-		LCALL 	534H 			//05A9 	3534
-		MOVLP 	5H 			//05AA 	0185
-		RET 					//05AB 	1008
-		CLRWDT 			//05AC 	1064
-		CLRF 	0H 			//05AD 	1180
-		ADDFSR 	0H, 1H 		//05AE 	0101
-		DECRSZ 	9H, 1H 		//05AF 	1B89
-		LJUMP 	5ADH 			//05B0 	3DAD
-		RETW 	0H 			//05B1 	0400
-		RETW 	DH 			//05B2 	040D
-		RETW 	AH 			//05B3 	040A
-		RETW 	0H 			//05B4 	0400
-		RETW 	52H 			//05B5 	0452
-		RETW 	5BH 			//05B6 	045B
-		RETW 	0H 			//05B7 	0400
-		RET 					//05B8 	1008
+		//;RFFC2071A.c: 368: delay_us(1000);
+		LDWI 	E8H 			//03B3 	00E8
+		STR 	72H 			//03B4 	10F2
+		LDWI 	3H 			//03B5 	0003
+		STR 	73H 			//03B6 	10F3
+		MOVLP 	3H 			//03B7 	0183
+		LCALL 	343H 			//03B8 	3343
+		MOVLP 	3H 			//03B9 	0183
+		RET 					//03BA 	1008
+		CLRWDT 			//03BB 	1064
+		CLRF 	0H 			//03BC 	1180
+		ADDFSR 	0H, 1H 		//03BD 	0101
+		DECRSZ 	9H, 1H 		//03BE 	1B89
+		LJUMP 	3BCH 			//03BF 	3BBC
+		RETW 	0H 			//03C0 	0400
+		RETW 	DH 			//03C1 	040D
+		RETW 	AH 			//03C2 	040A
+		RETW 	0H 			//03C3 	0400
+		RETW 	52H 			//03C4 	0452
+		RETW 	5BH 			//03C5 	045B
+		RETW 	0H 			//03C6 	0400
+		RET 					//03C7 	1008
 			END

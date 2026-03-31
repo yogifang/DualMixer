@@ -2704,7 +2704,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 73 "RFFC2071A.h"
+# 78 "RFFC2071A.h"
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
 void RFFC2071A_SendOneClock(void);

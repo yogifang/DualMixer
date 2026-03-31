@@ -2693,7 +2693,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 73 "RFFC2071A.h"
+# 78 "RFFC2071A.h"
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
 void RFFC2071A_SendOneClock(void);
@@ -2879,59 +2879,41 @@ void RFFC2071A_DefaultConfig(void)
 {
 
 RFFC2071A_WriteReg(0x00, 0xBEFA);
-
-
-
-
 RFFC2071A_WriteReg(0x01, 0x4064);
+RFFC2071A_WriteReg(0x02, 0x9055);
+RFFC2071A_WriteReg(0x03, 0x2D02);
+RFFC2071A_WriteReg(0x04, 0xACBF);
+RFFC2071A_WriteReg(0x05, 0xACBF);
+RFFC2071A_WriteReg(0x06, 0x0028);
+RFFC2071A_WriteReg(0x07, 0x0028);
+RFFC2071A_WriteReg(0x08, 0xFF00);
+RFFC2071A_WriteReg(0x09, 0x8220);
+RFFC2071A_WriteReg(0x0A, 0x0202);
+RFFC2071A_WriteReg(0x0B, 0x4800);
 
-# 196
-RFFC2071A_WriteReg(0x02, 0x1E21);
+RFFC2071A_WriteReg(0x0C, 0x1A94);
+RFFC2071A_WriteReg(0x0D, 0xD89D);
+RFFC2071A_WriteReg(0x0E, 0x8900);
+RFFC2071A_WriteReg(0x0F, 0x1E84);
+RFFC2071A_WriteReg(0x10, 0x89D8);
+RFFC2071A_WriteReg(0x11, 0x9D00);
 
-
-RFFC2071A_WriteReg(0x03, 0x2808);
-
-
-RFFC2071A_WriteReg(0x04, 0x0690);
-RFFC2071A_WriteReg(0x05, 0x0690);
-
-
-RFFC2071A_WriteReg(0x06, 0x0A52);
-RFFC2071A_WriteReg(0x07, 0x0A52);
-
-
-RFFC2071A_WriteReg(0x08, 0x1C22);
-
-
-RFFC2071A_WriteReg(0x09, 0x408C);
-
-
-RFFC2071A_WriteReg(0x0A, 0x0021);
-
-
-RFFC2071A_WriteReg(0x0B, 0x4F00);
-
-
-RFFC2071A_SetDualFrequency(500, 450);
-
-
-RFFC2071A_WriteReg(0x12, 0x0000);
-
-
+RFFC2071A_WriteReg(0x12, 0x2A80);
+RFFC2071A_WriteReg(0x13, 0x0000);
+RFFC2071A_WriteReg(0x14, 0x0000);
 RFFC2071A_WriteReg(0x15, 0x0000);
-
-
-RFFC2071A_WriteReg(0x16, 0x0001);
-
-
-RFFC2071A_WriteReg(0x17, 0x0048);
-RFFC2071A_WriteReg(0x1C, 0x0020);
-
-
-RFFC2071A_WriteReg(0x1D, 0x0001);
+RFFC2071A_WriteReg(0x16, 0x0000);
+RFFC2071A_WriteReg(0x17, 0x4900);
+RFFC2071A_WriteReg(0x18, 0x0281);
+RFFC2071A_WriteReg(0x19, 0xF00F);
+RFFC2071A_WriteReg(0x1A, 0x0000);
+RFFC2071A_WriteReg(0x1B, 0x0005);
+RFFC2071A_WriteReg(0x1C, 0xC840);
+RFFC2071A_WriteReg(0x1D, 0x1000);
+RFFC2071A_WriteReg(0x1E, 0x0005);
 }
 
-# 245
+# 224
 static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
 {
 uint8_t n_div;
@@ -3017,7 +2999,7 @@ RFFC2071A_CalcFrequency(freq_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 335
+# 314
 void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
 {
 RFFC2071A_CalcFrequency(freq1_mhz, 1);
@@ -3027,7 +3009,7 @@ RFFC2071A_CalcFrequency(freq2_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 348
+# 327
 void RFFC2071A_SetFrequency(uint32_t freq_mhz)
 {
 RFFC2071A_SetDualFrequency(freq_mhz, freq_mhz);
@@ -3049,7 +3031,7 @@ reg &= ~0x4000;
 RFFC2071A_WriteReg(0x0B, reg);
 }
 
-# 373
+# 352
 void RFFC2071A_SetMixerCurrent(uint8_t current)
 {
 uint16_t reg = RFFC2071A_ReadReg(0x0B);
@@ -3077,7 +3059,7 @@ void RFFC2071A_Disable(void)
 (PB2 = 0);
 }
 
-# 404
+# 383
 void RFFC2071A_SetMode(uint8_t mixer)
 {
 if (mixer) {
