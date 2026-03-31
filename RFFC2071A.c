@@ -9,25 +9,6 @@
 #include "SYSCFG.h"
 #include "RFFC2071A.h"
 
-#ifndef PORTA
-static volatile uint8_t __rffc_dummy_porta;
-#define PORTA __rffc_dummy_porta
-#endif
-
-#ifndef PORTB
-static volatile uint8_t __rffc_dummy_portb;
-#define PORTB __rffc_dummy_portb
-#endif
-
-#ifndef TRISA
-static volatile uint8_t __rffc_dummy_trisa;
-#define TRISA __rffc_dummy_trisa
-#endif
-
-#ifndef TRISB
-static volatile uint8_t __rffc_dummy_trisb;
-#define TRISB __rffc_dummy_trisb
-#endif
 
 //==============================================================================
 // Configuration - adjust for your hardware
@@ -84,6 +65,17 @@ void RFFC2071A_Reset(void)
 }
 
 //==============================================================================
+// Send One Clock Pulse
+//==============================================================================
+void RFFC2071A_SendOneClock(void)
+{
+    SCLK_HIGH();
+    delay_us(1);
+    SCLK_LOW();
+    delay_us(1);
+}
+
+//==============================================================================
 // 3-Wire SPI Write (Bit-Bang)
 //==============================================================================
 void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
@@ -94,15 +86,13 @@ void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
     // Build 24-bit frame: [0(W) | 7-bit addr | 16-bit data]
     tx_data = ((uint32_t)(addr & 0x7F) << 16) | data;
     
+
+    RFFC2071A_SendOneClock();  // add an undefined clock
     SDATA_OUTPUT();
     ENX_LOW();
     delay_us(1);
 
-        SCLK_HIGH();  // add an undefined clock
-        delay_us(1);
-        SCLK_LOW();
-        delay_us(1);
- 
+    RFFC2071A_SendOneClock();  // add an undefined clock
 
     // Send 24 bits (MSB first)
     for (i = 0; i < 24; i++) {
@@ -115,13 +105,11 @@ void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
         tx_data <<= 1;
         
         delay_us(1);      // Data setup before rising edge
-        SCLK_HIGH();
-        delay_us(1);
-        SCLK_LOW();
-        delay_us(1);      // Clock low / hold before next bit
+        RFFC2071A_SendOneClock();
     }
     
     ENX_HIGH();
+    RFFC2071A_SendOneClock();  // add an undefined clock
     delay_us(1);
 }
 
@@ -137,15 +125,13 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
     // Build 8-bit command: [1(R) | 7-bit addr]
     tx_byte = 0x80 | (addr & 0x7F);
     
+
+    RFFC2071A_SendOneClock();  // add an undefined clock
     SDATA_OUTPUT();
     ENX_LOW();
     delay_us(1);
 
-        SCLK_HIGH();
-        delay_us(1);
-        SCLK_LOW();
-        delay_us(1);
- 
+    RFFC2071A_SendOneClock();  // add an undefined clock
 
     // Send 8-bit address (MSB first)
     for (i = 0; i < 8; i++) {
@@ -157,22 +143,20 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
         tx_byte <<= 1;
         
         delay_us(1);      // Data setup before rising edge
-        SCLK_HIGH();
-        delay_us(1);
-        SCLK_LOW();
-        delay_us(1);
+        RFFC2071A_SendOneClock();
     }
     
     // Switch SDATA to input
-    SDATA_LOW();
+   // SDATA_LOW();
    delay_us(2);
-   // SDATA_HIGH(); 
+    SDATA_HIGH(); 
     SDATA_INPUT();
    delay_us(2);
-    
+   RFFC2071A_SendOneClock();  // First clock after address, device updates SDATA for sampling;
     // Read 16-bit data (MSB first)
     for (i = 0; i < 16; i++) {
         SCLK_HIGH();      // Device updates output for sampling
+        SCLK_LOW();         // fallen edge to latch data bit
         delay_us(1);
         
         rx_data <<= 1;
@@ -181,11 +165,11 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
             rx_data |= 1;
         }
         
-        SCLK_LOW();
         delay_us(1);
     }
     
     ENX_HIGH();
+    RFFC2071A_SendOneClock();  // add an undefined clock
     SDATA_OUTPUT();  // Restore output mode
     delay_us(1);
     

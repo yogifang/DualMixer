@@ -2707,6 +2707,7 @@ typedef uint16_t uintptr_t;
 # 73 "RFFC2071A.h"
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
+void RFFC2071A_SendOneClock(void);
 void RFFC2071A_DefaultConfig(void);
 void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
 uint16_t RFFC2071A_ReadReg(uint8_t addr);
@@ -2858,7 +2859,7 @@ PORTC = 0B00000000;
 TRISC = 0B00000000;
 
 WPUA = 0B00010011;
-WPUB = 0B00000010;
+WPUB = 0B00000000;
 WPUC = 0B00000000;
 
 WPDA = 0B10000000;
@@ -2977,6 +2978,7 @@ main()
 {
 uint16_t readback;
 unsigned char i;
+unsigned char addr;
 
 POWER_INITIAL();
 UART_INITIAL();
@@ -2986,20 +2988,27 @@ RFFC2071A_DefaultConfig();
 
 while (1)
 {
-readback = RFFC2071A_ReadReg(0x1F);
 
+for (addr = 0; addr <= 0x1F; addr++)
+{
+readback = RFFC2071A_ReadReg(addr);
 
-SendStringToUART("RB:0x");
+SendStringToUART("R[");
+SendByteToUART(HiNibbleToHex(addr));
+SendByteToUART(LoNibbleToHex(addr));
+SendStringToUART("]=0x");
 SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
 SendByteToUART(LoNibbleToHex((unsigned char)(readback >> 8)));
 SendByteToUART(HiNibbleToHex((unsigned char)(readback & 0xFF)));
 SendByteToUART(LoNibbleToHex((unsigned char)(readback & 0xFF)));
-SendStringToUART(" LOCK:");
-SendByteToUART('0' + (readback & 0x0001));
 SendStringToUART("\r\n");
+DelayMs(10);
+}
 
 
-for (i = 0; i < 2; i++)
+
+
+for (i = 0; i < 8; i++)
 {
 DelayMs(250);
 }

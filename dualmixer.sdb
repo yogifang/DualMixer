@@ -13,7 +13,7 @@
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 "15 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"50 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+"50 C:\Users\st99\source\repos\yogifang\DualMixer\DualMixer.C
 [v _ISR ISR `II(v  1 e 1 0 ]
 "101
 [v _user_isr user_isr `(v  1 e 1 0 ]
@@ -35,23 +35,25 @@
 [v _LoNibbleToHex LoNibbleToHex `(uc  1 e 1 0 ]
 "282
 [v _main main `(i  1 e 2 0 ]
-"40 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+"21 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
 [v _delay_us delay_us `(v  1 s 1 delay_us ]
-"53
+"34
 [v _RFFC2071A_Init RFFC2071A_Init `(v  1 e 1 0 ]
-"75
+"56
 [v _RFFC2071A_Reset RFFC2071A_Reset `(v  1 e 1 0 ]
-"89
+"70
+[v _RFFC2071A_SendOneClock RFFC2071A_SendOneClock `(v  1 e 1 0 ]
+"81
 [v _RFFC2071A_WriteReg RFFC2071A_WriteReg `(v  1 e 1 0 ]
-"131
+"119
 [v _RFFC2071A_ReadReg RFFC2071A_ReadReg `(ui  1 e 2 0 ]
-"198
+"182
 [v _RFFC2071A_DefaultConfig RFFC2071A_DefaultConfig `(v  1 e 1 0 ]
-"261
+"245
 [v _RFFC2071A_CalcFrequency RFFC2071A_CalcFrequency `(v  1 s 1 RFFC2071A_CalcFrequency ]
-"351
+"335
 [v _RFFC2071A_SetDualFrequency RFFC2071A_SetDualFrequency `(v  1 e 1 0 ]
-"402
+"386
 [v _RFFC2071A_Enable RFFC2071A_Enable `(v  1 e 1 0 ]
 "97 C:\Program Files (x86)\CCompiler\Compiler\data\include\FT61F14X.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
@@ -131,7 +133,7 @@
 [v _URDLH URDLH `VEuc  1 e 1 @1173 ]
 "2568
 [v _TCF TCF `VEb  1 e 0 @9440 ]
-"25 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+"25 C:\Users\st99\source\repos\yogifang\DualMixer\DualMixer.C
 [v _receivedata receivedata `VE[32]uc  1 e 32 0 ]
 "26
 [v _rxCounter rxCounter `VEuc  1 e 1 0 ]
@@ -153,22 +155,16 @@
 [v _W_TMP W_TMP `VEuc  1 e 1 @112 ]
 "39
 [v _BSR_TMP BSR_TMP `VEuc  1 e 1 @113 ]
-"13 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
-[v ___rffc_dummy_porta __rffc_dummy_porta `VEuc  1 s 1 __rffc_dummy_porta ]
-"18
-[v ___rffc_dummy_portb __rffc_dummy_portb `VEuc  1 s 1 __rffc_dummy_portb ]
-"23
-[v ___rffc_dummy_trisa __rffc_dummy_trisa `VEuc  1 s 1 __rffc_dummy_trisa ]
-"28
-[v ___rffc_dummy_trisb __rffc_dummy_trisb `VEuc  1 s 1 __rffc_dummy_trisb ]
-"282 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+"282
 [v _main main `(i  1 e 2 0 ]
 {
 "284
 [v main@readback readback `ui  1 a 2 54 ]
+"286
+[v main@addr addr `uc  1 a 1 56 ]
 "285
 [v main@i i `uc  1 a 1 53 ]
-"313
+"321
 } 0
 "181
 [v _UART_INITIAL UART_INITIAL `(v  1 e 1 0 ]
@@ -190,69 +186,69 @@
 [v SendByteToUART@data data `uc  1 a 1 0 ]
 "220
 } 0
-"131 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+"119 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
 [v _RFFC2071A_ReadReg RFFC2071A_ReadReg `(ui  1 e 2 0 ]
 {
 [v RFFC2071A_ReadReg@addr addr `uc  1 a 1 wreg ]
-"135
+"123
 [v RFFC2071A_ReadReg@rx_data rx_data `ui  1 a 2 7 ]
-"133
+"121
 [v RFFC2071A_ReadReg@i i `uc  1 a 1 9 ]
-"134
+"122
 [v RFFC2071A_ReadReg@tx_byte tx_byte `uc  1 a 1 6 ]
-"131
+"119
 [v RFFC2071A_ReadReg@addr addr `uc  1 a 1 wreg ]
-"135
+"123
 [v RFFC2071A_ReadReg@addr addr `uc  1 a 1 5 ]
-"193
+"177
 } 0
-"53
+"34
 [v _RFFC2071A_Init RFFC2071A_Init `(v  1 e 1 0 ]
 {
-"70
+"51
 } 0
-"75
+"56
 [v _RFFC2071A_Reset RFFC2071A_Reset `(v  1 e 1 0 ]
 {
-"84
+"65
 } 0
-"198
+"182
 [v _RFFC2071A_DefaultConfig RFFC2071A_DefaultConfig `(v  1 e 1 0 ]
 {
-"255
+"239
 } 0
-"351
+"335
 [v _RFFC2071A_SetDualFrequency RFFC2071A_SetDualFrequency `(v  1 e 1 0 ]
 {
 [v RFFC2071A_SetDualFrequency@freq1_mhz freq1_mhz `ul  1 p 4 45 ]
 [v RFFC2071A_SetDualFrequency@freq2_mhz freq2_mhz `ul  1 p 4 49 ]
-"358
+"342
 } 0
-"261
+"245
 [v _RFFC2071A_CalcFrequency RFFC2071A_CalcFrequency `(v  1 s 1 RFFC2071A_CalcFrequency ]
 {
-"266
+"250
 [v RFFC2071A_CalcFrequency@n_frac n_frac `ul  1 a 4 40 ]
-"264
+"248
 [v RFFC2071A_CalcFrequency@n_lo n_lo `ul  1 a 4 36 ]
-"287
+"271
 [v RFFC2071A_CalcFrequency@vco_freq vco_freq `ul  1 a 4 31 ]
-"294
+"278
 [v RFFC2071A_CalcFrequency@remainder remainder `ul  1 a 4 17 ]
-"267
+"251
 [v RFFC2071A_CalcFrequency@freq1 freq1 `ui  1 a 2 29 ]
 [v RFFC2071A_CalcFrequency@freq3 freq3 `ui  1 a 2 27 ]
 [v RFFC2071A_CalcFrequency@freq2 freq2 `ui  1 a 2 23 ]
-"265
+"249
 [v RFFC2071A_CalcFrequency@n_int n_int `ui  1 a 2 21 ]
-"268
+"252
 [v RFFC2071A_CalcFrequency@reg_base reg_base `uc  1 a 1 44 ]
-"263
+"247
 [v RFFC2071A_CalcFrequency@n_div n_div `uc  1 a 1 35 ]
-"261
+"245
 [v RFFC2071A_CalcFrequency@freq_mhz freq_mhz `ul  1 p 4 6 ]
 [v RFFC2071A_CalcFrequency@path path `uc  1 p 1 10 ]
-"322
+"306
 } 0
 "15 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
@@ -286,33 +282,38 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "31
 } 0
-"89 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\RFFC2071A.c
+"81 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
 [v _RFFC2071A_WriteReg RFFC2071A_WriteReg `(v  1 e 1 0 ]
 {
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 wreg ]
-"92
+"84
 [v RFFC2071A_WriteReg@tx_data tx_data `ul  1 a 4 1 ]
-"91
+"83
 [v RFFC2071A_WriteReg@i i `uc  1 a 1 5 ]
-"89
+"81
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 wreg ]
 [v RFFC2071A_WriteReg@data data `ui  1 p 2 2 ]
-"95
+"87
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 0 ]
-"126
+"114
 } 0
-"402
+"70
+[v _RFFC2071A_SendOneClock RFFC2071A_SendOneClock `(v  1 e 1 0 ]
+{
+"76
+} 0
+"386
 [v _RFFC2071A_Enable RFFC2071A_Enable `(v  1 e 1 0 ]
 {
-"406
+"390
 } 0
-"40
+"21
 [v _delay_us delay_us `(v  1 s 1 delay_us ]
 {
 [v delay_us@us us `ui  1 p 2 0 ]
-"48
+"29
 } 0
-"112 C:\OneDrive\Software\DualMixer\Frimware\DualMixer\DualMixer.C
+"112 C:\Users\st99\source\repos\yogifang\DualMixer\DualMixer.C
 [v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
 {
 "141

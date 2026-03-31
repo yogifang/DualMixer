@@ -72,6 +72,7 @@
 // Function Prototypes
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
+void RFFC2071A_SendOneClock(void);
 void RFFC2071A_DefaultConfig(void);
 void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
 uint16_t RFFC2071A_ReadReg(uint8_t addr);

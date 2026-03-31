@@ -2696,6 +2696,7 @@ typedef uint16_t uintptr_t;
 # 73 "RFFC2071A.h"
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
+void RFFC2071A_SendOneClock(void);
 void RFFC2071A_DefaultConfig(void);
 void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
 uint16_t RFFC2071A_ReadReg(uint8_t addr);
@@ -2712,25 +2713,7 @@ uint8_t RFFC2071A_IsLocked(void);
 uint8_t RFFC2071A_GetVCO(void);
 uint8_t RFFC2071A_GetCTCal(void);
 
-# 13 "RFFC2071A.c"
-static volatile uint8_t __rffc_dummy_porta;
-
-
-
-
-static volatile uint8_t __rffc_dummy_portb;
-
-
-
-
-static volatile uint8_t __rffc_dummy_trisa;
-
-
-
-
-static volatile uint8_t __rffc_dummy_trisb;
-
-# 40
+# 21 "RFFC2071A.c"
 static void delay_us(uint16_t us)
 {
 
@@ -2780,6 +2763,17 @@ delay_us(1000);
 
 
 
+void RFFC2071A_SendOneClock(void)
+{
+(PB0 = 1);
+delay_us(1);
+(PB0 = 0);
+delay_us(1);
+}
+
+
+
+
 void RFFC2071A_WriteReg(uint8_t addr, uint16_t data)
 {
 uint8_t i;
@@ -2788,15 +2782,13 @@ uint32_t tx_data;
 
 tx_data = ((uint32_t)(addr & 0x7F) << 16) | data;
 
-(__rffc_dummy_trisb &= (uint8_t)~0x02);
+
+RFFC2071A_SendOneClock();
+(TRISB &= (uint8_t)~0x02);
 (PA0 = 0);
 delay_us(1);
 
-(PB0 = 1);
-delay_us(1);
-(PB0 = 0);
-delay_us(1);
-
+RFFC2071A_SendOneClock();
 
 
 for (i = 0; i < 24; i++) {
@@ -2809,13 +2801,11 @@ if (tx_data & 0x800000) {
 tx_data <<= 1;
 
 delay_us(1);
-(PB0 = 1);
-delay_us(1);
-(PB0 = 0);
-delay_us(1);
+RFFC2071A_SendOneClock();
 }
 
 (PA0 = 1);
+RFFC2071A_SendOneClock();
 delay_us(1);
 }
 
@@ -2831,15 +2821,13 @@ uint16_t rx_data = 0;
 
 tx_byte = 0x80 | (addr & 0x7F);
 
-(__rffc_dummy_trisb &= (uint8_t)~0x02);
+
+RFFC2071A_SendOneClock();
+(TRISB &= (uint8_t)~0x02);
 (PA0 = 0);
 delay_us(1);
 
-(PB0 = 1);
-delay_us(1);
-(PB0 = 0);
-delay_us(1);
-
+RFFC2071A_SendOneClock();
 
 
 for (i = 0; i < 8; i++) {
@@ -2851,22 +2839,20 @@ if (tx_byte & 0x80) {
 tx_byte <<= 1;
 
 delay_us(1);
-(PB0 = 1);
-delay_us(1);
-(PB0 = 0);
-delay_us(1);
+RFFC2071A_SendOneClock();
 }
 
 
-(PB1 = 0);
-delay_us(2);
 
-(__rffc_dummy_trisb |= 0x02);
 delay_us(2);
-
+(PB1 = 1);
+(TRISB |= 0x02);
+delay_us(2);
+RFFC2071A_SendOneClock();
 
 for (i = 0; i < 16; i++) {
 (PB0 = 1);
+(PB0 = 0);
 delay_us(1);
 
 rx_data <<= 1;
@@ -2875,12 +2861,12 @@ if ((PB1)) {
 rx_data |= 1;
 }
 
-(PB0 = 0);
 delay_us(1);
 }
 
 (PA0 = 1);
-(__rffc_dummy_trisb &= (uint8_t)~0x02);
+RFFC2071A_SendOneClock();
+(TRISB &= (uint8_t)~0x02);
 delay_us(1);
 
 return rx_data;
@@ -2899,7 +2885,7 @@ RFFC2071A_WriteReg(0x00, 0xBEFA);
 
 RFFC2071A_WriteReg(0x01, 0x4064);
 
-# 212
+# 196
 RFFC2071A_WriteReg(0x02, 0x1E21);
 
 
@@ -2945,7 +2931,7 @@ RFFC2071A_WriteReg(0x1C, 0x0020);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 261
+# 245
 static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
 {
 uint8_t n_div;
@@ -3031,7 +3017,7 @@ RFFC2071A_CalcFrequency(freq_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 351
+# 335
 void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
 {
 RFFC2071A_CalcFrequency(freq1_mhz, 1);
@@ -3041,7 +3027,7 @@ RFFC2071A_CalcFrequency(freq2_mhz, 2);
 RFFC2071A_WriteReg(0x1D, 0x0001);
 }
 
-# 364
+# 348
 void RFFC2071A_SetFrequency(uint32_t freq_mhz)
 {
 RFFC2071A_SetDualFrequency(freq_mhz, freq_mhz);
@@ -3063,7 +3049,7 @@ reg &= ~0x4000;
 RFFC2071A_WriteReg(0x0B, reg);
 }
 
-# 389
+# 373
 void RFFC2071A_SetMixerCurrent(uint8_t current)
 {
 uint16_t reg = RFFC2071A_ReadReg(0x0B);
@@ -3091,7 +3077,7 @@ void RFFC2071A_Disable(void)
 (PB2 = 0);
 }
 
-# 420
+# 404
 void RFFC2071A_SetMode(uint8_t mixer)
 {
 if (mixer) {

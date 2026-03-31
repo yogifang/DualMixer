@@ -703,11 +703,11 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [p mainexit ]
 "73 RFFC2071A.h
 [v _RFFC2071A_Init `(v ~T0 @X0 0 ef ]
-"84
+"85
 [v _RFFC2071A_Enable `(v ~T0 @X0 0 ef ]
-"75
+"76
 [v _RFFC2071A_DefaultConfig `(v ~T0 @X0 0 ef ]
-"77
+"78
 [v _RFFC2071A_ReadReg `(ui ~T0 @X0 0 ef1`uc ]
 [; ;fmd.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;fmd.h: 28: extern double __fpnormalize(double);
@@ -4189,21 +4189,22 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;RFFC2071A.h: 73: void RFFC2071A_Init(void);
 [; ;RFFC2071A.h: 74: void RFFC2071A_Reset(void);
-[; ;RFFC2071A.h: 75: void RFFC2071A_DefaultConfig(void);
-[; ;RFFC2071A.h: 76: void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
-[; ;RFFC2071A.h: 77: uint16_t RFFC2071A_ReadReg(uint8_t addr);
-[; ;RFFC2071A.h: 78: void RFFC2071A_SetFrequency(uint32_t freq_mhz);
-[; ;RFFC2071A.h: 79: void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz);
-[; ;RFFC2071A.h: 80: void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz);
-[; ;RFFC2071A.h: 81: void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz);
-[; ;RFFC2071A.h: 82: void RFFC2071A_SetFullDuplex(uint8_t enable);
-[; ;RFFC2071A.h: 83: void RFFC2071A_SetMixerCurrent(uint8_t current);
-[; ;RFFC2071A.h: 84: void RFFC2071A_Enable(void);
-[; ;RFFC2071A.h: 85: void RFFC2071A_Disable(void);
-[; ;RFFC2071A.h: 86: void RFFC2071A_SetMode(uint8_t mixer);
-[; ;RFFC2071A.h: 87: uint8_t RFFC2071A_IsLocked(void);
-[; ;RFFC2071A.h: 88: uint8_t RFFC2071A_GetVCO(void);
-[; ;RFFC2071A.h: 89: uint8_t RFFC2071A_GetCTCal(void);
+[; ;RFFC2071A.h: 75: void RFFC2071A_SendOneClock(void);
+[; ;RFFC2071A.h: 76: void RFFC2071A_DefaultConfig(void);
+[; ;RFFC2071A.h: 77: void RFFC2071A_WriteReg(uint8_t addr, uint16_t data);
+[; ;RFFC2071A.h: 78: uint16_t RFFC2071A_ReadReg(uint8_t addr);
+[; ;RFFC2071A.h: 79: void RFFC2071A_SetFrequency(uint32_t freq_mhz);
+[; ;RFFC2071A.h: 80: void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz);
+[; ;RFFC2071A.h: 81: void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz);
+[; ;RFFC2071A.h: 82: void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz);
+[; ;RFFC2071A.h: 83: void RFFC2071A_SetFullDuplex(uint8_t enable);
+[; ;RFFC2071A.h: 84: void RFFC2071A_SetMixerCurrent(uint8_t current);
+[; ;RFFC2071A.h: 85: void RFFC2071A_Enable(void);
+[; ;RFFC2071A.h: 86: void RFFC2071A_Disable(void);
+[; ;RFFC2071A.h: 87: void RFFC2071A_SetMode(uint8_t mixer);
+[; ;RFFC2071A.h: 88: uint8_t RFFC2071A_IsLocked(void);
+[; ;RFFC2071A.h: 89: uint8_t RFFC2071A_GetVCO(void);
+[; ;RFFC2071A.h: 90: uint8_t RFFC2071A_GetCTCal(void);
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 16: extern void * memcpy(void *, const void *, size_t);
@@ -4317,9 +4318,9 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [; ;DualMixer.C: 39: volatile char BSR_TMP @ 0x71 ;
 [; ;DualMixer.C: 42: void user_isr();
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-[v F2591 `(v ~T0 @X0 1 tf ]
+[v F2593 `(v ~T0 @X0 1 tf ]
 "50
-[v _ISR `IF2591 ~T0 @X0 1 e ]
+[v _ISR `IF2593 ~T0 @X0 1 e ]
 "51
 {
 [; ;DualMixer.C: 50: void interrupt ISR(void)
@@ -4488,9 +4489,9 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [; ;DualMixer.C: 124: WPUA = 0B00010011;
 "124
 [e = _WPUA -> -> 19 `i `uc ]
-[; ;DualMixer.C: 125: WPUB = 0B00000010;
+[; ;DualMixer.C: 125: WPUB = 0B00000000;
 "125
-[e = _WPUB -> -> 2 `i `uc ]
+[e = _WPUB -> -> 0 `i `uc ]
 [; ;DualMixer.C: 126: WPUC = 0B00000000;
 "126
 [e = _WPUC -> -> 0 `i `uc ]
@@ -4848,89 +4849,117 @@ Version 3.2   GCC8 Compiled Intermediate Code
 [v _readback `ui ~T0 @X0 1 a ]
 "285
 [v _i `uc ~T0 @X0 1 a ]
+"286
+[v _addr `uc ~T0 @X0 1 a ]
 [; ;DualMixer.C: 284: uint16_t readback;
 [; ;DualMixer.C: 285: unsigned char i;
-[; ;DualMixer.C: 287: POWER_INITIAL();
-"287
-[e ( _POWER_INITIAL ..  ]
-[; ;DualMixer.C: 288: UART_INITIAL();
+[; ;DualMixer.C: 286: unsigned char addr;
+[; ;DualMixer.C: 288: POWER_INITIAL();
 "288
-[e ( _UART_INITIAL ..  ]
-[; ;DualMixer.C: 289: RFFC2071A_Init();
+[e ( _POWER_INITIAL ..  ]
+[; ;DualMixer.C: 289: UART_INITIAL();
 "289
-[e ( _RFFC2071A_Init ..  ]
-[; ;DualMixer.C: 290: RFFC2071A_Enable();
+[e ( _UART_INITIAL ..  ]
+[; ;DualMixer.C: 290: RFFC2071A_Init();
 "290
-[e ( _RFFC2071A_Enable ..  ]
-[; ;DualMixer.C: 291: RFFC2071A_DefaultConfig();
+[e ( _RFFC2071A_Init ..  ]
+[; ;DualMixer.C: 291: RFFC2071A_Enable();
 "291
+[e ( _RFFC2071A_Enable ..  ]
+[; ;DualMixer.C: 292: RFFC2071A_DefaultConfig();
+"292
 [e ( _RFFC2071A_DefaultConfig ..  ]
-[; ;DualMixer.C: 293: while (1)
-"293
-[e :U 266 ]
-[; ;DualMixer.C: 294: {
+[; ;DualMixer.C: 294: while (1)
 "294
-{
-[; ;DualMixer.C: 295: readback = RFFC2071A_ReadReg(0x1F);
+[e :U 266 ]
+[; ;DualMixer.C: 295: {
 "295
-[e = _readback ( _RFFC2071A_ReadReg (1 -> -> 31 `i `uc ]
-[; ;DualMixer.C: 298: SendStringToUART("RB:0x");
-"298
-[e ( _SendStringToUART (1 :s 1C ]
-[; ;DualMixer.C: 299: SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
-"299
-[e ( _SendByteToUART (1 ( _HiNibbleToHex (1 -> >> _readback -> 8 `i `uc ]
-[; ;DualMixer.C: 300: SendByteToUART(LoNibbleToHex((unsigned char)(readback >> 8)));
-"300
-[e ( _SendByteToUART (1 ( _LoNibbleToHex (1 -> >> _readback -> 8 `i `uc ]
-[; ;DualMixer.C: 301: SendByteToUART(HiNibbleToHex((unsigned char)(readback & 0xFF)));
-"301
-[e ( _SendByteToUART (1 ( _HiNibbleToHex (1 -> & _readback -> -> 255 `i `ui `uc ]
-[; ;DualMixer.C: 302: SendByteToUART(LoNibbleToHex((unsigned char)(readback & 0xFF)));
-"302
-[e ( _SendByteToUART (1 ( _LoNibbleToHex (1 -> & _readback -> -> 255 `i `ui `uc ]
-[; ;DualMixer.C: 303: SendStringToUART(" LOCK:");
-"303
-[e ( _SendStringToUART (1 :s 2C ]
-[; ;DualMixer.C: 304: SendByteToUART('0' + (readback & 0x0001));
-"304
-[e ( _SendByteToUART (1 -> + -> 48 `ui & _readback -> -> 1 `i `ui `uc ]
-[; ;DualMixer.C: 305: SendStringToUART("\r\n");
-"305
-[e ( _SendStringToUART (1 :s 3C ]
-[; ;DualMixer.C: 308: for (i = 0; i < 2; i++)
-"308
 {
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 2 `i 268  ]
+[; ;DualMixer.C: 297: for (addr = 0; addr <= 0x1F; addr++)
+"297
+{
+[e = _addr -> -> 0 `i `uc ]
+[e $ <= -> _addr `i -> 31 `i 268  ]
 [e $U 269  ]
-"309
+"298
 [e :U 268 ]
-[; ;DualMixer.C: 309: {
+[; ;DualMixer.C: 298: {
 {
-[; ;DualMixer.C: 310: DelayMs(250);
+[; ;DualMixer.C: 299: readback = RFFC2071A_ReadReg(addr);
+"299
+[e = _readback ( _RFFC2071A_ReadReg (1 _addr ]
+[; ;DualMixer.C: 301: SendStringToUART("R[");
+"301
+[e ( _SendStringToUART (1 :s 1C ]
+[; ;DualMixer.C: 302: SendByteToUART(HiNibbleToHex(addr));
+"302
+[e ( _SendByteToUART (1 ( _HiNibbleToHex (1 _addr ]
+[; ;DualMixer.C: 303: SendByteToUART(LoNibbleToHex(addr));
+"303
+[e ( _SendByteToUART (1 ( _LoNibbleToHex (1 _addr ]
+[; ;DualMixer.C: 304: SendStringToUART("]=0x");
+"304
+[e ( _SendStringToUART (1 :s 2C ]
+[; ;DualMixer.C: 305: SendByteToUART(HiNibbleToHex((unsigned char)(readback >> 8)));
+"305
+[e ( _SendByteToUART (1 ( _HiNibbleToHex (1 -> >> _readback -> 8 `i `uc ]
+[; ;DualMixer.C: 306: SendByteToUART(LoNibbleToHex((unsigned char)(readback >> 8)));
+"306
+[e ( _SendByteToUART (1 ( _LoNibbleToHex (1 -> >> _readback -> 8 `i `uc ]
+[; ;DualMixer.C: 307: SendByteToUART(HiNibbleToHex((unsigned char)(readback & 0xFF)));
+"307
+[e ( _SendByteToUART (1 ( _HiNibbleToHex (1 -> & _readback -> -> 255 `i `ui `uc ]
+[; ;DualMixer.C: 308: SendByteToUART(LoNibbleToHex((unsigned char)(readback & 0xFF)));
+"308
+[e ( _SendByteToUART (1 ( _LoNibbleToHex (1 -> & _readback -> -> 255 `i `ui `uc ]
+[; ;DualMixer.C: 309: SendStringToUART("\r\n");
+"309
+[e ( _SendStringToUART (1 :s 3C ]
+[; ;DualMixer.C: 310: DelayMs(10);
 "310
-[e ( _DelayMs (1 -> -> 250 `i `uc ]
+[e ( _DelayMs (1 -> -> 10 `i `uc ]
 "311
 }
-"308
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 2 `i 268  ]
+"297
+[e ++ _addr -> -> 1 `i `uc ]
+[e $ <= -> _addr `i -> 31 `i 268  ]
 [e :U 269 ]
 "311
 }
-"312
+[; ;DualMixer.C: 311: }
+[; ;DualMixer.C: 316: for (i = 0; i < 8; i++)
+"316
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 271  ]
+[e $U 272  ]
+"317
+[e :U 271 ]
+[; ;DualMixer.C: 317: {
+{
+[; ;DualMixer.C: 318: DelayMs(250);
+"318
+[e ( _DelayMs (1 -> -> 250 `i `uc ]
+"319
+}
+"316
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 271  ]
+[e :U 272 ]
+"319
+}
+"320
 }
 [e :U 265 ]
-"293
+"294
 [e $U 266  ]
 [e :U 267 ]
-[; ;DualMixer.C: 311: }
-[; ;DualMixer.C: 312: }
-[; ;DualMixer.C: 313: }
-"313
+[; ;DualMixer.C: 319: }
+[; ;DualMixer.C: 320: }
+[; ;DualMixer.C: 321: }
+"321
 [e :UE 264 ]
 }
-[a 1C 82 66 58 48 120 0 ]
-[a 2C 32 76 79 67 75 58 0 ]
+[a 2C 93 61 48 120 0 ]
+[a 1C 82 91 0 ]
 [a 3C 13 10 0 ]
