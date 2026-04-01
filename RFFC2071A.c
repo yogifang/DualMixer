@@ -14,6 +14,10 @@
 // Configuration - adjust for your hardware
 //==============================================================================
 #define REF_FREQ_MHZ      26      // Reference frequency (MHz) - set to your TCXO frequency
+#define PATH1_LO_MHZ      450
+#define PATH2_LO_MHZ      500
+
+static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path);
 
 //==============================================================================
 // Delay function - tune for FT61F142 clock settings
@@ -181,40 +185,99 @@ uint16_t RFFC2071A_ReadReg(uint8_t addr)
 //==============================================================================
 void RFFC2071A_DefaultConfig(void)
 {
-    // Revision 2 default register map (0x00 ~ 0x1E)
+    uint16_t reg;
+
+    // Legacy flat default-map sequence (kept for reference only).
+    // RFFC2071A_WriteReg(REG_LF, 0xBEFA);
+    // RFFC2071A_WriteReg(REG_XO, 0x4064);
+    // RFFC2071A_WriteReg(REG_CAL_TIME, 0x9055);
+    // RFFC2071A_WriteReg(REG_VCO_CTRL, 0x2D02);
+    // RFFC2071A_WriteReg(REG_CT_CAL1, 0xACBF);
+    // RFFC2071A_WriteReg(REG_CT_CAL2, 0xACBF);
+    // RFFC2071A_WriteReg(REG_PLL_CAL1, 0x0028);
+    // RFFC2071A_WriteReg(REG_PLL_CAL2, 0x0028);
+    // RFFC2071A_WriteReg(REG_VCO_AUTO, 0xFF00);
+    // RFFC2071A_WriteReg(REG_PLL_CTRL, 0x8220);
+    // RFFC2071A_WriteReg(REG_PLL_BIAS, 0x0202);
+    // RFFC2071A_WriteReg(REG_MIX_CONT, 0x4800);
+    // RFFC2071A_WriteReg(REG_P1_FREQ1, 0x1A94);
+    // RFFC2071A_WriteReg(REG_P1_FREQ2, 0xD89D);
+    // RFFC2071A_WriteReg(REG_P1_FREQ3, 0x8900);
+    // RFFC2071A_WriteReg(REG_P2_FREQ1, 0x1E84);
+    // RFFC2071A_WriteReg(REG_P2_FREQ2, 0x89D8);
+    // RFFC2071A_WriteReg(REG_P2_FREQ3, 0x9D00);
+    // RFFC2071A_WriteReg(REG_FN_CTRL, 0x2A80);
+    // RFFC2071A_WriteReg(REG_EXT_MOD, 0x0000);
+    // RFFC2071A_WriteReg(REG_FMOD, 0x0000);
+    // RFFC2071A_WriteReg(REG_SDI_CTRL, 0x0000);
+    // RFFC2071A_WriteReg(REG_GPO, 0x0000);
+    // RFFC2071A_WriteReg(REG_T_VCO, 0x4900);
+    // RFFC2071A_WriteReg(REG_IQMOD1, 0x0281);
+    // RFFC2071A_WriteReg(REG_IQMOD2, 0xF00F);
+    // RFFC2071A_WriteReg(REG_IQMOD3, 0x0000);
+    // RFFC2071A_WriteReg(REG_IQMOD4, 0x0005);
+    // RFFC2071A_WriteReg(REG_TEMPC_CTRL, 0xC840);
+    // RFFC2071A_WriteReg(REG_DEV_CTRL, 0x1000);
+    // RFFC2071A_WriteReg(REG_TEST, 0x0005);
+
+    // Flow step 1: Set-up device operation (base defaults + full duplex path).
     RFFC2071A_WriteReg(REG_LF, 0xBEFA);
     RFFC2071A_WriteReg(REG_XO, 0x4064);
     RFFC2071A_WriteReg(REG_CAL_TIME, 0x9055);
     RFFC2071A_WriteReg(REG_VCO_CTRL, 0x2D02);
-    RFFC2071A_WriteReg(REG_CT_CAL1, 0xACBF);
-    RFFC2071A_WriteReg(REG_CT_CAL2, 0xACBF);
+    RFFC2071A_WriteReg(REG_CT_CAL1, 0xACBF);   // p1ctv preset
+    RFFC2071A_WriteReg(REG_CT_CAL2, 0xACBF);   // p2ctv preset
     RFFC2071A_WriteReg(REG_PLL_CAL1, 0x0028);
     RFFC2071A_WriteReg(REG_PLL_CAL2, 0x0028);
-    RFFC2071A_WriteReg(REG_VCO_AUTO, 0xFF00);
+    RFFC2071A_WriteReg(REG_VCO_AUTO, 0xFF00);  // ct_min/ct_max auto range
     RFFC2071A_WriteReg(REG_PLL_CTRL, 0x8220);
     RFFC2071A_WriteReg(REG_PLL_BIAS, 0x0202);
-    RFFC2071A_WriteReg(REG_MIX_CONT, 0x4800);
+    RFFC2071A_WriteReg(REG_TEST, 0x0005);      // rbgyp path
 
-    RFFC2071A_WriteReg(REG_P1_FREQ1, 0x1A94);
-    RFFC2071A_WriteReg(REG_P1_FREQ2, 0xD89D);
-    RFFC2071A_WriteReg(REG_P1_FREQ3, 0x8900);
-    RFFC2071A_WriteReg(REG_P2_FREQ1, 0x1E84);
-    RFFC2071A_WriteReg(REG_P2_FREQ2, 0x89D8);
-    RFFC2071A_WriteReg(REG_P2_FREQ3, 0x9D00);
+    // SDI control path: 3-wire programming bus (sipin=1).
+    // Also enable ENBL/MODE control by SDI_CTRL per flow step 5.
+    reg = RFFC2071A_ReadReg(REG_SDI_CTRL);
+    reg |= (SDI_CTRL_SIPIN | SDI_CTRL_ENBL | SDI_CTRL_MODE);
+    RFFC2071A_WriteReg(REG_SDI_CTRL, reg);
 
-    RFFC2071A_WriteReg(REG_FN_CTRL, 0x2A80);
+    // Enable full duplex operation (MIX_CONT.fulld = 1).
+    reg = RFFC2071A_ReadReg(REG_MIX_CONT);
+    reg |= MIX_CONT_FULLD;
+    RFFC2071A_WriteReg(REG_MIX_CONT, reg);
+
+    // Flow step 2: Additional features (route lock output to GPO).
+    reg = RFFC2071A_ReadReg(REG_GPO);
+    reg |= GPO_LOCK;
+    RFFC2071A_WriteReg(REG_GPO, reg);
+
+    // Keep optional blocks disabled in this path.
     RFFC2071A_WriteReg(REG_EXT_MOD, 0x0000);
     RFFC2071A_WriteReg(REG_FMOD, 0x0000);
-    RFFC2071A_WriteReg(REG_SDI_CTRL, 0x0000);
-    RFFC2071A_WriteReg(REG_GPO, 0x0000);
+
+    // Flow step 3: Set operating frequencies from formula.
+    // Old direct-write code is kept here for reference, do not delete.
+    // RFFC2071A_WriteReg(REG_P1_FREQ1, 0x1A94);
+    // RFFC2071A_WriteReg(REG_P1_FREQ2, 0xD89D);
+    // RFFC2071A_WriteReg(REG_P1_FREQ3, 0x8900);
+    // RFFC2071A_WriteReg(REG_P2_FREQ1, 0x1E84);
+    // RFFC2071A_WriteReg(REG_P2_FREQ2, 0x89D8);
+    // RFFC2071A_WriteReg(REG_P2_FREQ3, 0x9D00);
+    // Path1 (VCO1 output) = 450 MHz, Path2 (VCO2 output) = 500 MHz.
+    RFFC2071A_CalcFrequency(PATH1_LO_MHZ, 1);
+    RFFC2071A_CalcFrequency(PATH2_LO_MHZ, 2);
+
+    // Other operating defaults.
+    RFFC2071A_WriteReg(REG_FN_CTRL, 0x2A80);
     RFFC2071A_WriteReg(REG_T_VCO, 0x4900);
     RFFC2071A_WriteReg(REG_IQMOD1, 0x0281);
     RFFC2071A_WriteReg(REG_IQMOD2, 0xF00F);
     RFFC2071A_WriteReg(REG_IQMOD3, 0x0000);
     RFFC2071A_WriteReg(REG_IQMOD4, 0x0005);
     RFFC2071A_WriteReg(REG_TEMPC_CTRL, 0xC840);
+
+    // Flow step 4: calibration mode keeps default path.
+    // Flow step 5: finish by applying device control state.
     RFFC2071A_WriteReg(REG_DEV_CTRL, 0x1000);
-    RFFC2071A_WriteReg(REG_TEST, 0x0005);
 }
 
 //==============================================================================
@@ -245,7 +308,7 @@ static void RFFC2071A_CalcFrequency(uint32_t freq_mhz, uint8_t path)
     } else {
         n_lo = 16;
     }
-    
+   // n_lo = 2^n_lo;  // Convert to actual divider value (1, 2, 4, 8, 16, or 32) 
     // VCO frequency = LO frequency * n_lo * 2 (internal /2 path)
     uint32_t vco_freq = freq_mhz * n_lo * 2;
     
@@ -292,7 +355,7 @@ void RFFC2071A_SetFrequencyPath1(uint32_t freq_mhz)
     RFFC2071A_CalcFrequency(freq_mhz, 1);
     
     // Trigger PLL re-lock
-    RFFC2071A_WriteReg(REG_DEV_CTRL, 0x0001);
+    RFFC2071A_WriteReg(REG_DEV_CTRL, DEV_CTRL_RELOCK);
 }
 
 //==============================================================================
@@ -303,7 +366,7 @@ void RFFC2071A_SetFrequencyPath2(uint32_t freq_mhz)
     RFFC2071A_CalcFrequency(freq_mhz, 2);
     
     // Trigger PLL re-lock
-    RFFC2071A_WriteReg(REG_DEV_CTRL, 0x0001);
+    RFFC2071A_WriteReg(REG_DEV_CTRL, DEV_CTRL_RELOCK);
 }
 
 //==============================================================================
@@ -317,7 +380,7 @@ void RFFC2071A_SetDualFrequency(uint32_t freq1_mhz, uint32_t freq2_mhz)
     RFFC2071A_CalcFrequency(freq2_mhz, 2);
     
     // Trigger PLL re-lock
-    RFFC2071A_WriteReg(REG_DEV_CTRL, 0x0001);
+    RFFC2071A_WriteReg(REG_DEV_CTRL, DEV_CTRL_RELOCK);
 }
 
 //==============================================================================
@@ -337,9 +400,9 @@ void RFFC2071A_SetFullDuplex(uint8_t enable)
     uint16_t reg = RFFC2071A_ReadReg(REG_MIX_CONT);
     
     if (enable) {
-        reg |= 0x4000;   // FULLD = 1
+        reg |= MIX_CONT_FULLD;   // FULLD = 1
     } else {
-        reg &= ~0x4000;  // FULLD = 0
+        reg &= (uint16_t)~MIX_CONT_FULLD;  // FULLD = 0
     }
     
     RFFC2071A_WriteReg(REG_MIX_CONT, reg);
@@ -353,7 +416,7 @@ void RFFC2071A_SetMixerCurrent(uint8_t current)
 {
     uint16_t reg = RFFC2071A_ReadReg(REG_MIX_CONT);
     
-    reg &= ~0x0700;                      // Clear MIX_IDD bits
+    reg &= (uint16_t)~MIX_CONT_MIX_IDD;  // Clear MIX_IDD bits
     reg |= ((current & 0x07) << 8);      // Apply new value
     
     RFFC2071A_WriteReg(REG_MIX_CONT, reg);
@@ -395,7 +458,7 @@ void RFFC2071A_SetMode(uint8_t mixer)
 uint8_t RFFC2071A_IsLocked(void)
 {
     uint16_t reg = RFFC2071A_ReadReg(REG_READBACK);
-    return (reg & 0x0001) ? 1 : 0;  // LOCK bit
+    return (reg & READBACK_LOCK) ? 1 : 0;  // LOCK bit
 }
 
 //==============================================================================

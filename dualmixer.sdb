@@ -35,25 +35,25 @@
 [v _LoNibbleToHex LoNibbleToHex `(uc  1 e 1 0 ]
 "282
 [v _main main `(i  1 e 2 0 ]
-"21 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
+"25 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
 [v _delay_us delay_us `(v  1 s 1 delay_us ]
-"34
+"38
 [v _RFFC2071A_Init RFFC2071A_Init `(v  1 e 1 0 ]
-"56
+"60
 [v _RFFC2071A_Reset RFFC2071A_Reset `(v  1 e 1 0 ]
-"70
+"74
 [v _RFFC2071A_SendOneClock RFFC2071A_SendOneClock `(v  1 e 1 0 ]
-"81
+"85
 [v _RFFC2071A_WriteReg RFFC2071A_WriteReg `(v  1 e 1 0 ]
-"119
+"123
 [v _RFFC2071A_ReadReg RFFC2071A_ReadReg `(ui  1 e 2 0 ]
-"182
+"186
 [v _RFFC2071A_DefaultConfig RFFC2071A_DefaultConfig `(v  1 e 1 0 ]
-"224
+"287
 [v _RFFC2071A_CalcFrequency RFFC2071A_CalcFrequency `(v  1 s 1 RFFC2071A_CalcFrequency ]
-"314
+"377
 [v _RFFC2071A_SetDualFrequency RFFC2071A_SetDualFrequency `(v  1 e 1 0 ]
-"365
+"428
 [v _RFFC2071A_Enable RFFC2071A_Enable `(v  1 e 1 0 ]
 "97 C:\Program Files (x86)\CCompiler\Compiler\data\include\FT61F14X.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
@@ -159,11 +159,11 @@
 [v _main main `(i  1 e 2 0 ]
 {
 "284
-[v main@readback readback `ui  1 a 2 7 ]
+[v main@readback readback `ui  1 a 2 48 ]
 "286
-[v main@addr addr `uc  1 a 1 9 ]
+[v main@addr addr `uc  1 a 1 50 ]
 "285
-[v main@i i `uc  1 a 1 6 ]
+[v main@i i `uc  1 a 1 47 ]
 "321
 } 0
 "181
@@ -186,67 +186,127 @@
 [v SendByteToUART@data data `uc  1 a 1 0 ]
 "220
 } 0
-"119 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
+"38 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
+[v _RFFC2071A_Init RFFC2071A_Init `(v  1 e 1 0 ]
+{
+"55
+} 0
+"60
+[v _RFFC2071A_Reset RFFC2071A_Reset `(v  1 e 1 0 ]
+{
+"69
+} 0
+"186
+[v _RFFC2071A_DefaultConfig RFFC2071A_DefaultConfig `(v  1 e 1 0 ]
+{
+"188
+[v RFFC2071A_DefaultConfig@reg reg `ui  1 a 2 45 ]
+"281
+} 0
+"123
 [v _RFFC2071A_ReadReg RFFC2071A_ReadReg `(ui  1 e 2 0 ]
 {
 [v RFFC2071A_ReadReg@addr addr `uc  1 a 1 wreg ]
-"123
+"127
 [v RFFC2071A_ReadReg@rx_data rx_data `ui  1 a 2 7 ]
-"121
+"125
 [v RFFC2071A_ReadReg@i i `uc  1 a 1 9 ]
-"122
+"126
 [v RFFC2071A_ReadReg@tx_byte tx_byte `uc  1 a 1 6 ]
-"119
-[v RFFC2071A_ReadReg@addr addr `uc  1 a 1 wreg ]
 "123
+[v RFFC2071A_ReadReg@addr addr `uc  1 a 1 wreg ]
+"127
 [v RFFC2071A_ReadReg@addr addr `uc  1 a 1 5 ]
-"177
+"181
 } 0
-"34
-[v _RFFC2071A_Init RFFC2071A_Init `(v  1 e 1 0 ]
+"287
+[v _RFFC2071A_CalcFrequency RFFC2071A_CalcFrequency `(v  1 s 1 RFFC2071A_CalcFrequency ]
 {
-"51
+"292
+[v RFFC2071A_CalcFrequency@n_frac n_frac `ul  1 a 4 40 ]
+"290
+[v RFFC2071A_CalcFrequency@n_lo n_lo `ul  1 a 4 36 ]
+"313
+[v RFFC2071A_CalcFrequency@vco_freq vco_freq `ul  1 a 4 31 ]
+"320
+[v RFFC2071A_CalcFrequency@remainder remainder `ul  1 a 4 17 ]
+"293
+[v RFFC2071A_CalcFrequency@freq1 freq1 `ui  1 a 2 29 ]
+[v RFFC2071A_CalcFrequency@freq3 freq3 `ui  1 a 2 27 ]
+[v RFFC2071A_CalcFrequency@freq2 freq2 `ui  1 a 2 23 ]
+"291
+[v RFFC2071A_CalcFrequency@n_int n_int `ui  1 a 2 21 ]
+"294
+[v RFFC2071A_CalcFrequency@reg_base reg_base `uc  1 a 1 44 ]
+"289
+[v RFFC2071A_CalcFrequency@n_div n_div `uc  1 a 1 35 ]
+"287
+[v RFFC2071A_CalcFrequency@freq_mhz freq_mhz `ul  1 p 4 6 ]
+[v RFFC2071A_CalcFrequency@path path `uc  1 p 1 10 ]
+"348
 } 0
-"56
-[v _RFFC2071A_Reset RFFC2071A_Reset `(v  1 e 1 0 ]
+"15 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
 {
-"65
+"17
+[v ___lmul@product product `ul  1 a 4 8 ]
+"15
+[v ___lmul@multiplier multiplier `ul  1 p 4 0 ]
+[v ___lmul@multiplicand multiplicand `ul  1 p 4 4 ]
+"129
 } 0
-"182
-[v _RFFC2071A_DefaultConfig RFFC2071A_DefaultConfig `(v  1 e 1 0 ]
+"6 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
 {
-"218
+"11
+[v ___llmod@counter counter `uc  1 a 1 8 ]
+"6
+[v ___llmod@divisor divisor `ul  1 p 4 0 ]
+[v ___llmod@dividend dividend `ul  1 p 4 4 ]
+"26
 } 0
-"81
+"6 C:\Program Files (x86)\CCompiler\Compiler\data\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"11
+[v ___lldiv@quotient quotient `ul  1 a 4 0 ]
+"12
+[v ___lldiv@counter counter `uc  1 a 1 4 ]
+"6
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
+"31
+} 0
+"85 C:\Users\st99\source\repos\yogifang\DualMixer\RFFC2071A.c
 [v _RFFC2071A_WriteReg RFFC2071A_WriteReg `(v  1 e 1 0 ]
 {
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 wreg ]
-"84
+"88
 [v RFFC2071A_WriteReg@tx_data tx_data `ul  1 a 4 1 ]
-"83
+"87
 [v RFFC2071A_WriteReg@i i `uc  1 a 1 5 ]
-"81
+"85
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 wreg ]
 [v RFFC2071A_WriteReg@data data `ui  1 p 2 2 ]
-"87
+"91
 [v RFFC2071A_WriteReg@addr addr `uc  1 a 1 0 ]
-"114
+"118
 } 0
-"70
+"74
 [v _RFFC2071A_SendOneClock RFFC2071A_SendOneClock `(v  1 e 1 0 ]
 {
-"76
+"80
 } 0
-"365
+"428
 [v _RFFC2071A_Enable RFFC2071A_Enable `(v  1 e 1 0 ]
 {
-"369
+"432
 } 0
-"21
+"25
 [v _delay_us delay_us `(v  1 s 1 delay_us ]
 {
 [v delay_us@us us `ui  1 p 2 0 ]
-"29
+"33
 } 0
 "112 C:\Users\st99\source\repos\yogifang\DualMixer\DualMixer.C
 [v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]

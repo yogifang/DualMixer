@@ -74,6 +74,20 @@
 #define REG_TEST          0x1E
 #define REG_READBACK      0x1F
 
+// Bit masks used by configuration flow
+#define SDI_CTRL_MODE     0x0001
+#define SDI_CTRL_ENBL     0x0002
+#define SDI_CTRL_SIPIN    0x0004
+
+#define GPO_LOCK          0x0001
+
+#define MIX_CONT_MIX_IDD  0x0700
+#define MIX_CONT_FULLD    0x4000
+
+#define DEV_CTRL_RELOCK   0x0001
+
+#define READBACK_LOCK     0x0001
+
 // Function Prototypes
 void RFFC2071A_Init(void);
 void RFFC2071A_Reset(void);
